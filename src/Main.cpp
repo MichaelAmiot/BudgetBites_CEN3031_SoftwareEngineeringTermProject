@@ -1,3 +1,7 @@
-//
-// Created by micha on 6/17/2026.
-//
+#include "Account.h"
+#include "Grocery.h"
+#include "Infastructure.h"
+#include "MealPlan.h"
+#include "RecipeDataBase.h"
+#include "UX.h" // User Experience
+
