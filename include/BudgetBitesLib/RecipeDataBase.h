@@ -1,9 +1,5 @@
-//
-// Created by micha on 6/17/2026.
-//
+#pragma once   // prevents double-inclusion
 
-#ifndef RECIPEDATABASE_H
-#define RECIPEDATABASE_H
 
 
 
@@ -13,4 +9,4 @@ class RecipeDataBase {
 
 
 
-#endif //RECIPEDATABASE_H
+
