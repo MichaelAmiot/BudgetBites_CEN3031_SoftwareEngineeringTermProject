@@ -1,13 +1,20 @@
-add_executable(BudgetBites
-        main.cpp
+add_library(BudgetBitesLib
         Account.cpp
         Grocery.cpp
-        MealPlan.cpp
-        RecipeDatabase.cpp
         Infrastructure.cpp
+        MealPlan.cpp
+        RecipeDataBase.cpp
         UX.cpp
 )
 
-target_include_directories(BudgetBites PRIVATE
-        ${PROJECT_SOURCE_DIR}/include
+target_include_directories(BudgetBitesLib
+        PUBLIC ${CMAKE_SOURCE_DIR}/include
+)
+
+add_executable(BudgetBites
+        Main.cpp
+)
+
+target_link_libraries(BudgetBites
+        PRIVATE BudgetBitesLib
 )
