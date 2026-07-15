@@ -5,6 +5,9 @@ add_executable(BudgetBitesTests
         test_infrastructure.cpp
         test_RecipeDataBase.cpp
         test_UX.cpp
+        test_PasswordSecurity.cpp
+        test_ProfileImageStore.cpp
+        test_UserRepository.cpp
 )
 
 target_link_libraries(BudgetBitesTests

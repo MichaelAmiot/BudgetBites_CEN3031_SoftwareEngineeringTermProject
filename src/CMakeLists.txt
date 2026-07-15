@@ -5,6 +5,10 @@ add_library(BudgetBitesLib
         MealPlan.cpp
         RecipeDataBase.cpp
         UX.cpp
+        PasswordSecurity.cpp
+        UserRepository.cpp
+        ProfileImageStore.cpp
+
 )
 
 target_include_directories(BudgetBitesLib
