@@ -5,3 +5,23 @@
 #include "RecipeDataBase.h"
 #include "UX.h" // User Experience
 
+
+
+int main() {
+
+//create the account
+
+    Account user;
+
+
+    // Enter allergies
+    usr.enterFoodAllergies();
+
+
+
+//show the saves
+    user.displayFoodAllergies();
+
+    return 0;
+
+}
