@@ -3,7 +3,7 @@
 
 
 
-class Infastructure {
+class Infrastructure {
 
 };
 

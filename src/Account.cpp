@@ -15,7 +15,7 @@ int num;
 
 
 
-cout << '\nHow many food allergies would you like to enter? ";
+cout << "\nHow many food allergies would you like to enter? ";
 
 cin >> num;
 

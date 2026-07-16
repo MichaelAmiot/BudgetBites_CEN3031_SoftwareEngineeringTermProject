@@ -24,7 +24,7 @@ public:
 
 
 //lets a user enter their allergies
-    void displayFoodAllergies() const;
+    void enterFoodAllergies();
 
 
 //Prints the allergies that are being saved!
