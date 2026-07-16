@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <limits>
+#include <map>
 #include <string>
 
 #ifdef _WIN32
@@ -19,6 +20,13 @@
 namespace {
 
 constexpr const char* kUsersFilePath = "users.dat";
+
+// Maps each username to their Account (which currently only tracks food
+// allergies). This is a stopgap: Account isn't yet persisted to disk the
+// way UserRepository is, so allergies only last for the current run.
+// TODO(sprint 2): give Account a proper place in UserRepository/UserAccount
+// so allergies survive saveToFile()/loadFromFile() like everything else.
+std::map<std::string, Account> accountsByUser;
 
 // Reads a line of input, discarding anything left in the stream on failure
 // (e.g. if the user typed letters where a menu number was expected).
@@ -140,7 +148,7 @@ void handleViewImage(const UX& ux) {
         return;
     }
 
-    ux.currentUser()->enterFoodAllergies();
+    accountsByUser[*ux.currentUser()].enterFoodAllergies();
 
     ux.saveToFile(kUsersFilePath);
 }
@@ -152,7 +160,7 @@ void handleViewImage(const UX& ux) {
         return;
     }
 
-    ux.currentUser()->displayFoodAllergies();
+    accountsByUser[*ux.currentUser()].displayFoodAllergies();
 }
 
 
