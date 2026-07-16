@@ -3,7 +3,7 @@
 #include "BudgetBitesLib/Infrastructure.h"
 #include "BudgetBitesLib/MealPlan.h"
 #include "BudgetBitesLib/RecipeDataBase.h"
-#include "BudgetBitesLib/UX.h" // User Experience
+#include "BudgetBitesLib/UX.h"
 
 #include <iostream>
 #include <limits>
@@ -72,8 +72,10 @@ void printMenu() {
               << "2. Sign in\n"
               << "3. Upload profile image\n"
               << "4. View profile image path\n"
-              << "5. Sign out\n"
-              << "6. Exit\n"
+              << "5. Enter food allergies\n"
+              << "6. View food allergies\n"
+              << "7. Sign out\n"
+              << "8. Exit\n"
               << "Choose an option: ";
 }
 
@@ -131,8 +133,32 @@ void handleViewImage(const UX& ux) {
         std::cout << "No profile image has been uploaded yet.\n";
     }
 }
+    //allows the signed in user to enter/update food allergies
+    void handleEnterAllergies(UX& ux) {
+    if (!ux.isSignedIn()) {
+        std::cout << "You must sign in before entering allergies.\n";
+        return;
+    }
+
+    ux.currentUser()->enterFoodAllergies();
+
+    ux.saveToFile(kUsersFilePath);
+}
+
+    //Displays allergies saved for the sign in user
+    void handleViewAllergies(const UX& ux) {
+    if (!ux.isSignedIn()) {
+        std::cout << "You must sign in before viewing allergies.\n";
+        return;
+    }
+
+    ux.currentUser()->displayFoodAllergies();
+}
+
 
 } // namespace
+
+
 
 int main() {
     UX ux;
@@ -168,18 +194,25 @@ int main() {
                 handleViewImage(ux);
                 break;
             case 5:
+                handleEnterAllergies(ux);
+                break;
+            case 6:
+                handleViewAllergies(ux);
+                break;
+            case 7:
                 ux.signOut();
                 std::cout << "Signed out.\n";
                 break;
-            case 6:
+            case 8:
                 ux.saveToFile(kUsersFilePath);
                 running = false;
                 break;
             default:
-                std::cout << "Unknown option. Please choose 1-6.\n";
+                std::cout << "Unknown option. Please choose 1-8.\n";
         }
     }
 
     std::cout << "Goodbye!\n";
     return 0;
+
 }
