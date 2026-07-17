@@ -1,0 +1,30 @@
+version: 2.1
+
+jobs:
+  run:
+    docker:
+      - image: cimg/base:2024.02
+    steps:
+      - checkout
+      - run:
+          name: Install build tools
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y cmake g++ ninja-build
+      - run:
+          name: Configure
+          command: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+      - run:
+          name: Build
+          command: cmake --build build
+      - run:
+          name: Run tests
+          command: |
+            cd build
+            ctest --output-on-failure
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - run
