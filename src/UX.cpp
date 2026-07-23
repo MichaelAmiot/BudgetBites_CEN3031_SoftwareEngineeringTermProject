@@ -3,12 +3,14 @@
 #include "BudgetBitesLib/PasswordSecurity.h"
 #include "BudgetBitesLib/ProfileImageStore.h"
 
-bool UX::registerUser(const std::string& username, const std::string& password) {
+using namespace std;
+
+bool UX::registerUser(const string& username, const string& password) {
     if (username.empty()) {
         return false;
     }
-    if (repository_.find(username) != nullptr) {
-        return false; // username already taken (case-insensitive)
+    if (repository.find(username) != nullptr) {
+        return false; // username already taken
     }
     if (!PasswordSecurity::isStrong(password)) {
         return false;
@@ -17,48 +19,45 @@ bool UX::registerUser(const std::string& username, const std::string& password) 
     UserAccount account;
     account.username = username;
     account.passwordSalt = PasswordSecurity::generateSalt();
-    account.passwordHash = PasswordSecurity::hash(password, account.passwordSalt);
+    account.passwordHash = PasswordSecurity::hashPassword(password, account.passwordSalt);
 
-    repository_.add(account);
+    repository.add(account);
     return true;
 }
 
-bool UX::signIn(const std::string& username, const std::string& password) {
-    const UserAccount* account = repository_.find(username);
+bool UX::signIn(const string& username, const string& password) {
+    UserAccount* account = repository.find(username);
     if (account == nullptr) {
-        // Do the same amount of work whether the user exists or not, so
-        // failed logins don't reveal valid usernames via timing.
-        PasswordSecurity::hash(password, PasswordSecurity::generateSalt());
         return false;
     }
 
-    if (!PasswordSecurity::verify(password, account->passwordSalt, account->passwordHash)) {
+    if (!PasswordSecurity::checkPassword(password, account->passwordSalt, account->passwordHash)) {
         return false;
     }
 
-    currentUsername_ = username;
+    currentUsername = username;
     return true;
 }
 
 void UX::signOut() {
-    currentUsername_.reset();
+    currentUsername.reset();
 }
 
 bool UX::isSignedIn() const {
-    return currentUsername_.has_value();
+    return currentUsername.has_value();
 }
 
-std::optional<std::string> UX::currentUser() const {
-    return currentUsername_;
+optional<string> UX::currentUser() const {
+    return currentUsername;
 }
 
-bool UX::uploadProfileImage(const std::string& username, const std::string& sourceImagePath) {
-    // Only the signed-in user may upload their own profile image.
-    if (!currentUsername_.has_value() || *currentUsername_ != username) {
+bool UX::uploadProfileImage(const string& username, const string& sourceImagePath) {
+    // only let someone upload a picture for their own account
+    if (!currentUsername.has_value() || currentUsername != username) {
         return false;
     }
 
-    UserAccount* account = repository_.find(username);
+    UserAccount* account = repository.find(username);
     if (account == nullptr) {
         return false;
     }
@@ -72,23 +71,23 @@ bool UX::uploadProfileImage(const std::string& username, const std::string& sour
     return true;
 }
 
-std::optional<std::string> UX::getProfileImagePath(const std::string& username) const {
-    const UserAccount* account = repository_.find(username);
+optional<string> UX::getProfileImagePath(const string& username) {
+    UserAccount* account = repository.find(username);
     if (account == nullptr || account->profileImagePath.empty()) {
-        return std::nullopt;
+        return nullopt;
     }
     return account->profileImagePath;
 }
 
-bool UX::isPasswordStrong(const std::string& password) {
+bool UX::isPasswordStrong(const string& password) {
     return PasswordSecurity::isStrong(password);
 }
 
-bool UX::saveToFile(const std::string& filePath) const {
-    return repository_.saveToFile(filePath);
+bool UX::saveToFile(const string& filePath) const {
+    return repository.saveToFile(filePath);
 }
 
-bool UX::loadFromFile(const std::string& filePath) {
-    currentUsername_.reset();
-    return repository_.loadFromFile(filePath);
+bool UX::loadFromFile(const string& filePath) {
+    currentUsername.reset();
+    return repository.loadFromFile(filePath);
 }

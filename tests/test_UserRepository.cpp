@@ -5,116 +5,120 @@
 
 #include "BudgetBitesLib/UserRepository.h"
 
+using namespace std;
+
 namespace {
 
-// Keeps a temp file's path around and removes it (and any leftovers from
-// a previous failed run) when the test goes out of scope, so tests never
-// depend on files left behind by earlier runs.
-struct TempFile {
-    std::filesystem::path path;
-    explicit TempFile(const std::string& name) : path(name) {
-        std::filesystem::remove(path);
-    }
-    ~TempFile() {
-        std::filesystem::remove(path);
-    }
-};
-
-UserAccount makeAccount(const std::string& username) {
+UserAccount makeAccount(const string& username) {
     UserAccount account;
     account.username = username;
-    account.passwordHash = "deadbeef";
-    account.passwordSalt = "cafef00d";
+    account.passwordHash = "knucklehead";
+    account.passwordSalt = "0liver";
     account.profileImagePath = "profile_images/" + username + ".png";
     return account;
 }
 
-} // namespace
+}
 
-TEST_CASE("A freshly constructed UserRepository is empty", "[UserRepo]") {
+TEST_CASE("a new UserRepository starts out empty", "[UserRepo]") {
     UserRepository repo;
     CHECK(repo.size() == 0);
     CHECK(repo.find("anyone") == nullptr);
 }
 
-TEST_CASE("add() stores an account that find() can then retrieve", "[UserRepo]") {
+TEST_CASE("add lets you find the account afterwards", "[UserRepo]") {
     UserRepository repo;
-    repo.add(makeAccount("Alice"));
+    repo.add(makeAccount("Nikki"));
 
     REQUIRE(repo.size() == 1);
-    const UserAccount* found = repo.find("Alice");
+    UserAccount* found = repo.find("Nikki");
     REQUIRE(found != nullptr);
-    CHECK(found->username == "Alice");
-    CHECK(found->passwordHash == "deadbeef");
+    CHECK(found->username == "Nikki");
+    CHECK(found->passwordHash == "knucklehead");
 }
 
-TEST_CASE("find() is case-insensitive", "[UserRepo]") {
+TEST_CASE("find isn't case sensitive", "[UserRepo]") {
     UserRepository repo;
-    repo.add(makeAccount("Alice"));
+    repo.add(makeAccount("Nikki"));
 
-    CHECK(repo.find("alice") != nullptr);
-    CHECK(repo.find("ALICE") != nullptr);
-    CHECK(repo.find("aLiCe") != nullptr);
+    CHECK(repo.find("nikki") != nullptr);
+    CHECK(repo.find("NIKKI") != nullptr);
+    CHECK(repo.find("nIKKi") != nullptr);
 }
 
-TEST_CASE("find() returns nullptr for a username that was never added", "[UserRepo]") {
+TEST_CASE("find returns nullptr if the username was never added", "[UserRepo]") {
     UserRepository repo;
-    repo.add(makeAccount("Alice"));
+    repo.add(makeAccount("Nikki"));
 
-    CHECK(repo.find("Bob") == nullptr);
+    CHECK(repo.find("Michael") == nullptr);
 }
 
-TEST_CASE("loadFromFile fails gracefully when the file doesn't exist", "[UserRepo]") {
-    TempFile temp("nonexistent_users.dat");
+TEST_CASE("loadFromFile returns false if the file doesn't exist yet", "[UserRepo]") {
+    string path = "nonexistent_users.txt";
+    filesystem::remove(path);
+
     UserRepository repo;
-
-    CHECK_FALSE(repo.loadFromFile(temp.path.string()));
+    CHECK_FALSE(repo.loadFromFile(path));
 }
 
-TEST_CASE("loadFromFile fails gracefully on a corrupt/truncated file", "[UserRepo]") {
-    TempFile temp("corrupt_users.dat");
+TEST_CASE("loadFromFile just skips lines that aren't formatted right", "[UserRepo]") {
+    // the file format is pretty simple - if a line doesn't split into
+    // exactly 4 comma separated fields we just skip it, we don't fail
+    // the whole load
+    string path = "corrupt_users.txt";
     {
-        std::ofstream out(temp.path, std::ios::binary);
-        out << "not a real user file";
+        ofstream out(path);
+        out << "not a real user line\n";
     }
 
     UserRepository repo;
-    CHECK_FALSE(repo.loadFromFile(temp.path.string()));
+    bool loaded = repo.loadFromFile(path);
+
+    CHECK(loaded);
+    CHECK(repo.size() == 0);
+
+    filesystem::remove(path);
 }
 
-TEST_CASE("saveToFile then loadFromFile round-trips every account field", "[UserRepo]") {
-    TempFile temp("roundtrip_users.dat");
+TEST_CASE("saveToFile then loadFromFile gives back the same accounts", "[UserRepo]") {
+    string path = "roundtrip_users.txt";
+    filesystem::remove(path);
 
     UserRepository original;
-    original.add(makeAccount("Alice"));
-    original.add(makeAccount("Bob"));
-    REQUIRE(original.saveToFile(temp.path.string()));
+    original.add(makeAccount("Nikki"));
+    original.add(makeAccount("Michael"));
+    REQUIRE(original.saveToFile(path));
 
     UserRepository loaded;
-    REQUIRE(loaded.loadFromFile(temp.path.string()));
+    REQUIRE(loaded.loadFromFile(path));
     REQUIRE(loaded.size() == 2);
 
-    const UserAccount* alice = loaded.find("Alice");
-    REQUIRE(alice != nullptr);
-    CHECK(alice->passwordHash == "deadbeef");
-    CHECK(alice->passwordSalt == "cafef00d");
-    CHECK(alice->profileImagePath == "profile_images/Alice.png");
+    UserAccount* nikki = loaded.find("Nikki");
+    REQUIRE(nikki != nullptr);
+    CHECK(nikki->passwordHash == "knucklehead");
+    CHECK(nikki->passwordSalt == "0liver");
+    CHECK(nikki->profileImagePath == "profile_images/Nikki.png");
 
-    CHECK(loaded.find("Bob") != nullptr);
+    CHECK(loaded.find("Michael") != nullptr);
+
+    filesystem::remove(path);
 }
 
-TEST_CASE("loadFromFile replaces in-memory accounts rather than appending", "[UserRepo]") {
-    TempFile temp("replace_users.dat");
+TEST_CASE("loadFromFile replaces whatever was already loaded", "[UserRepo]") {
+    string path = "replace_users.txt";
+    filesystem::remove(path);
 
     UserRepository saved;
     saved.add(makeAccount("OnlyOnDisk"));
-    REQUIRE(saved.saveToFile(temp.path.string()));
+    REQUIRE(saved.saveToFile(path));
 
     UserRepository repo;
     repo.add(makeAccount("AlreadyInMemory"));
-    REQUIRE(repo.loadFromFile(temp.path.string()));
+    REQUIRE(repo.loadFromFile(path));
 
     CHECK(repo.size() == 1);
     CHECK(repo.find("OnlyOnDisk") != nullptr);
     CHECK(repo.find("AlreadyInMemory") == nullptr);
+
+    filesystem::remove(path);
 }
