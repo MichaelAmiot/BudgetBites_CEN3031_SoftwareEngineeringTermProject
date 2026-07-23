@@ -37,7 +37,10 @@ bool isStrong(const string& password) {
 // just picks random letters/numbers, doesn't need to be crypto-secure
 // good enough for this project
 string generateSalt() {
-    srand(time(0));
+    // seed once per process; repeated srand(time(0)) calls within the same
+    // second return an identical seed and therefore identical salts
+    static bool seeded = (srand(static_cast<unsigned>(time(0))), true);
+    (void)seeded;
     string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     string salt = "";
 
