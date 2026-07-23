@@ -74,9 +74,9 @@ bool UserRepository::loadFromFile(const string& filePath) {
             fields.push_back(field);
         }
 
-        // if the line doesn't have exactly 4 fields something is wrong with it,
-        // just skip it instead of crashing
-        if (fields.size() != 4) {
+        // skip lines that don't have the minimum required fields; profileImagePath
+        // is optional (empty string) so 3 fields is valid when no image was stored
+        if (fields.size() < 3) {
             continue;
         }
 
@@ -84,7 +84,7 @@ bool UserRepository::loadFromFile(const string& filePath) {
         account.username = fields[0];
         account.passwordHash = fields[1];
         account.passwordSalt = fields[2];
-        account.profileImagePath = fields[3];
+        account.profileImagePath = (fields.size() >= 4) ? fields[3] : "";
         loaded.push_back(account);
     }
 
