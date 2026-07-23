@@ -69,3 +69,6 @@ Testing/
 .cache/
 
 .idea/
+
+# Rebuildable local database generated from data/seed/
+data/local/

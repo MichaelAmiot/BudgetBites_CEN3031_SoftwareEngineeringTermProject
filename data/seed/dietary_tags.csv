@@ -1,0 +1,27 @@
+id,code,display_name,tag_group,description
+1,vegan,Vegan,diet_pattern,No animal-derived ingredients.
+2,vegetarian,Vegetarian,diet_pattern,No meat or seafood ingredients.
+3,pescatarian,Pescatarian,diet_pattern,No land-meat or poultry ingredients.
+4,dairy_free,Dairy-free,exclusion,No milk-derived ingredients.
+5,lactose_free,Lactose-free,exclusion,No listed lactose-containing ingredients.
+6,egg_free,Egg-free,exclusion,No egg-derived ingredients.
+7,peanut_free,Peanut-free,exclusion,No peanut-derived ingredients.
+8,tree_nut_free,Tree-nut-free,exclusion,No tree-nut-derived ingredients.
+9,nut_free,Nut-free,exclusion,No peanut or tree-nut-derived ingredients.
+10,soy_free,Soy-free,exclusion,No soy-derived ingredients.
+11,wheat_free,Wheat-free,exclusion,No listed wheat-derived ingredients.
+12,no_listed_gluten_ingredients,No listed gluten ingredients,exclusion,"No listed wheat, barley, rye, oat, or related cereal ingredients; not a certification claim."
+13,sesame_free,Sesame-free,exclusion,No sesame-derived ingredients.
+14,fish_free,Fish-free,exclusion,No fish-derived ingredients.
+15,crustacean_free,Crustacean-free,exclusion,No crustacean-derived ingredients.
+16,mollusc_free,Mollusc-free,exclusion,No mollusc-derived ingredients.
+17,shellfish_free,Shellfish-free,exclusion,No crustacean or mollusc ingredients.
+18,pork_free,Pork-free,exclusion,No pork-derived ingredients.
+19,beef_free,Beef-free,exclusion,No beef-derived ingredients.
+20,poultry_free,Poultry-free,exclusion,"No chicken, turkey, or other poultry ingredients."
+21,red_meat_free,Red-meat-free,exclusion,No listed beef or pork ingredients.
+22,meat_free,Meat-free,exclusion,No land-meat or poultry ingredients; fish/seafood are assessed separately.
+23,seafood_free,Seafood-free,exclusion,"No fish, crustacean, or mollusc ingredients."
+24,alcohol_free,Alcohol-free,exclusion,No intentionally added alcoholic beverage ingredient.
+25,honey_free,Honey-free,exclusion,No honey ingredient.
+26,gelatin_free,Gelatin-free,exclusion,No gelatin ingredient.

@@ -1,0 +1,443 @@
+id,name,default_unit,category
+1,achiote seed,g,pantry
+2,ajices dulce,g,pantry
+3,alcaparrado,g,pantry
+4,allspice,tsp,spice
+5,almond,g,pantry
+6,almond extract,tbsp,condiment
+7,almond oil,tbsp,condiment
+8,american cheese,g,dairy
+9,ancho chile,g,produce
+10,apple,g,produce
+11,asparagus,g,produce
+12,avocado oil,tbsp,condiment
+13,bacon,g,protein
+14,bagel with sesame seed,g,grain
+15,baking potato,g,produce
+16,baking powder,tsp,spice
+17,baking soda,g,pantry
+18,banana,g,produce
+19,banana leaf or plantain leaf,g,produce
+20,basil,g,produce
+21,basil leaf,g,produce
+22,bay leaf,tsp,spice
+23,bay leaf or avocado leaf,tsp,spice
+24,bean,g,legume
+25,beef,g,protein
+26,beef broth,tbsp,condiment
+27,beef or turkey,g,protein
+28,beet,g,produce
+29,black olive,g,pantry
+30,black pepper,tsp,spice
+31,bleached all-purpose flour,g,grain
+32,bleached flour,g,grain
+33,blue cheese,g,dairy
+34,blueberry,g,produce
+35,boiled potatoe,g,pantry
+36,bok choy or broccoli,g,produce
+37,bologna,g,pantry
+38,bone-in chicken meat,g,protein
+39,bone-in chicken thigh,g,protein
+40,bone-in pork chop,g,protein
+41,boneless,g,pantry
+42,boneless skinless chicken breast,g,protein
+43,bottled minced garlic,g,produce
+44,bowl of popped popcorn,g,pantry
+45,bread,g,grain
+46,brindsah cheese,g,dairy
+47,broccoli,g,produce
+48,broccoli or most other seasonal vegetable,g,produce
+49,brown prepared mustard,tsp,spice
+50,brown rice,g,grain
+51,brown sugar,tbsp,condiment
+52,bunch cilantro,g,produce
+53,bunch leafy green,g,produce
+54,bunches fresh basil,g,produce
+55,butter,g,dairy
+56,butter or dripping,g,dairy
+57,butter or margarine,g,dairy
+58,butter or sour cream,g,dairy
+59,buttermilk,g,dairy
+60,cabbage,g,produce
+61,can of mushroom piece,g,produce
+62,can of tomato paste,tbsp,condiment
+63,can of tomatoes with juice,ml,beverage
+64,caraway seed,g,pantry
+65,carrot,g,produce
+66,carton of plain yogurt,g,dairy
+67,cayenne pepper,tsp,spice
+68,celery,g,pantry
+69,celery including the leaf,g,produce
+70,cheddar cheese,g,dairy
+71,cheese,g,dairy
+72,cheese- and garlic-flavored crouton,g,dairy
+73,chicken,g,protein
+74,chicken and vegetable stock,tbsp,condiment
+75,chicken bouillon cube,tbsp,condiment
+76,chicken broth,tbsp,condiment
+77,chicken or beef bouillon cube,tbsp,condiment
+78,chicken powder,g,protein
+79,chicken stock,tbsp,condiment
+80,chicken stock or broth,tbsp,condiment
+81,chicken tikka,g,protein
+82,chickpea,g,legume
+83,chile,g,produce
+84,chile pepper,tsp,spice
+85,chile powder,tsp,spice
+86,chiles de árbol,g,pantry
+87,chili powder,tsp,spice
+88,chilli powder,tsp,spice
+89,chinese black bean,g,legume
+90,chipotle chile,g,produce
+91,chips from a chip shop or homemade,g,bakery
+92,chive,g,pantry
+93,cider vinegar,tbsp,condiment
+94,cilantro,g,produce
+95,cilantro sprig,g,produce
+96,cinnamon,tsp,spice
+97,clarified butter,g,dairy
+98,clove,g,pantry
+99,cloves of garlic,g,produce
+100,coarse salt,tsp,spice
+101,coarsely-chopped onion,g,produce
+102,coarsely-ground pepper,tsp,spice
+103,condensed cream of mushroom soup,g,dairy
+104,cooking oil,tbsp,condiment
+105,cooking spray,g,pantry
+106,coriander,g,pantry
+107,corn,g,produce
+108,corn kernel,g,produce
+109,corn oil or other vegetable oil,tbsp,condiment
+110,cornstarch,g,pantry
+111,cottage cheese,g,dairy
+112,cracked black pepper,tsp,spice
+113,cranberry or pinto bean,g,legume
+114,crayfish,g,protein
+115,cream,g,dairy
+116,cream cheese,g,dairy
+117,cream of tartar,g,dairy
+118,crumbled extra-sharp cheddar cheese,g,dairy
+119,crumbled or shredded cheese,g,dairy
+120,crunchy,g,pantry
+121,crunchy tortillas or tortilla chip,g,grain
+122,crushed tomatoe,g,pantry
+123,cubed processed cheese,g,dairy
+124,cucumber,g,produce
+125,cultured buttermilk,g,dairy
+126,cumin,tsp,spice
+127,cup,g,pantry
+128,curry paste,tsp,spice
+129,curry powder,tsp,spice
+130,curry powder stirred into the juice of 0.5 lemon,tsp,spice
+131,dark red kidney bean,g,legume
+132,date,g,pantry
+133,day-old corn tortilla,g,grain
+134,dry,g,pantry
+135,dry black-eyed pea,g,legume
+136,dry breadcrumb,g,grain
+137,dry elbow macaroni,g,grain
+138,dry linguine or spaghetti,g,pantry
+139,dry red bean,g,legume
+140,dry white wine,g,pantry
+141,dry wonton noodle,g,grain
+142,dry yellow split pea,g,legume
+143,ea. 0.5-inch thick slices either french or italian crusty white bread,g,grain
+144,ea. boneless,g,pantry
+145,ea. chicken,g,protein
+146,ea. chopped carrots,g,pantry
+147,ea. chopped medium onions,g,pantry
+148,ea. large ham hocks,g,protein
+149,ea. medium potato,g,produce
+150,egg,g,protein
+151,eggplant,g,produce
+152,eggs and 2 egg whites,g,protein
+153,eggs either scrambled,g,pantry
+154,elbow macaroni,g,grain
+155,equal amounts of cooked potato and cabbage,g,produce
+156,extra lean ground turkey breast,g,protein
+157,extra-virgin olive oil,tbsp,condiment
+158,fenugreek seed,g,pantry
+159,feta cheese,g,dairy
+160,fine yellow corn meal,g,produce
+161,fine-grain salt,tsp,spice
+162,finely-chopped bell pepper,tsp,spice
+163,finely-chopped celery,g,pantry
+164,finely-chopped fresh parsley,g,pantry
+165,finely-chopped onion,g,produce
+166,finely-chopped shiitake mushroom,g,produce
+167,finely-crumbled cornbread,g,pantry
+168,finely-grated lemon zest,g,produce
+169,firm-fleshed strong-flavoured cheese,g,dairy
+170,flour,g,grain
+171,flour burrito skin,g,grain
+172,fontina,g,pantry
+173,freshly grated parmigiano-reggiano cheese,g,dairy
+174,freshly-chopped coriander leaf,g,produce
+175,freshly-ground black pepper,tsp,spice
+176,freshly-ground pepper,tsp,spice
+177,fried egg,g,protein
+178,frozen,g,pantry
+179,full order of hash brown,g,pantry
+180,garam masala,tsp,spice
+181,garlic,g,produce
+182,garlic clove,g,produce
+183,garlic paste,tbsp,condiment
+184,garlic powder,tsp,spice
+185,garlic salt,tsp,spice
+186,ginger,g,produce
+187,ginger paste,tbsp,condiment
+188,goat cheese —parmesan is an acceptable substitute,g,dairy
+189,grain rice,g,grain
+190,granulated sugar,tbsp,condiment
+191,green bean,g,legume
+192,green bell pepper,tsp,spice
+193,green chile,g,produce
+194,green olive,g,produce
+195,green onion,g,produce
+196,green pea,g,legume
+197,green pepper,tsp,spice
+198,greens like matzumi or baby chinese mustard,tsp,spice
+199,groundnut oil or palm oil,tbsp,condiment
+200,gruyere,g,pantry
+201,hard cheese,g,dairy
+202,heavy cream,g,dairy
+203,heavy whipping cream,g,dairy
+204,herb,g,pantry
+205,hollandaise sauce,tbsp,condiment
+206,homemade chicken stock,tbsp,condiment
+207,honey,tbsp,condiment
+208,honey dijon salad dressing,tbsp,condiment
+209,horseradish,g,pantry
+210,hot chile,g,produce
+211,hot chile pepper,tsp,spice
+212,italian frying pepper,tsp,spice
+213,italian seasoning,tsp,spice
+214,jalapeno,g,pantry
+215,kaiser bun,g,pantry
+216,kale,g,pantry
+217,kernel sweet corn,g,produce
+218,ketchup,tbsp,condiment
+219,ketchup or a brown sauce,tbsp,condiment
+220,kidney,g,pantry
+221,kidney beans or great northern bean,g,legume
+222,kosher salt,tsp,spice
+223,kosher salt or sea salt,tsp,spice
+224,leaf of culantro,g,produce
+225,leaf romaine lettuce,g,produce
+226,leek,g,pantry
+227,lemon,g,produce
+228,light cream,g,dairy
+229,light soy sauce,tbsp,condiment
+230,lime,g,produce
+231,liquid gravy browner,g,pantry
+232,loaf of italian or french bread,g,grain
+233,long-grain rice,g,grain
+234,long-grained rice,g,grain
+235,low-sodium chicken broth,tbsp,condiment
+236,malt vinegar or tamarind extract,tbsp,condiment
+237,margarine,g,pantry
+238,margarine or butter,g,dairy
+239,marjoram,g,pantry
+240,mascarpone cheese,g,dairy
+241,mayonnaise,tbsp,condiment
+242,meat,g,protein
+243,medium-large onion,g,produce
+244,medium-size cabbage,g,produce
+245,medium-size carrot,g,produce
+246,medium-size garlic,g,produce
+247,medium-size onion,g,produce
+248,medium-size potatoe,g,pantry
+249,medium-size stalks celery,g,pantry
+250,medium-sized cucumber,g,produce
+251,melted butter,g,dairy
+252,mexican seasoning or chili powder,tsp,spice
+253,mexican-style cheese,g,dairy
+254,mild cheddar cheese,g,dairy
+255,mild or hot paprika,tsp,spice
+256,milk,g,dairy
+257,milk cream,g,dairy
+258,minced anchovies flavored with wine vinegar and herb,tbsp,condiment
+259,minced fresh ginger root,g,produce
+260,minced fresh rosemary,tsp,spice
+261,minced ginger,g,produce
+262,monterey jack cheese,g,dairy
+263,monterey jack or other mexican cheese,g,dairy
+264,monterrey jack cheese,g,dairy
+265,mozzarella cheese,g,dairy
+266,mung bean sprout,g,legume
+267,mushroom,g,produce
+268,mustard oil,tsp,spice
+269,mustard seed oil,tsp,spice
+270,natural wheat bran,g,pantry
+271,nutmeg,tsp,spice
+272,oat bran,g,grain
+273,oat milk,g,dairy
+274,oil,tbsp,condiment
+275,olive oil,tbsp,condiment
+276,onion,g,produce
+277,onion cube,g,produce
+278,onion powder,tsp,spice
+279,oregano,tsp,spice
+280,oso sweet onion,g,produce
+281,oven chip,g,bakery
+282,packed cheddar cheese,g,dairy
+283,packed fresh basil leaf,g,produce
+284,pan-fried garlic,g,produce
+285,pancetta,g,pantry
+286,panko bread crumb,g,grain
+287,paprika,tsp,spice
+288,parmesan cheese,g,dairy
+289,parsley,g,pantry
+290,pasta,g,grain
+291,pat butter,g,dairy
+292,paul prudhommes seafood magic,g,pantry
+293,pea,g,legume
+294,peeled,g,pantry
+295,pepper,tsp,spice
+296,pickling cucumber,g,produce
+297,pie crust,g,pantry
+298,pimento-stuffed green olive,g,produce
+299,pine nut,g,pantry
+300,pints water,ml,beverage
+301,plum tomatoe,g,pantry
+302,potable water,ml,beverage
+303,potato,g,produce
+304,powdered mustard,tsp,spice
+305,prawn,g,pantry
+306,prawns and brie with fennel confit,g,pantry
+307,pre-cooked bacon,g,protein
+308,prepared beef tips with gravy,g,protein
+309,pugliese-style chopped mixture of summer vegetable,g,produce
+310,pumpkin seed,g,pantry
+311,quart cold water,ml,beverage
+312,quarts water,ml,beverage
+313,quick-cooking oat,g,grain
+314,raisin,g,produce
+315,rapeseed oil,tbsp,condiment
+316,red bell pepper,tsp,spice
+317,red chile,g,produce
+318,red lentil,g,legume
+319,red onion,g,produce
+320,red pepper,tsp,spice
+321,red pepper flake,tsp,spice
+322,red wine vinegar,tbsp,condiment
+323,rib celery,g,pantry
+324,rice,g,grain
+325,rice or pearl barley,g,grain
+326,rice wine or sherry,g,grain
+327,ricotta cheese,g,dairy
+328,ripe plum tomatoe,g,pantry
+329,roasting chicken,g,protein
+330,roma tomatoe,g,pantry
+331,rosemary,tsp,spice
+332,round rice,g,grain
+333,saffron thread,g,pantry
+334,sage,g,pantry
+335,salt,tsp,spice
+336,salt and fresh ground black pepper,tsp,spice
+337,salt or,tsp,spice
+338,sausage link,g,protein
+339,sautéed mushrooms,g,pantry
+340,sautéed spinach,g,produce
+341,scallion,g,pantry
+342,scotch bonnet chiles or chile powder,tsp,spice
+343,sea salt,tsp,spice
+344,sea salt and freshly ground pepper,tsp,spice
+345,seasoning,tsp,spice
+346,seasoning cube,tsp,spice
+347,seitan,g,pantry
+348,sesame oil,tbsp,condiment
+349,sharp cheddar,g,pantry
+350,shellfish,g,pantry
+351,single cream,g,dairy
+352,skim milk,g,dairy
+353,slivered almond,g,pantry
+354,smoked paprika,tsp,spice
+355,smoked pork butt,g,protein
+356,smoked salmon,g,pantry
+357,sofrito,g,pantry
+358,sour cream,g,dairy
+359,sour milk or buttermilk,g,dairy
+360,soy sauce,tbsp,condiment
+361,spanish sausage,g,protein
+362,spelt or wheat berry,g,pantry
+363,spicy long green chile,g,produce
+364,spinach,g,produce
+365,spiral pasta,g,grain
+366,split yellow swedish pea,g,legume
+367,spring onion,g,produce
+368,stalks celery,g,pantry
+369,steamed white rice,g,grain
+370,stew bone,g,pantry
+371,strips bacon,g,protein
+372,strips of cooked bacon,g,protein
+373,sugar,tbsp,condiment
+374,sunflower oil,tbsp,condiment
+375,sweet basil,g,produce
+376,sweet italian sausage,g,protein
+377,sweet paprika,tsp,spice
+378,sweet pea,g,legume
+379,sweet potato,g,produce
+380,tabasco pepper sauce,tsp,spice
+381,tabasco sauce,tbsp,condiment
+382,tabasco sauce or similar hot sauce,tbsp,condiment
+383,taco mix,tbsp,condiment
+384,tandoori masala paste,tsp,spice
+385,tarragon,g,pantry
+386,tender chicken,g,protein
+387,teriyaki sauce,tbsp,condiment
+388,textured vegetable protein,g,produce
+389,thai green chile,g,produce
+390,thick-cut bread,g,grain
+391,thin slices swiss cheese,g,dairy
+392,thinly-sliced fresh escarole or spinach,g,produce
+393,thinly-sliced pancetta crisped under the broiler,g,pantry
+394,thousand island dressing,tbsp,condiment
+395,thyme,tsp,spice
+396,toasted sesame seed,g,pantry
+397,tomatillo,g,pantry
+398,tomato,g,produce
+399,tomato juice,ml,beverage
+400,tomato paste,tbsp,condiment
+401,tomato sauce,tbsp,condiment
+402,tomatoes with arugula or basil,g,produce
+403,tomatoes with green chile,g,produce
+404,topping,g,pantry
+405,tortilla chip,g,grain
+406,turmeric,g,pantry
+407,turmeric powder,tsp,spice
+408,turnip,g,pantry
+409,vanilla extract,tbsp,condiment
+410,vegetable bouillon,tbsp,condiment
+411,vegetable broth,tbsp,condiment
+412,vegetable oil,tbsp,condiment
+413,vegetable oil or chicken fat,g,protein
+414,vegetarian bouillon cube,tbsp,condiment
+415,vienna sausage,g,protein
+416,vinegar,tbsp,condiment
+417,vinegar or lime juice,tbsp,condiment
+418,water,ml,beverage
+419,water or chicken broth,tbsp,condiment
+420,water or low-sodium vegetable broth,tbsp,condiment
+421,white balsalmic vinegar,tbsp,condiment
+422,white bean,g,legume
+423,white bread,g,grain
+424,white cabbage,g,produce
+425,white granulated sugar,tbsp,condiment
+426,white onion,g,produce
+427,white or red onion,g,produce
+428,white pepper,tsp,spice
+429,white sugar,tbsp,condiment
+430,white vinegar,tbsp,condiment
+431,white wine,g,pantry
+432,wide egg noodle,g,protein
+433,wine vinegar,tbsp,condiment
+434,wood-fired baby potatoe,g,pantry
+435,wood-fired or lightly roasted baby potatoes and fresh herb,g,pantry
+436,worcestershire sauce,tbsp,condiment
+437,yam style sweet potatoe,g,pantry
+438,yellow onion,g,produce
+439,yoghurt,g,dairy
+440,your favorite marinara pasta sauce,g,grain
+441,zucchini,g,pantry
+442,zucchini and leek,g,pantry

@@ -1,0 +1,560 @@
+ingredient_id,dietary_tag_id,status,review_status,note
+5,8,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+5,9,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+6,8,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+6,9,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+7,8,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+7,9,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+8,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+8,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+8,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+13,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+13,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+13,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+13,18,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+13,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+13,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+14,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+14,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+14,13,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+25,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+25,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+25,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+25,19,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+25,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+25,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+26,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+26,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+26,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+26,19,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+26,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+26,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+27,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+27,2,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+27,3,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+27,19,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+27,20,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+27,21,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+27,22,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+31,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+31,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+32,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+32,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+33,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+33,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+33,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+37,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+37,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+37,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+37,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+38,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+38,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+38,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+38,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+38,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+39,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+39,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+39,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+39,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+39,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+40,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+40,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+40,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+40,18,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+40,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+40,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+42,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+42,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+42,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+42,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+42,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+45,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+45,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+46,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+46,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+46,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+55,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+55,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+55,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+56,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+56,4,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+56,5,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+57,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+57,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+57,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+57,4,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+57,5,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+58,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+58,4,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+58,5,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+59,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+59,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+59,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+66,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+66,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+66,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+70,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+70,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+70,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+71,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+71,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+71,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+72,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+72,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+72,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+72,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+72,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+73,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+73,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+73,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+73,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+73,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+74,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+74,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+74,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+74,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+74,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+75,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+75,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+75,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+75,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+75,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+76,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+76,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+76,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+76,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+76,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+77,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+77,2,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+77,3,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+77,19,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+77,20,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+77,21,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+77,22,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+78,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+78,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+78,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+78,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+78,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+79,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+79,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+79,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+79,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+79,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+80,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+80,2,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+80,3,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+80,20,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+80,22,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+81,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+81,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+81,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+81,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+81,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+97,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+97,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+97,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+103,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+103,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+103,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+111,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+111,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+111,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+114,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+114,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+114,15,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+114,17,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+114,23,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+115,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+115,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+115,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+116,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+116,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+116,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+118,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+118,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+118,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+119,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+119,4,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+119,5,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+123,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+123,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+123,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+125,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+125,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+125,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+136,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+136,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+137,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+137,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+138,11,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+138,12,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+140,24,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+141,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+141,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+143,11,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+143,12,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+145,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+145,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+145,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+145,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+145,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+150,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+150,6,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+152,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+152,6,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+153,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+153,6,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+154,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+154,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+156,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+156,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+156,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+156,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+156,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+159,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+159,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+159,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+169,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+169,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+169,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+170,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+170,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+171,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+171,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+172,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+172,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+172,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+173,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+173,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+173,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+177,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+177,6,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+188,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+188,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+188,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+199,7,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+199,9,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+200,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+200,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+200,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+201,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+201,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+201,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+202,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+202,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+202,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+203,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+203,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+203,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+205,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+205,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+205,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+205,6,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+206,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+206,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+206,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+206,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+206,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+207,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+207,25,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+208,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+208,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+208,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+208,25,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+213,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+213,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+213,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+215,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+215,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+219,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+219,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+219,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+228,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+228,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+228,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+229,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+229,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+229,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+229,10,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+231,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+231,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+231,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+232,11,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+232,12,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+235,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+235,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+235,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+235,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+235,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+237,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+237,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+237,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+238,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+238,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+238,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+238,4,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+238,5,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+240,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+240,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+240,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+241,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+241,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+241,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+241,6,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+242,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+242,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+242,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+242,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+251,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+251,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+251,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+252,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+252,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+252,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+253,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+253,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+253,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+254,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+254,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+254,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+256,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+256,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+256,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+257,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+257,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+257,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+258,24,conditional,needs_review,Wine vinegar may retain trace alcohol; verify the product requirement.
+262,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+262,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+262,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+263,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+263,4,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+263,5,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+264,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+264,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+264,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+265,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+265,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+265,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+270,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+270,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+272,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+273,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+273,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+273,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+273,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+282,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+282,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+282,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+285,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+285,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+285,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+285,18,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+285,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+285,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+286,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+286,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+288,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+288,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+288,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+290,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+290,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+291,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+291,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+291,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+297,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+297,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+299,8,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+299,9,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+305,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+305,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+305,15,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+305,17,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+305,23,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+306,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+306,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+306,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+307,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+307,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+307,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+307,18,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+307,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+307,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+308,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+308,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+308,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+308,19,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+308,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+308,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+313,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+322,24,conditional,needs_review,Wine vinegar may retain trace alcohol; verify the product requirement.
+325,12,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+326,24,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+327,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+327,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+327,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+329,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+329,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+329,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+329,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+329,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+338,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+338,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+338,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+338,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+345,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+345,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+345,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+346,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+346,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+346,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+347,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+347,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+348,13,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+350,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+350,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+350,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+350,17,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+350,23,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+351,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+351,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+351,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+352,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+352,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+352,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+353,8,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+353,9,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+355,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+355,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+355,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+355,18,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+355,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+355,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+356,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+356,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+356,14,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+356,23,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+358,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+358,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+358,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+359,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+359,4,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+359,5,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+360,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+360,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+360,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+360,10,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+361,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+361,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+361,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+361,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+362,11,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+362,12,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+365,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+365,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+370,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+370,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+370,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+370,19,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+370,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+370,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+371,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+371,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+371,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+371,18,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+371,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+371,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+372,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+372,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+372,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+372,18,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+372,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+372,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+376,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+376,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+376,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+376,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+380,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+380,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+380,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+381,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+381,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+381,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+382,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+382,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+382,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+383,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+383,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+383,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+386,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+386,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+386,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+386,20,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+386,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+387,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+387,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+387,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+390,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+390,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+391,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+391,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+391,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+393,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+393,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+393,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+393,18,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+393,21,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+393,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+394,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+394,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+394,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+396,13,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+401,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+401,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+401,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+410,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+410,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+410,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+411,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+411,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+411,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+413,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+413,2,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+413,3,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+413,20,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+413,22,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+414,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+414,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+414,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+415,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+415,2,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+415,3,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+415,22,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+419,1,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+419,2,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+419,3,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+419,20,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+419,22,conditional,needs_review,A source-level choice is present; assess the selected product/option.
+420,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+420,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+420,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+423,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+423,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+431,24,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+432,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+432,6,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+432,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+432,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+433,24,conditional,needs_review,Wine vinegar may retain trace alcohol; verify the product requirement.
+436,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+436,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+436,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+439,1,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+439,4,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+439,5,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+440,1,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+440,2,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+440,3,conditional,needs_review,Composite or branded ingredient; verify formulation before treating as compatible.
+440,11,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
+440,12,incompatible,verified,Ingredient name directly conflicts with this dietary tag.
