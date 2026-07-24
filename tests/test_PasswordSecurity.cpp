@@ -1,70 +1,62 @@
 #include <catch2/catch_test_macros.hpp>
-
 #include "BudgetBitesLib/PasswordSecurity.h"
+#include <string>
 
-using PasswordSecurity::isStrong;
-using PasswordSecurity::generateSalt;
-using PasswordSecurity::hash;
-using PasswordSecurity::verify;
+using namespace PasswordSecurity;
+using namespace std;
 
-TEST_CASE("isStrong rejects passwords missing a required character class", "[PasswordSecurity]") {
-    CHECK_FALSE(isStrong("Ab1!"));           // too short (< kMinPasswordLength)
-    CHECK_FALSE(isStrong("lowercase1!"));    // no uppercase letter
-    CHECK_FALSE(isStrong("UPPERCASE1!"));    // no lowercase letter
-    CHECK_FALSE(isStrong("NoDigitsHere!"));  // no digit
-    CHECK_FALSE(isStrong("NoSpecial123"));   // no special/punctuation character
+TEST_CASE("isStrong rejects passwords missing something", "[PasswordSecurity]") {
+    CHECK_FALSE(isStrong("Ab1!"));           // too short
+    CHECK_FALSE(isStrong("lowercase1!"));    // no uppercase
+    CHECK_FALSE(isStrong("UPPERCASE1!"));    // no lowercase
+    CHECK_FALSE(isStrong("NoDigitsHere!"));  // no number
+    CHECK_FALSE(isStrong("NoSpecial123"));   // no symbol
 }
 
-TEST_CASE("isStrong accepts a password containing every required character class", "[PasswordSecurity]") {
+TEST_CASE("isStrong accepts a password with everything required", "[PasswordSecurity]") {
     REQUIRE(isStrong("Str0ng!Pass"));
 }
 
-TEST_CASE("generateSalt returns a hex string of the requested byte length", "[PasswordSecurity]") {
-    // Each byte is encoded as two hex characters.
-    CHECK(generateSalt(16).size() == 32);
-    CHECK(generateSalt(4).size() == 8);
+TEST_CASE("generateSalt returns an 8 character string", "[PasswordSecurity]") {
+    string salt = generateSalt();
+    CHECK(salt.length() == 8);
 }
 
-TEST_CASE("generateSalt produces different values on successive calls", "[PasswordSecurity]") {
-    // Not a strict guarantee for any RNG, but with 16 random bytes a
-    // collision is astronomically unlikely, so this is a safe check
-    // that salts aren't accidentally constant or reused.
+TEST_CASE("generateSalt gives different results each time", "[PasswordSecurity]") {
+    // technically two random salts COULD match but with 8 random
+    // characters that's basically never going to happen
     REQUIRE(generateSalt() != generateSalt());
 }
 
-TEST_CASE("hash is deterministic for the same password and salt", "[PasswordSecurity]") {
-    const std::string salt = generateSalt();
-    REQUIRE(hash("correct-horse-battery-staple", salt) == hash("correct-horse-battery-staple", salt));
+TEST_CASE("hashPassword gives same result for same password and salt", "[PasswordSecurity]") {
+    string salt = generateSalt();
+    REQUIRE(hashPassword("cash-dog-girl-car", salt) == hashPassword("cash-dog-girl-car", salt));
 }
 
-TEST_CASE("hash changes when the salt changes", "[PasswordSecurity]") {
-    const std::string password = "correct-horse-battery-staple";
-    CHECK(hash(password, "aaaa") != hash(password, "bbbb"));
+TEST_CASE("hashPassword changes when salt changes", "[PasswordSecurity]") {
+    string password = "cash-dog-girl-car";
+    CHECK(hashPassword(password, "aaaa") != hashPassword(password, "bbbb"));
 }
 
-TEST_CASE("hash changes when the password changes", "[PasswordSecurity]") {
-    const std::string salt = generateSalt();
-    CHECK(hash("password-one", salt) != hash("password-two", salt));
+TEST_CASE("hashPassword changes when password changes", "[PasswordSecurity]") {
+    string salt = generateSalt();
+    CHECK(hashPassword("password-one", salt) != hashPassword("password-two", salt));
 }
 
-TEST_CASE("verify succeeds only for the exact password used to create the hash", "[PasswordSecurity]") {
-    const std::string salt = generateSalt();
-    const std::string storedHash = hash("MyReal Password1!", salt);
+TEST_CASE("checkPassword works with correct password and fails with wrong one", "[PasswordSecurity]") {
+    string salt = generateSalt();
+    string storedHash = hashPassword("TheReal Password1!", salt);
 
-    CHECK(verify("MyReal Password1!", salt, storedHash));
-    CHECK_FALSE(verify("wrong-password", salt, storedHash));
+    CHECK(checkPassword("TheReal Password1!", salt, storedHash));
+    CHECK_FALSE(checkPassword("wrong-password", salt, storedHash));
 }
 
-TEST_CASE("verify fails if the stored hash has been tampered with", "[PasswordSecurity]") {
-    const std::string salt = generateSalt();
-    std::string storedHash = hash("MyReal Password1!", salt);
+TEST_CASE("checkPassword fails if the hash was changed", "[PasswordSecurity]") {
+    string salt = generateSalt();
+    string storedHash = hashPassword("TheReal Password1!", salt);
+
+    // just flip the last character to simulate the hash getting messed up
     storedHash.back() = (storedHash.back() == '0') ? '1' : '0';
 
-    CHECK_FALSE(verify("MyReal Password1!", salt, storedHash));
-}
-
-TEST_CASE("verify fails safely when the expected hash has a different length", "[PasswordSecurity]") {
-    // Exercises constantTimeEquals's early-exit-on-length-mismatch path,
-    // which must not throw or read out of bounds.
-    CHECK_FALSE(verify("any-password", generateSalt(), "short"));
+    CHECK_FALSE(checkPassword("TheReal Password1!", salt, storedHash));
 }

@@ -1,53 +1,55 @@
 #include "BudgetBitesLib/ProfileImageStore.h"
-
 #include <algorithm>
 #include <cctype>
 #include <filesystem>
+#include <fstream>
 #include <vector>
 
+using namespace std;
 namespace fs = std::filesystem;
 
 namespace ProfileImageStore {
 
-std::optional<std::string> store(const std::string& username, const std::string& sourceImagePath) {
-    fs::path source(sourceImagePath);
-    if (!fs::exists(source) || !fs::is_regular_file(source)) {
-        return std::nullopt;
+    optional<string> store(const string& username, const string& sourceImagePath) {
+        fs::path source(sourceImagePath);
+
+        if (!fs::exists(source)) {
+            return nullopt;
+        }
+
+        // only allow certain extensions
+        vector<string> allowedExtensions = {".png", ".jpg", ".jpeg", ".bmp", ".gif"};
+
+        string ext = source.extension().string();
+        for (int i = 0; i < ext.length(); i++) {
+            ext[i] = tolower(ext[i]);
+        }
+
+        bool isAllowed = false;
+        for (int i = 0; i < allowedExtensions.size(); i++) {
+            if (ext == allowedExtensions[i]) {
+                isAllowed = true;
+                break;
+            }
+        }
+        if (!isAllowed) {
+            return nullopt;
+        }
+
+        // make sure the destination folder exists
+        fs::create_directory("profile_images");
+
+        fs::path destPath = fs::path("profile_images") / (username + ext);
+
+        // copy the bytes over manually
+        ifstream in(source, ios::binary);
+        ofstream out(destPath, ios::binary | ios::trunc);
+        if (!in || !out) {
+            return nullopt;
+        }
+        out << in.rdbuf();
+
+        return destPath.string();
     }
 
-    static const std::vector<std::string> kAllowedExtensions = {
-        ".png", ".jpg", ".jpeg", ".bmp", ".gif"
-    };
-    std::string ext = source.extension().string();
-    std::transform(ext.begin(), ext.end(), ext.begin(),
-        [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
-
-    if (std::find(kAllowedExtensions.begin(), kAllowedExtensions.end(), ext) == kAllowedExtensions.end()) {
-        return std::nullopt;
-    }
-
-    fs::path destDir("profile_images");
-    std::error_code ec;
-    fs::create_directories(destDir, ec);
-    if (ec) {
-        return std::nullopt;
-    }
-
-    fs::path destPath = destDir / (username + ext);
-
-    // Remove any previously stored image for this user before copying,
-    // rather than relying solely on copy_options::overwrite_existing --
-    // that flag is not reliably honored by every standard library
-    // implementation when the destination file already exists.
-    fs::remove(destPath, ec);
-    ec.clear();
-
-    fs::copy_file(source, destPath, fs::copy_options::overwrite_existing, ec);
-    if (ec) {
-        return std::nullopt;
-    }
-
-    return destPath.string();
 }
-
-} // namespace ProfileImageStore
