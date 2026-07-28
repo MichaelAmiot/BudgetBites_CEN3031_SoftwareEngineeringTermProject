@@ -17,6 +17,8 @@ target_include_directories(BudgetBitesLib
 
 add_executable(BudgetBites
         Main.cpp
+        AllergyTest.cpp
+        AllergyTest.h
 )
 
 target_link_libraries(BudgetBites
