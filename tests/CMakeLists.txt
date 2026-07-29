@@ -8,6 +8,7 @@ add_executable(BudgetBitesTests
         test_PasswordSecurity.cpp
         test_ProfileImageStore.cpp
         test_UserRepository.cpp
+        test_Preferences.cpp
 )
 
 target_link_libraries(BudgetBitesTests

@@ -8,6 +8,7 @@ add_library(BudgetBitesLib
         PasswordSecurity.cpp
         UserRepository.cpp
         ProfileImageStore.cpp
+        Preferences.cpp
 
 )
 
@@ -19,6 +20,8 @@ add_executable(BudgetBites
         Main.cpp
         AllergyTest.cpp
         AllergyTest.h
+        Preferences.cpp
+        ../include/BudgetBitesLib/Preferences.h
 )
 
 target_link_libraries(BudgetBites
