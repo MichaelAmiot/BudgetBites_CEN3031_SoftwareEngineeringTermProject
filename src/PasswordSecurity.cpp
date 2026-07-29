@@ -1,7 +1,6 @@
 #include "BudgetBitesLib/PasswordSecurity.h"
 #include <cctype>
-#include <cstdlib>
-#include <ctime>
+#include <random>
 #include <sstream>
 
 using namespace std;
@@ -37,18 +36,14 @@ bool isStrong(const string& password) {
 // just picks random letters/numbers, doesn't need to be crypto-secure
 // good enough for this project
 string generateSalt() {
-    // seed once per process; repeated srand(time(0)) calls within the same
-    // second return an identical seed and therefore identical salts
-    static bool seeded = (srand(static_cast<unsigned>(time(0))), true);
-    (void)seeded;
-    string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    string salt = "";
+    static const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    static mt19937 rng{random_device{}()};
+    uniform_int_distribution<int> dist(0, static_cast<int>(chars.length()) - 1);
 
+    string salt;
     for (int i = 0; i < 8; i++) {
-        int index = rand() % chars.length();
-        salt += chars[index];
+        salt += chars[dist(rng)];
     }
-
     return salt;
 }
 
