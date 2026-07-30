@@ -1,443 +1,165 @@
-id,name,default_unit,category
-1,achiote seed,g,pantry
-2,ajices dulce,g,pantry
-3,alcaparrado,g,pantry
-4,allspice,tsp,spice
-5,almond,g,pantry
-6,almond extract,tbsp,condiment
-7,almond oil,tbsp,condiment
-8,american cheese,g,dairy
-9,ancho chile,g,produce
-10,apple,g,produce
-11,asparagus,g,produce
-12,avocado oil,tbsp,condiment
-13,bacon,g,protein
-14,bagel with sesame seed,g,grain
-15,baking potato,g,produce
-16,baking powder,tsp,spice
-17,baking soda,g,pantry
-18,banana,g,produce
-19,banana leaf or plantain leaf,g,produce
-20,basil,g,produce
-21,basil leaf,g,produce
-22,bay leaf,tsp,spice
-23,bay leaf or avocado leaf,tsp,spice
-24,bean,g,legume
-25,beef,g,protein
-26,beef broth,tbsp,condiment
-27,beef or turkey,g,protein
-28,beet,g,produce
-29,black olive,g,pantry
-30,black pepper,tsp,spice
-31,bleached all-purpose flour,g,grain
-32,bleached flour,g,grain
-33,blue cheese,g,dairy
-34,blueberry,g,produce
-35,boiled potatoe,g,pantry
-36,bok choy or broccoli,g,produce
-37,bologna,g,pantry
-38,bone-in chicken meat,g,protein
-39,bone-in chicken thigh,g,protein
-40,bone-in pork chop,g,protein
-41,boneless,g,pantry
-42,boneless skinless chicken breast,g,protein
-43,bottled minced garlic,g,produce
-44,bowl of popped popcorn,g,pantry
-45,bread,g,grain
-46,brindsah cheese,g,dairy
-47,broccoli,g,produce
-48,broccoli or most other seasonal vegetable,g,produce
-49,brown prepared mustard,tsp,spice
-50,brown rice,g,grain
-51,brown sugar,tbsp,condiment
-52,bunch cilantro,g,produce
-53,bunch leafy green,g,produce
-54,bunches fresh basil,g,produce
-55,butter,g,dairy
-56,butter or dripping,g,dairy
-57,butter or margarine,g,dairy
-58,butter or sour cream,g,dairy
-59,buttermilk,g,dairy
-60,cabbage,g,produce
-61,can of mushroom piece,g,produce
-62,can of tomato paste,tbsp,condiment
-63,can of tomatoes with juice,ml,beverage
-64,caraway seed,g,pantry
-65,carrot,g,produce
-66,carton of plain yogurt,g,dairy
-67,cayenne pepper,tsp,spice
-68,celery,g,pantry
-69,celery including the leaf,g,produce
-70,cheddar cheese,g,dairy
-71,cheese,g,dairy
-72,cheese- and garlic-flavored crouton,g,dairy
-73,chicken,g,protein
-74,chicken and vegetable stock,tbsp,condiment
-75,chicken bouillon cube,tbsp,condiment
-76,chicken broth,tbsp,condiment
-77,chicken or beef bouillon cube,tbsp,condiment
-78,chicken powder,g,protein
-79,chicken stock,tbsp,condiment
-80,chicken stock or broth,tbsp,condiment
-81,chicken tikka,g,protein
-82,chickpea,g,legume
-83,chile,g,produce
-84,chile pepper,tsp,spice
-85,chile powder,tsp,spice
-86,chiles de árbol,g,pantry
-87,chili powder,tsp,spice
-88,chilli powder,tsp,spice
-89,chinese black bean,g,legume
-90,chipotle chile,g,produce
-91,chips from a chip shop or homemade,g,bakery
-92,chive,g,pantry
-93,cider vinegar,tbsp,condiment
-94,cilantro,g,produce
-95,cilantro sprig,g,produce
-96,cinnamon,tsp,spice
-97,clarified butter,g,dairy
-98,clove,g,pantry
-99,cloves of garlic,g,produce
-100,coarse salt,tsp,spice
-101,coarsely-chopped onion,g,produce
-102,coarsely-ground pepper,tsp,spice
-103,condensed cream of mushroom soup,g,dairy
-104,cooking oil,tbsp,condiment
-105,cooking spray,g,pantry
-106,coriander,g,pantry
-107,corn,g,produce
-108,corn kernel,g,produce
-109,corn oil or other vegetable oil,tbsp,condiment
-110,cornstarch,g,pantry
-111,cottage cheese,g,dairy
-112,cracked black pepper,tsp,spice
-113,cranberry or pinto bean,g,legume
-114,crayfish,g,protein
-115,cream,g,dairy
-116,cream cheese,g,dairy
-117,cream of tartar,g,dairy
-118,crumbled extra-sharp cheddar cheese,g,dairy
-119,crumbled or shredded cheese,g,dairy
-120,crunchy,g,pantry
-121,crunchy tortillas or tortilla chip,g,grain
-122,crushed tomatoe,g,pantry
-123,cubed processed cheese,g,dairy
-124,cucumber,g,produce
-125,cultured buttermilk,g,dairy
-126,cumin,tsp,spice
-127,cup,g,pantry
-128,curry paste,tsp,spice
-129,curry powder,tsp,spice
-130,curry powder stirred into the juice of 0.5 lemon,tsp,spice
-131,dark red kidney bean,g,legume
-132,date,g,pantry
-133,day-old corn tortilla,g,grain
-134,dry,g,pantry
-135,dry black-eyed pea,g,legume
-136,dry breadcrumb,g,grain
-137,dry elbow macaroni,g,grain
-138,dry linguine or spaghetti,g,pantry
-139,dry red bean,g,legume
-140,dry white wine,g,pantry
-141,dry wonton noodle,g,grain
-142,dry yellow split pea,g,legume
-143,ea. 0.5-inch thick slices either french or italian crusty white bread,g,grain
-144,ea. boneless,g,pantry
-145,ea. chicken,g,protein
-146,ea. chopped carrots,g,pantry
-147,ea. chopped medium onions,g,pantry
-148,ea. large ham hocks,g,protein
-149,ea. medium potato,g,produce
-150,egg,g,protein
-151,eggplant,g,produce
-152,eggs and 2 egg whites,g,protein
-153,eggs either scrambled,g,pantry
-154,elbow macaroni,g,grain
-155,equal amounts of cooked potato and cabbage,g,produce
-156,extra lean ground turkey breast,g,protein
-157,extra-virgin olive oil,tbsp,condiment
-158,fenugreek seed,g,pantry
-159,feta cheese,g,dairy
-160,fine yellow corn meal,g,produce
-161,fine-grain salt,tsp,spice
-162,finely-chopped bell pepper,tsp,spice
-163,finely-chopped celery,g,pantry
-164,finely-chopped fresh parsley,g,pantry
-165,finely-chopped onion,g,produce
-166,finely-chopped shiitake mushroom,g,produce
-167,finely-crumbled cornbread,g,pantry
-168,finely-grated lemon zest,g,produce
-169,firm-fleshed strong-flavoured cheese,g,dairy
-170,flour,g,grain
-171,flour burrito skin,g,grain
-172,fontina,g,pantry
-173,freshly grated parmigiano-reggiano cheese,g,dairy
-174,freshly-chopped coriander leaf,g,produce
-175,freshly-ground black pepper,tsp,spice
-176,freshly-ground pepper,tsp,spice
-177,fried egg,g,protein
-178,frozen,g,pantry
-179,full order of hash brown,g,pantry
-180,garam masala,tsp,spice
-181,garlic,g,produce
-182,garlic clove,g,produce
-183,garlic paste,tbsp,condiment
-184,garlic powder,tsp,spice
-185,garlic salt,tsp,spice
-186,ginger,g,produce
-187,ginger paste,tbsp,condiment
-188,goat cheese —parmesan is an acceptable substitute,g,dairy
-189,grain rice,g,grain
-190,granulated sugar,tbsp,condiment
-191,green bean,g,legume
-192,green bell pepper,tsp,spice
-193,green chile,g,produce
-194,green olive,g,produce
-195,green onion,g,produce
-196,green pea,g,legume
-197,green pepper,tsp,spice
-198,greens like matzumi or baby chinese mustard,tsp,spice
-199,groundnut oil or palm oil,tbsp,condiment
-200,gruyere,g,pantry
-201,hard cheese,g,dairy
-202,heavy cream,g,dairy
-203,heavy whipping cream,g,dairy
-204,herb,g,pantry
-205,hollandaise sauce,tbsp,condiment
-206,homemade chicken stock,tbsp,condiment
-207,honey,tbsp,condiment
-208,honey dijon salad dressing,tbsp,condiment
-209,horseradish,g,pantry
-210,hot chile,g,produce
-211,hot chile pepper,tsp,spice
-212,italian frying pepper,tsp,spice
-213,italian seasoning,tsp,spice
-214,jalapeno,g,pantry
-215,kaiser bun,g,pantry
-216,kale,g,pantry
-217,kernel sweet corn,g,produce
-218,ketchup,tbsp,condiment
-219,ketchup or a brown sauce,tbsp,condiment
-220,kidney,g,pantry
-221,kidney beans or great northern bean,g,legume
-222,kosher salt,tsp,spice
-223,kosher salt or sea salt,tsp,spice
-224,leaf of culantro,g,produce
-225,leaf romaine lettuce,g,produce
-226,leek,g,pantry
-227,lemon,g,produce
-228,light cream,g,dairy
-229,light soy sauce,tbsp,condiment
-230,lime,g,produce
-231,liquid gravy browner,g,pantry
-232,loaf of italian or french bread,g,grain
-233,long-grain rice,g,grain
-234,long-grained rice,g,grain
-235,low-sodium chicken broth,tbsp,condiment
-236,malt vinegar or tamarind extract,tbsp,condiment
-237,margarine,g,pantry
-238,margarine or butter,g,dairy
-239,marjoram,g,pantry
-240,mascarpone cheese,g,dairy
-241,mayonnaise,tbsp,condiment
-242,meat,g,protein
-243,medium-large onion,g,produce
-244,medium-size cabbage,g,produce
-245,medium-size carrot,g,produce
-246,medium-size garlic,g,produce
-247,medium-size onion,g,produce
-248,medium-size potatoe,g,pantry
-249,medium-size stalks celery,g,pantry
-250,medium-sized cucumber,g,produce
-251,melted butter,g,dairy
-252,mexican seasoning or chili powder,tsp,spice
-253,mexican-style cheese,g,dairy
-254,mild cheddar cheese,g,dairy
-255,mild or hot paprika,tsp,spice
-256,milk,g,dairy
-257,milk cream,g,dairy
-258,minced anchovies flavored with wine vinegar and herb,tbsp,condiment
-259,minced fresh ginger root,g,produce
-260,minced fresh rosemary,tsp,spice
-261,minced ginger,g,produce
-262,monterey jack cheese,g,dairy
-263,monterey jack or other mexican cheese,g,dairy
-264,monterrey jack cheese,g,dairy
-265,mozzarella cheese,g,dairy
-266,mung bean sprout,g,legume
-267,mushroom,g,produce
-268,mustard oil,tsp,spice
-269,mustard seed oil,tsp,spice
-270,natural wheat bran,g,pantry
-271,nutmeg,tsp,spice
-272,oat bran,g,grain
-273,oat milk,g,dairy
-274,oil,tbsp,condiment
-275,olive oil,tbsp,condiment
-276,onion,g,produce
-277,onion cube,g,produce
-278,onion powder,tsp,spice
-279,oregano,tsp,spice
-280,oso sweet onion,g,produce
-281,oven chip,g,bakery
-282,packed cheddar cheese,g,dairy
-283,packed fresh basil leaf,g,produce
-284,pan-fried garlic,g,produce
-285,pancetta,g,pantry
-286,panko bread crumb,g,grain
-287,paprika,tsp,spice
-288,parmesan cheese,g,dairy
-289,parsley,g,pantry
-290,pasta,g,grain
-291,pat butter,g,dairy
-292,paul prudhommes seafood magic,g,pantry
-293,pea,g,legume
-294,peeled,g,pantry
-295,pepper,tsp,spice
-296,pickling cucumber,g,produce
-297,pie crust,g,pantry
-298,pimento-stuffed green olive,g,produce
-299,pine nut,g,pantry
-300,pints water,ml,beverage
-301,plum tomatoe,g,pantry
-302,potable water,ml,beverage
-303,potato,g,produce
-304,powdered mustard,tsp,spice
-305,prawn,g,pantry
-306,prawns and brie with fennel confit,g,pantry
-307,pre-cooked bacon,g,protein
-308,prepared beef tips with gravy,g,protein
-309,pugliese-style chopped mixture of summer vegetable,g,produce
-310,pumpkin seed,g,pantry
-311,quart cold water,ml,beverage
-312,quarts water,ml,beverage
-313,quick-cooking oat,g,grain
-314,raisin,g,produce
-315,rapeseed oil,tbsp,condiment
-316,red bell pepper,tsp,spice
-317,red chile,g,produce
-318,red lentil,g,legume
-319,red onion,g,produce
-320,red pepper,tsp,spice
-321,red pepper flake,tsp,spice
-322,red wine vinegar,tbsp,condiment
-323,rib celery,g,pantry
-324,rice,g,grain
-325,rice or pearl barley,g,grain
-326,rice wine or sherry,g,grain
-327,ricotta cheese,g,dairy
-328,ripe plum tomatoe,g,pantry
-329,roasting chicken,g,protein
-330,roma tomatoe,g,pantry
-331,rosemary,tsp,spice
-332,round rice,g,grain
-333,saffron thread,g,pantry
-334,sage,g,pantry
-335,salt,tsp,spice
-336,salt and fresh ground black pepper,tsp,spice
-337,salt or,tsp,spice
-338,sausage link,g,protein
-339,sautéed mushrooms,g,pantry
-340,sautéed spinach,g,produce
-341,scallion,g,pantry
-342,scotch bonnet chiles or chile powder,tsp,spice
-343,sea salt,tsp,spice
-344,sea salt and freshly ground pepper,tsp,spice
-345,seasoning,tsp,spice
-346,seasoning cube,tsp,spice
-347,seitan,g,pantry
-348,sesame oil,tbsp,condiment
-349,sharp cheddar,g,pantry
-350,shellfish,g,pantry
-351,single cream,g,dairy
-352,skim milk,g,dairy
-353,slivered almond,g,pantry
-354,smoked paprika,tsp,spice
-355,smoked pork butt,g,protein
-356,smoked salmon,g,pantry
-357,sofrito,g,pantry
-358,sour cream,g,dairy
-359,sour milk or buttermilk,g,dairy
-360,soy sauce,tbsp,condiment
-361,spanish sausage,g,protein
-362,spelt or wheat berry,g,pantry
-363,spicy long green chile,g,produce
-364,spinach,g,produce
-365,spiral pasta,g,grain
-366,split yellow swedish pea,g,legume
-367,spring onion,g,produce
-368,stalks celery,g,pantry
-369,steamed white rice,g,grain
-370,stew bone,g,pantry
-371,strips bacon,g,protein
-372,strips of cooked bacon,g,protein
-373,sugar,tbsp,condiment
-374,sunflower oil,tbsp,condiment
-375,sweet basil,g,produce
-376,sweet italian sausage,g,protein
-377,sweet paprika,tsp,spice
-378,sweet pea,g,legume
-379,sweet potato,g,produce
-380,tabasco pepper sauce,tsp,spice
-381,tabasco sauce,tbsp,condiment
-382,tabasco sauce or similar hot sauce,tbsp,condiment
-383,taco mix,tbsp,condiment
-384,tandoori masala paste,tsp,spice
-385,tarragon,g,pantry
-386,tender chicken,g,protein
-387,teriyaki sauce,tbsp,condiment
-388,textured vegetable protein,g,produce
-389,thai green chile,g,produce
-390,thick-cut bread,g,grain
-391,thin slices swiss cheese,g,dairy
-392,thinly-sliced fresh escarole or spinach,g,produce
-393,thinly-sliced pancetta crisped under the broiler,g,pantry
-394,thousand island dressing,tbsp,condiment
-395,thyme,tsp,spice
-396,toasted sesame seed,g,pantry
-397,tomatillo,g,pantry
-398,tomato,g,produce
-399,tomato juice,ml,beverage
-400,tomato paste,tbsp,condiment
-401,tomato sauce,tbsp,condiment
-402,tomatoes with arugula or basil,g,produce
-403,tomatoes with green chile,g,produce
-404,topping,g,pantry
-405,tortilla chip,g,grain
-406,turmeric,g,pantry
-407,turmeric powder,tsp,spice
-408,turnip,g,pantry
-409,vanilla extract,tbsp,condiment
-410,vegetable bouillon,tbsp,condiment
-411,vegetable broth,tbsp,condiment
-412,vegetable oil,tbsp,condiment
-413,vegetable oil or chicken fat,g,protein
-414,vegetarian bouillon cube,tbsp,condiment
-415,vienna sausage,g,protein
-416,vinegar,tbsp,condiment
-417,vinegar or lime juice,tbsp,condiment
-418,water,ml,beverage
-419,water or chicken broth,tbsp,condiment
-420,water or low-sodium vegetable broth,tbsp,condiment
-421,white balsalmic vinegar,tbsp,condiment
-422,white bean,g,legume
-423,white bread,g,grain
-424,white cabbage,g,produce
-425,white granulated sugar,tbsp,condiment
-426,white onion,g,produce
-427,white or red onion,g,produce
-428,white pepper,tsp,spice
-429,white sugar,tbsp,condiment
-430,white vinegar,tbsp,condiment
-431,white wine,g,pantry
-432,wide egg noodle,g,protein
-433,wine vinegar,tbsp,condiment
-434,wood-fired baby potatoe,g,pantry
-435,wood-fired or lightly roasted baby potatoes and fresh herb,g,pantry
-436,worcestershire sauce,tbsp,condiment
-437,yam style sweet potatoe,g,pantry
-438,yellow onion,g,produce
-439,yoghurt,g,dairy
-440,your favorite marinara pasta sauce,g,grain
-441,zucchini,g,pantry
-442,zucchini and leek,g,pantry
+id,name,description,price_100gm,purchase_unit_gram,purchase_unit_label
+1,Milk (whole),"Milk, whole (Includes 3.5% or 3.8% fat milk; leche fresca)",0.09828,250,1 standard package (~250 g)
+2,Buttermilk (whole),"Buttermilk, whole",0.179582,250,1 standard package (~250 g)
+3,Evaporated milk (whole),"Milk, evaporated, whole",0.257601,250,1 standard package (~250 g)
+4,"Yogurt (whole milk, plain)","Yogurt, whole milk, plain",0.412198,250,1 standard package (~250 g)
+5,"Greek yogurt (whole milk, plain)","Yogurt, Greek, whole milk, plain",0.605436,250,1 standard package (~250 g)
+6,Half-and-half cream,"Cream, half and half (Includes plain)",0.306065,250,1 standard package (~250 g)
+7,Heavy cream,"Cream, heavy (Includes whipping cream; NS as to heavy or light)",0.620648,473,1 pint carton (~473 g)
+8,Sour cream,"Sour cream, regular",0.434684,250,1 standard package (~250 g)
+9,Cheddar cheese,"Cheese, Cheddar (Includes Coon; sharp cheese; Tillamook; Hoop; Pioneer; New York; Wisconsin; Longhorn)",1.123084,250,1 standard package (~250 g)
+10,Feta cheese,"Cheese, Feta",2.02222,250,1 standard package (~250 g)
+11,Mozzarella cheese (part-skim),"Cheese, Mozzarella, part skim (Includes Chedarella Cheese; string cheese; cheese sticks, NS as to type of cheese; Poly-O; Stringsters; County Line; Richfood; Mootown Snackers; Sorrento; lowfat; reduced fat; made with 2% milk)",1.064843,250,1 standard package (~250 g)
+12,Parmesan cheese (dry grated),"Cheese, Parmesan, dry grated (Includes Romano, grated; Asiago, aged)",1.91342,250,1 standard package (~250 g)
+13,Mexican cheese blend,"Cheese, Mexican blend (Includes Kraft Mexican Four Cheese; Sargento Mexican 4 Cheese)",0.938715,250,1 standard package (~250 g)
+14,Cottage cheese,"Cheese, cottage, creamed, large or small curd (Includes regular (4% fat) cottage cheese)",0.439217,250,1 standard package (~250 g)
+15,Ricotta cheese,"Cheese, Ricotta",0.520844,250,1 standard package (~250 g)
+16,Beef steak,"Beef steak, NS as to cooking method, NS as to fat eaten",2.131758,500,1 package (~500 g)
+17,Beef roast,"Beef, roast, roasted, NS as to fat eaten (Includes prime ribs; rib roast)",1.612947,500,1 package (~500 g)
+18,Ground beef,"Ground beef, cooked",1.279787,500,1 package (~500 g)
+19,Pork chop,"Pork chop, NS as to cooking method, NS as to fat eaten",1.048169,500,1 package (~500 g)
+20,Pork steak,"Pork steak or cutlet, NS as to cooking method, lean and fat eaten",0.804911,500,1 package (~500 g)
+21,Pork roast,"Pork roast, NS as to cut, cooked, NS as to fat eaten",0.958364,500,1 package (~500 g)
+22,Chicken breast,"Chicken breast, NS as to cooking method, skin not eaten (Includes NS as to skin eaten; any source)",1.057152,500,1 package (~500 g)
+23,Chicken thigh,"Chicken thigh, NS as to cooking method, skin not eaten (Includes any source)",0.844161,500,1 package (~500 g)
+24,Chicken wing,"Chicken wing, NS as to cooking method (Includes drummette without sauce or seasoning; any source)",1.48433,500,1 package (~500 g)
+25,Chicken (canned),"Chicken, canned, meat only",0.799643,400,1 can (~400 g)
+26,Turkey (light meat),"Turkey, light meat, skin not eaten (Includes turkey cutlet; NS as to skin eaten; any source)",1.741834,500,1 package (~500 g)
+27,Ground turkey,"Turkey, ground",1.424761,500,1 package (~500 g)
+28,Anchovies (canned),"Anchovy, canned",4.014027,200,1 can (~200 g)
+29,Mackerel (canned),"Mackerel, canned",0.594039,400,1 can (~400 g)
+30,"Salmon (fresh, raw)","Salmon, raw (Includes saltwater trout; sashimi)",1.96811,500,1 package (~500 g)
+31,Salmon (canned),"Salmon, canned",1.657025,400,1 can (~400 g)
+32,"Sardines (canned, in oil)","Sardines, canned in oil",1.326808,400,1 can (~400 g)
+33,"Tuna (fresh, raw)","Tuna, fresh, raw (Includes ahi; aku; bonito; sashimi)",2.203144,500,1 package (~500 g)
+34,Mussels (raw),"Mussels, raw",1.836111,500,1 package (~500 g)
+35,Oysters (raw),"Oysters, raw",2.085569,500,1 package (~500 g)
+36,Black beans (canned),"Black beans, from canned, no added fat",0.313588,400,1 can (~400 g)
+37,Lima beans (dried),"Lima beans, from dried (Includes butter beans; with or without fat; NS as to meat)",0.322022,500,1 bag (~500 g)
+38,Pinto beans (canned),"Pinto beans, from canned, no added fat (Includes calico)",0.285413,400,1 can (~400 g)
+39,Kidney beans (canned),"Kidney beans, from canned, no added fat (Includes red)",0.263622,400,1 can (~400 g)
+40,Peruvian beans (dried),"Peruvian beans, from dried (Includes Peruano; with or without fat; NS as to meat; frozen)",0.172938,500,1 bag (~500 g)
+41,Black-eyed peas (dried),"Blackeyed peas, from dried (Includes all other dried peas; with or without fat; NS as to meat)",0.170202,500,1 bag (~500 g)
+42,Chickpeas (canned),"Chickpeas, from canned, no added fat (Includes garbanzos; ceci)",0.320813,400,1 can (~400 g)
+43,Lentils (dried),"Lentils, from dried, no added fat (Includes frozen)",0.482452,500,1 bag (~500 g)
+44,Tofu,Soybean curd (Includes stir fried; bean curd; tofu),0.598821,250,1 standard package (~250 g)
+45,Textured vegetable protein (dry),"Textured vegetable protein, dry",0.923128,500,1 bag (~500 g)
+46,Almonds (unsalted),"Almonds, unsalted (Includes plain; roasted; not coated)",1.843931,100,1 standard portion (~100 g)
+47,Cashews (unsalted),"Cashews, unsalted (Includes plain; roasted; not coated)",1.872872,100,1 standard portion (~100 g)
+48,Pecans (unsalted),"Pecans, unsalted (Includes plain; roasted; not coated)",2.465712,100,1 standard portion (~100 g)
+49,Pistachios (unsalted),"Pistachio nuts, unsalted",2.584255,100,1 standard portion (~100 g)
+50,Pumpkin seeds (unsalted),"Pumpkin seeds, unsalted",1.062699,100,1 standard portion (~100 g)
+51,Sunflower seeds (unsalted),"Sunflower seeds, plain, unsalted",1.076177,100,1 standard portion (~100 g)
+52,Sesame seeds,Sesame seeds,4.405306,100,1 standard portion (~100 g)
+53,Flax seeds,Flax seeds,0.860962,100,1 standard portion (~100 g)
+54,Chia seeds,Chia seeds,1.251176,100,1 standard portion (~100 g)
+55,Clementine,"Clementine, raw (Includes cutie; mandarin orange, raw)",0.369438,250,approximately 250 g
+56,Grapefruit,"Grapefruit, raw (Includes grapefruit, NFS)",0.49463,250,approximately 250 g
+57,Lemon,"Lemon, raw",0.838227,100,1 lemon (~100 g)
+58,Lime,"Lime, raw",0.4208,250,approximately 250 g
+59,Orange,"Orange, raw (Includes Orange, NFS)",0.369438,250,approximately 250 g
+60,Tangerine,"Tangerine, raw (Includes tangelo)",0.442439,250,approximately 250 g
+61,Cranberries (dried),"Cranberries, dried (Includes Craisins; cranberries, NFS; all flavors)",1.137705,100,1 standard portion (~100 g)
+62,Apple,"Apple, raw (Includes apple, NFS)",0.40851,250,approximately 250 g
+63,Apricot,"Apricot, raw (Includes apricot, NFS)",0.772217,250,approximately 250 g
+64,Avocado,"Avocado, raw",0.773366,250,approximately 250 g
+65,Banana,"Banana, raw",0.189998,250,approximately 250 g
+66,Cantaloupe,"Cantaloupe, raw (Includes melon, NFS; muskmelon)",0.337119,250,approximately 250 g
+67,Cherries,"Cherries, raw (Includes cherries, NFS)",0.709667,250,approximately 250 g
+68,Fig,"Fig, raw",1.151187,250,approximately 250 g
+69,Grapes,"Grapes, raw",0.495558,250,approximately 250 g
+70,Guava,"Guava, raw",0.65975,250,approximately 250 g
+71,Kiwi,"Kiwi fruit, raw (Includes kiwifruit)",0.710106,250,approximately 250 g
+72,Honeydew melon,"Honeydew melon, raw",0.48708,250,approximately 250 g
+73,Mango,"Mango, raw (Includes Mango, NFS)",0.489508,250,approximately 250 g
+74,Nectarine,"Nectarine, raw",0.495194,250,approximately 250 g
+75,Papaya,"Papaya, raw",0.480464,250,approximately 250 g
+76,Passion fruit,"Passion fruit, raw",0.785388,250,approximately 250 g
+77,Peach,"Peach, raw (Includes peach, NFS)",0.424326,250,approximately 250 g
+78,Pear,"Pear, raw (Includes pear, NFS)",0.383553,250,approximately 250 g
+79,Persimmon,"Persimmon, raw",0.356133,250,approximately 250 g
+80,Pineapple,"Pineapple, raw (Includes pineapple, NFS)",0.468533,250,approximately 250 g
+81,Plum,"Plum, raw (Includes plum, NFS)",0.497493,250,approximately 250 g
+82,Pomegranate,"Pomegranate, raw",1.28677,250,approximately 250 g
+83,Watermelon,"Watermelon, raw",0.223994,250,approximately 250 g
+84,Blackberries,"Blackberries, raw (Includes boysenberries; dewberries; loganberries; youngberries; blackberries, NFS)",1.392896,250,approximately 250 g
+85,Blueberries,"Blueberries, raw (Includes blueberries, NFS)",1.104237,250,approximately 250 g
+86,Cranberries,"Cranberries, raw",0.600932,250,approximately 250 g
+87,Raspberries,"Raspberries, raw (Includes raspberries, NFS)",1.746899,250,approximately 250 g
+88,Strawberries,"Strawberries, raw (Includes strawberries, NFS)",0.600141,250,approximately 250 g
+89,Collard greens,"Collards, raw (Includes collard greens)",0.53198,250,approximately 250 g
+90,Romaine lettuce,"Romaine lettuce, raw (Includes endive; chicory; escarole; green leaf)",0.784008,250,approximately 250 g
+91,Kale,"Kale, raw",0.681039,250,approximately 250 g
+92,Spinach,"Spinach, raw",0.989603,250,approximately 250 g
+93,Broccoli,"Broccoli, raw",0.742143,250,approximately 250 g
+94,Carrots,"Carrots, raw",0.301321,250,approximately 250 g
+95,Winter squash,"Winter squash, raw (Includes pumpkin; acorn; butternut; hubbard)",0.231435,250,approximately 250 g
+96,Tomatoes,"Tomatoes, raw (Includes plum and Italian tomatoes)",0.51767,250,approximately 250 g
+97,Alfalfa sprouts,"Alfalfa sprouts, raw",1.621247,250,approximately 250 g
+98,Asparagus,"Asparagus, raw",1.231178,250,approximately 250 g
+99,Bean sprouts,"Bean sprouts, raw (Includes soybean or mung)",0.775202,250,approximately 250 g
+100,Green beans,"Green beans, raw (Includes string beans)",0.62435,250,approximately 250 g
+101,Brussels sprouts,"Brussels sprouts, raw",0.69464,250,approximately 250 g
+102,Green cabbage,"Cabbage, green, raw (Includes cabbage, NS as to color)",0.205682,250,approximately 250 g
+103,Chinese cabbage,"Cabbage, Chinese, raw (Includes Napa; Pa-tsai; Pak-choi / Bok choy)",0.427058,250,approximately 250 g
+104,Cactus,"Cactus, raw",0.408203,250,approximately 250 g
+105,Cauliflower,"Cauliflower, raw",0.914896,250,approximately 250 g
+106,Celery,"Celery, raw (Includes celery, NFS)",0.349821,500,1 bunch (~500 g)
+107,Fennel bulb,"Fennel bulb, raw",0.722761,250,approximately 250 g
+108,Basil,"Basil, raw",6.719017,100,1 standard portion (~100 g)
+109,Chives,"Chives, raw (Includes chives, NFS)",5.854104,100,1 standard portion (~100 g)
+110,Cilantro,"Cilantro, raw (Includes coriander leaves; Chinese parsley)",0.247132,100,1 standard portion (~100 g)
+111,Corn,"Corn, raw",0.57749,250,approximately 250 g
+112,Cucumber,"Cucumber, raw (Includes cucumber, NFS)",0.351319,250,approximately 250 g
+113,Eggplant,"Eggplant, raw",0.486766,250,approximately 250 g
+114,Garlic,"Garlic, raw",0.967773,100,1 bulb (~100 g)
+115,Jicama,"Jicama, raw (Includes yambean)",0.310509,250,approximately 250 g
+116,Lettuce,"Lettuce, raw (Includes lettuce, NFS; iceberg)",0.301245,250,approximately 250 g
+117,Mushrooms,"Mushrooms, raw",0.87044,250,approximately 250 g
+118,Green onions,"Onions, green, raw (Includes scallions; spring onions)",0.603579,100,1 bunch (~100 g)
+119,Onion,"Onions, raw (Includes red onions; onions, NFS)",0.260675,250,approximately 250 g
+120,Parsley,"Parsley, raw",1.1096,100,1 standard portion (~100 g)
+121,Chili pepper,"Pepper, hot chili, raw (Includes Jalapeno)",0.501985,250,approximately 250 g
+122,Green bell pepper,"Pepper, sweet, green, raw",0.381545,250,approximately 250 g
+123,Radish,"Radish, raw",0.3886,250,approximately 250 g
+124,Seaweed,"Seaweed, raw (Includes blanched; sea moss; kelp; laver)",3.933914,250,approximately 250 g
+125,Snow peas,"Snowpeas, raw (Includes pea pod; Chinese pea pod; sugar peas)",1.063511,250,approximately 250 g
+126,Yellow summer squash,"Summer squash, yellow, raw (Includes summer squash, NS as to color)",0.369602,250,approximately 250 g
+127,Zucchini,"Summer squash, green, raw (Includes zucchini)",0.39328,250,approximately 250 g
+128,Turnip,"Turnip, raw",0.383349,250,approximately 250 g
+129,Butter,"Butter, stick (Includes pat)",0.846986,250,1 standard package (~250 g)
+130,Ghee,"Ghee, clarified butter",3.190637,250,1 standard package (~250 g)
+131,Coconut oil,Coconut oil,1.268132,250,1 standard bottle (~250 g)
+132,Corn oil,"Corn oil (Includes Mazola Corn Oil; Mazola oil, NFS; Wesson Corn Oil)",0.246574,250,1 standard bottle (~250 g)
+133,Olive oil,Olive oil,1.036723,250,1 standard bottle (~250 g)
+134,Sesame oil,Sesame oil,2.252267,250,1 standard bottle (~250 g)
+135,White sugar,"Sugar, white, granulated or lump (Includes sugar, white, NS as to granulated or confectioner's)",0.133442,100,1 standard portion (~100 g)
+136,Brown sugar,"Sugar, brown",0.237319,100,1 standard portion (~100 g)
+137,Honey,Honey,1.032151,100,1 standard portion (~100 g)
+138,Molasses,Molasses,0.685092,100,1 standard portion (~100 g)
+139,Cooking cream,"Cream, light (Includes coffee cream; table cream)",0.471868,250,1 standard package (~250 g)
+140,Cream cheese,"Cream cheese, regular, plain",0.834458,250,1 standard package (~250 g)
+141,Vegetable oil,"Vegetable oil, NFS (Includes oil, NFS; oil blend, NFS)",0.418343,250,1 standard bottle (~250 g)
+142,Bamboo shoots,"Bamboo shoots, cooked (Includes with or without fat)",0.756021,250,approximately 250 g
+144,Okra,"Okra, fresh, cooked, no added fat (Includes cooking spray)",0.974779,250,approximately 250 g
+145,Potatoes,"Potato, NFS",0.294221,250,approximately 250 g
+146,Eggs,"Egg, whole, cooked, NS as to cooking method",0.416484,600,1 dozen eggs (~600 g)
+147,Lamb,"Lamb, NS as to cut, cooked (Includes mutton, NS as to cut)",2.671856,500,1 package (~500 g)
+148,Scallops,"Scallops, cooked, NS as to cooking method",3.402135,500,1 package (~500 g)
+149,Barley,"Barley, no added fat (Includes all liquids)",0.108533,500,1 bag (~500 g)
+150,Bread,"Bread, NS as to major flour (Includes pre-sliced, commercial)",0.4049,500,1 loaf (~500 g)
+151,Couscous,"Couscous, plain, cooked",0.461614,500,1 bag (~500 g)
+152,Pasta,"Pasta, cooked (Includes macaroni, spaghetti, any shape of pasta; NS as to grain type; pasta, NFS)",0.256523,500,1 bag (~500 g)
+153,Rice,"Rice, white, cooked, no added fat (Includes basmati or jasmine rice)",0.089641,500,1 bag (~500 g)
+154,Flour (all purpose),"Flour, white, all purpose; U.S. city average, June 2026 ($0.544 per lb / 453.6 g)",0.11993,500,1 bag (~500 g)
+155,Green peas,"Green peas, frozen, cooked, no added fat (Includes English peas; cooking spray)",0.443582,250,approximately 250 g
+156,Coconut milk,Coconut milk (Includes Silk PureCoconut beverage; So Delicious),0.264438,400,1 can (~400 g)
+157,Shrimp,"Shrimp, cooked, NS as to cooking method (Includes prawn)",2.368521,500,1 package (~500 g)
+158,Fish,"Fish, NS as to type, raw",1.29255,500,1 package (~500 g)
+159,Crab,"Crab, cooked, NS as to cooking method",7.449015,500,1 package (~500 g)
+161,Peanuts,"Peanuts, unroasted (Includes raw)",0.466486,100,approximately 100 g
+162,Oats,Extra-thick rolled oats; 2 lb package priced at $20.99,2.31372,500,1 bag (~500 g)
+163,Oil,"Canola oil; priced using PP-NAP Vegetable oil, NFS as a neutral cooking-oil substitute",0.418343,250,1 standard bottle (~250 g)
+164,Ground meat (beef/pork blend),"Stewed, seasoned, ground beef and pork, Mexican style (Includes Picadillo de carne de rez y puerco)",0.754915,500,1 package (~500 g)
+165,Ham,"Ham, smoked or cured, cooked, lean and fat eaten",0.862722,500,1 package (~500 g)
+166,Sausage,"Sausage, NFS (Includes not cold cut)",0.884445,500,1 package (~500 g)
