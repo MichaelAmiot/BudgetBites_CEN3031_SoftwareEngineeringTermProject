@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <limits>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -20,26 +21,32 @@
 #include <unistd.h>
 #endif
 
+using namespace std;
+
 namespace {
 
-constexpr const char* kUsersFilePath = "users.dat";
+const string usersFilePath = "users.txt";
 
-// Reads a line of input, discarding anything left in the stream on failure
-// (e.g. if the user typed letters where a menu number was expected).
-std::string readLine(const std::string& prompt) {
-    std::cout << prompt;
-    std::string line;
-    std::getline(std::cin, line);
+// keeps each user's Account (allergies) in memory while the program runs.
+// Account isn't saved to the file the way UserRepository is, so
+// allergies get reset every time the program restarts.
+// TODO: figure out a way to save this along with everything else
+map<string, Account> accountsByUser;
+
+// prints a prompt and reads a line of input
+string readLine(const string& prompt) {
+    cout << prompt;
+    string line;
+    getline(cin, line);
     return line;
 }
 
-// Reads a password without echoing it to the screen.
-// On Windows, characters are masked with '*' as they're typed.
-// On POSIX systems (Linux/macOS), terminal echo is disabled entirely for
-// the duration of input, so nothing appears on screen while typing.
-std::string readPassword(const std::string& prompt) {
-    std::cout << prompt;
-    std::string password;
+// reads a password without showing it on screen.
+// On Windows it shows * for each character typed.
+// On Mac/Linux it just hides the input completely while typing.
+string readPassword(const string& prompt) {
+    cout << prompt;
+    string password;
 
 #ifdef _WIN32
     char ch;
@@ -47,11 +54,11 @@ std::string readPassword(const std::string& prompt) {
         if (ch == '\b') { // backspace
             if (!password.empty()) {
                 password.pop_back();
-                std::cout << "\b \b";
+                cout << "\b \b";
             }
         } else {
             password.push_back(ch);
-            std::cout << '*';
+            cout << '*';
         }
     }
 #else
@@ -61,124 +68,124 @@ std::string readPassword(const std::string& prompt) {
     newSettings.c_lflag &= ~static_cast<tcflag_t>(ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &newSettings);
 
-    std::getline(std::cin, password);
+    getline(cin, password);
 
     tcsetattr(STDIN_FILENO, TCSANOW, &oldSettings);
 #endif
 
-    std::cout << std::endl;
+    cout << endl;
     return password;
 }
 
 void printMenu() {
-    std::cout << "\n=== BudgetBites Account Menu ===\n"
-              << "1. Register new user\n"
-              << "2. Sign in\n"
-              << "3. Upload profile image\n"
-              << "4. View profile image path\n"
-              << "5. Enter food allergies\n"
-              << "6. View food allergies\n"
-              << "7. Enter available ingredients\n"
-              << "8. View Available ingredients\n"
-              << "9. Add dietary preference\n"
-              << "10. Set weekly budget\n"
-              << "11. View Preferences and budget\n"
-              << "12. Generate weekly meal plan\n"
-              << "13. View weekly Meal plan\n"
-              << "14. Sign out\n"
-              << "15. Exit\n"
-              << "Choose an option: ";
+    cout << "\n=== BudgetBites Account Menu ===\n"
+         << "1. Register new user\n"
+         << "2. Sign in\n"
+         << "3. Upload profile image\n"
+         << "4. View profile image path\n"
+         << "5. Enter food allergies\n"
+         << "6. View food allergies\n"
+         << "7. Enter available ingredients\n"
+         << "8. View available ingredients\n"
+         << "9. Add dietary preference\n"
+         << "10. Set weekly budget\n"
+         << "11. View preferences and budget\n"
+         << "12. Generate weekly meal plan\n"
+         << "13. View weekly meal plan\n"
+         << "14. Sign out\n"
+         << "15. Exit\n"
+         << "Choose an option: ";
 }
 
 void handleRegister(UX& ux) {
-    std::string username = readLine("Choose a username: ");
-    std::string password = readPassword(
-        "Choose a password (8+ chars, upper, lower, digit, special char): ");
+    string username = readLine("Choose a username: ");
+    string password = readPassword("Choose a password (8+ chars, upper, lower, digit, special char): ");
 
     if (ux.registerUser(username, password)) {
-        ux.saveToFile(kUsersFilePath);
-        std::cout << "Registered successfully. You can now sign in.\n";
+        ux.saveToFile(usersFilePath);
+        cout << "Registered successfully. You can now sign in.\n";
     } else {
-        std::cout << "Registration failed: the username may already be taken, "
-                     "or the password didn't meet the complexity requirements.\n";
+        cout << "Registration failed: the username may already be taken, "
+                "or the password didn't meet the complexity requirements.\n";
     }
 }
 
 void handleSignIn(UX& ux) {
-    std::string username = readLine("Username: ");
-    std::string password = readPassword("Password: ");
+    string username = readLine("Username: ");
+    string password = readPassword("Password: ");
 
     if (ux.signIn(username, password)) {
-        std::cout << "Signed in as " << username << ".\n";
+        cout << "Signed in as " << username << ".\n";
     } else {
-        std::cout << "Sign-in failed: incorrect username or password.\n";
+        cout << "Sign-in failed: incorrect username or password.\n";
     }
 }
 
 void handleUploadImage(UX& ux) {
     if (!ux.isSignedIn()) {
-        std::cout << "You must sign in before uploading a profile image.\n";
+        cout << "You must sign in before uploading a profile image.\n";
         return;
     }
 
-    std::string path = readLine("Path to image file (.png/.jpg/.jpeg/.bmp/.gif): ");
+    string path = readLine("Path to image file (.png/.jpg/.jpeg/.bmp/.gif): ");
     if (ux.uploadProfileImage(*ux.currentUser(), path)) {
-        ux.saveToFile(kUsersFilePath);
-        std::cout << "Profile image uploaded successfully.\n";
+        ux.saveToFile(usersFilePath);
+        cout << "Profile image uploaded successfully.\n";
     } else {
-        std::cout << "Upload failed: check that the file exists and has a "
-                     "supported image extension.\n";
+        cout << "Upload failed: check that the file exists and has a "
+                "supported image extension.\n";
     }
 }
 
-void handleViewImage(const UX& ux) {
+// takes UX by reference, not const reference, since getProfileImagePath
+// isn't a const function anymore
+void handleViewImage(UX& ux) {
     if (!ux.isSignedIn()) {
-        std::cout << "You must sign in first.\n";
+        cout << "You must sign in first.\n";
         return;
     }
 
     auto path = ux.getProfileImagePath(*ux.currentUser());
     if (path) {
-        std::cout << "Profile image: " << *path << "\n";
+        cout << "Profile image: " << *path << "\n";
     } else {
-        std::cout << "No profile image has been uploaded yet.\n";
+        cout << "No profile image has been uploaded yet.\n";
     }
 }
-    //allows the signed in user to enter/update food allergies
-    void handleEnterAllergies(UX& ux) {
+
+// lets the signed in user enter/update their food allergies
+void handleEnterAllergies(UX& ux) {
     if (!ux.isSignedIn()) {
-        std::cout << "You must sign in before entering allergies.\n";
+        cout << "You must sign in before entering allergies.\n";
         return;
     }
 
-    ux.currentUser()->enterFoodAllergies();
+    accountsByUser[*ux.currentUser()].enterFoodAllergies();
 
-    ux.saveToFile(kUsersFilePath);
+    ux.saveToFile(usersFilePath);
 }
 
-    //Displays allergies saved for the sign in user
-    void handleViewAllergies( UX& ux) {
+// shows allergies saved for the signed in user
+void handleViewAllergies(UX& ux) {
     if (!ux.isSignedIn()) {
-        std::cout << "You must sign in before viewing allergies.\n";
+        cout << "You must sign in before viewing allergies.\n";
         return;
     }
 
-    ux.currentUser()->displayFoodAllergies();
+    accountsByUser[*ux.currentUser()].displayFoodAllergies();
 }
+
 void handleAddIngredient(Ingredients& ingredients) {
     std::string ingredient =
         readLine("Enter an available ingredient: ");
     if (ingredients.addIngredient(ingredient)) {
         std::cout << "Ingredient added.\n";
-
-    }else {
+    } else {
         std::cout << "Ingredient was already entered.\n";
     }
 }
 
 void handleViewIngredients(const Ingredients& ingredients) {
-
-
     ingredients.displayIngredients();
 }
 
@@ -188,24 +195,21 @@ void handleAddPreferences(Preferences& preferences) {
 
     if (preferences.addPreference(preference)) {
         std::cout << "Preference saved.\n";
-    }else {
+    } else {
         std::cout << "Preference was empty or saved already.\n";
     }
 }
 
-
 void handleSetBudget(Preferences& preferences) {
-    std::string budgetInput = readLine("Enter an budget: $ ");
+    std::string budgetInput = readLine("Enter a budget: $ ");
 
     try {
         double budget = std::stod(budgetInput);
 
-
-        if (budget <0.0) {
+        if (budget < 0.0) {
             std::cout << "Budget can't be negative.\n";
             return;
         }
-
 
         preferences.setBudget(budget);
         std::cout << "Weekly budget saved.\n";
@@ -215,7 +219,7 @@ void handleSetBudget(Preferences& preferences) {
 }
 
 void handleViewPreferences(const Preferences& preferences) {
-    std::cout <<"\nSaved preferences:\n";
+    std::cout << "\nSaved preferences:\n";
 
     const std::vector<std::string>& savedPreferences =
         preferences.getPreferences();
@@ -223,15 +227,12 @@ void handleViewPreferences(const Preferences& preferences) {
     if (savedPreferences.empty()) {
         std::cout << "No preferences saved.\n";
     } else {
-        for (std::size_t index=0; index < savedPreferences.size(); ++index) {
-            std::cout << index + 1 << ". "<<savedPreferences[index]<<"\n";
-
+        for (std::size_t index = 0; index < savedPreferences.size(); ++index) {
+            std::cout << index + 1 << ". " << savedPreferences[index] << "\n";
         }
     }
     std::cout << "Weekly budget: $"
               << preferences.getBudget() << "\n";
-
-
 }
 
 void handleGenerateMealPlan(
@@ -245,7 +246,6 @@ void handleGenerateMealPlan(
         "Vegetable Pasta",
         "Turkey Wrap",
         "Bean Tacos"
-
     };
 
     generator.generateWeeklyMealPlan(
@@ -256,9 +256,8 @@ void handleGenerateMealPlan(
 void handleViewMealPlan(const MealPlan& mealPlan) {
     mealPlan.display(std::cout);
 }
+
 } // namespace
-
-
 
 int main() {
     UX ux;
@@ -267,22 +266,21 @@ int main() {
     MealPlan mealPlan;
     MealGenerator mealGenerator;
 
-
-    if (ux.loadFromFile(kUsersFilePath)) {
-        std::cout << "Loaded existing accounts from " << kUsersFilePath << ".\n";
+    if (ux.loadFromFile(usersFilePath)) {
+        cout << "Loaded existing accounts from " << usersFilePath << ".\n";
     }
 
     bool running = true;
 
     while (running) {
         printMenu();
-        std::string choiceInput = readLine("");
+        string choiceInput = readLine("");
 
         int choice = -1;
         try {
-            choice = std::stoi(choiceInput);
+            choice = stoi(choiceInput);
         } catch (...) {
-            std::cout << "Please enter a number from the menu.\n";
+            cout << "Please enter a number from the menu.\n";
             continue;
         }
 
@@ -308,48 +306,40 @@ int main() {
             case 7:
                 handleAddIngredient(ingredients);
                 break;
-
             case 8:
                 handleViewIngredients(ingredients);
                 break;
-
             case 9:
                 handleAddPreferences(preferences);
                 break;
-
             case 10:
                 handleSetBudget(preferences);
                 break;
-
             case 11:
                 handleViewPreferences(preferences);
                 break;
-
             case 12:
                 handleGenerateMealPlan(
                     mealGenerator,
                     mealPlan
                 );
                 break;
-
             case 13:
                 handleViewMealPlan(mealPlan);
                 break;
-
             case 14:
                 ux.signOut();
-                std::cout << "Signed out.\n";
+                cout << "Signed out.\n";
                 break;
             case 15:
-                ux.saveToFile(kUsersFilePath);
+                ux.saveToFile(usersFilePath);
                 running = false;
                 break;
             default:
-                std::cout << "Unknown option. Please choose 1-15.\n";
+                cout << "Unknown option. Please choose 1-15.\n";
         }
     }
 
-    std::cout << "Goodbye!\n";
+    cout << "Goodbye!\n";
     return 0;
-
 }
