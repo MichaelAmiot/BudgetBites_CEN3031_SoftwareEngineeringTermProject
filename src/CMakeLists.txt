@@ -9,6 +9,10 @@ add_library(BudgetBitesLib
         UserRepository.cpp
         ProfileImageStore.cpp
         Preferences.cpp
+        MealGenerator.cpp
+        ../include/BudgetBitesLib/MealGenerator.h
+        Ingredients.cpp
+        ../include/BudgetBitesLib/Ingredients.h
 
 )
 
@@ -22,6 +26,10 @@ add_executable(BudgetBites
         AllergyTest.h
         Preferences.cpp
         ../include/BudgetBitesLib/Preferences.h
+        MealGenerator.cpp
+        ../include/BudgetBitesLib/MealGenerator.h
+        Ingredients.cpp
+        ../include/BudgetBitesLib/Ingredients.h
 )
 
 target_link_libraries(BudgetBites

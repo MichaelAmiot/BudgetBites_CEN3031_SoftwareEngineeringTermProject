@@ -58,6 +58,7 @@ public:
     // Returns the username of the currently signed-in user, if any.
     std::optional<std::string> currentUser() const;
 
+
     // Uploads a profile image for the given username.
     // Requires that 'username' is the currently signed-in user, so a
     // user cannot upload an image for someone else's account.

@@ -9,7 +9,7 @@
 
 #include <string>
 #include <vector>
-
+#include <algorithm>
 class Preferences {
 
 public:

@@ -9,6 +9,12 @@ add_executable(BudgetBitesTests
         test_ProfileImageStore.cpp
         test_UserRepository.cpp
         test_Preferences.cpp
+        ../src/MealGenerator.cpp
+        ../include/BudgetBitesLib/MealGenerator.h
+        test_MealGenerator.cpp
+        ../src/Ingredients.cpp
+        ../include/BudgetBitesLib/Ingredients.h
+        test_ingredients.cpp
 )
 
 target_link_libraries(BudgetBitesTests

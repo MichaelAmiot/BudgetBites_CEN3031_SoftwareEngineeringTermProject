@@ -4,10 +4,14 @@
 #include "BudgetBitesLib/MealPlan.h"
 #include "BudgetBitesLib/RecipeDataBase.h"
 #include "BudgetBitesLib/UX.h"
+#include "BudgetBitesLib/Ingredients.h"
+#include "BudgetBitesLib/MealGenerator.h"
+#include "BudgetBitesLib/Preferences.h"
 
 #include <iostream>
 #include <limits>
 #include <string>
+#include <vector>
 
 #ifdef _WIN32
 #include <conio.h>
@@ -74,8 +78,15 @@ void printMenu() {
               << "4. View profile image path\n"
               << "5. Enter food allergies\n"
               << "6. View food allergies\n"
-              << "7. Sign out\n"
-              << "8. Exit\n"
+              << "7. Enter available ingredients\n"
+              << "8. View Available ingredients\n"
+              << "9. Add dietary preference\n"
+              << "10. Set weekly budget\n"
+              << "11. View Preferences and budget\n"
+              << "12. Generate weekly meal plan\n"
+              << "13. View weekly Meal plan\n"
+              << "14. Sign out\n"
+              << "15. Exit\n"
               << "Choose an option: ";
 }
 
@@ -146,7 +157,7 @@ void handleViewImage(const UX& ux) {
 }
 
     //Displays allergies saved for the sign in user
-    void handleViewAllergies(const UX& ux) {
+    void handleViewAllergies( UX& ux) {
     if (!ux.isSignedIn()) {
         std::cout << "You must sign in before viewing allergies.\n";
         return;
@@ -154,14 +165,109 @@ void handleViewImage(const UX& ux) {
 
     ux.currentUser()->displayFoodAllergies();
 }
+void handleAddIngredient(Ingredients& ingredients) {
+    std::string ingredient =
+        readLine("Enter an available ingredient: ");
+    if (ingredients.addIngredient(ingredient)) {
+        std::cout << "Ingredient added.\n";
+
+    }else {
+        std::cout << "Ingredient was already entered.\n";
+    }
+}
+
+void handleViewIngredients(const Ingredients& ingredients) {
 
 
+    ingredients.displayIngredients();
+}
+
+void handleAddPreferences(Preferences& preferences) {
+    std::string preference =
+        readLine("Enter a dietary preference: ");
+
+    if (preferences.addPreference(preference)) {
+        std::cout << "Preference saved.\n";
+    }else {
+        std::cout << "Preference was empty or saved already.\n";
+    }
+}
+
+
+void handleSetBudget(Preferences& preferences) {
+    std::string budgetInput = readLine("Enter an budget: $ ");
+
+    try {
+        double budget = std::stod(budgetInput);
+
+
+        if (budget <0.0) {
+            std::cout << "Budget can't be negative.\n";
+            return;
+        }
+
+
+        preferences.setBudget(budget);
+        std::cout << "Weekly budget saved.\n";
+    } catch (...) {
+        std::cout << "Please enter a valid number.\n";
+    }
+}
+
+void handleViewPreferences(const Preferences& preferences) {
+    std::cout <<"\nSaved preferences:\n";
+
+    const std::vector<std::string>& savedPreferences =
+        preferences.getPreferences();
+
+    if (savedPreferences.empty()) {
+        std::cout << "No preferences saved.\n";
+    } else {
+        for (std::size_t index=0; index < savedPreferences.size(); ++index) {
+            std::cout << index + 1 << ". "<<savedPreferences[index]<<"\n";
+
+        }
+    }
+    std::cout << "Weekly budget: $"
+              << preferences.getBudget() << "\n";
+
+
+}
+
+void handleGenerateMealPlan(
+    MealGenerator& generator, MealPlan& mealPlan) {
+
+    std::vector<std::string> recipes = {
+        "Oatmeal",
+        "Egg Sandwich",
+        "Chicken Salad",
+        "Rice Bowl",
+        "Vegetable Pasta",
+        "Turkey Wrap",
+        "Bean Tacos"
+
+    };
+
+    generator.generateWeeklyMealPlan(
+        mealPlan, recipes);
+    std::cout << "Weekly meal plan generated.\n";
+}
+
+void handleViewMealPlan(const MealPlan& mealPlan) {
+    mealPlan.display(std::cout);
+}
 } // namespace
 
 
 
 int main() {
     UX ux;
+    Ingredients ingredients;
+    Preferences preferences;
+    MealPlan mealPlan;
+    MealGenerator mealGenerator;
+
+
     if (ux.loadFromFile(kUsersFilePath)) {
         std::cout << "Loaded existing accounts from " << kUsersFilePath << ".\n";
     }
@@ -200,15 +306,46 @@ int main() {
                 handleViewAllergies(ux);
                 break;
             case 7:
+                handleAddIngredient(ingredients);
+                break;
+
+            case 8:
+                handleViewIngredients(ingredients);
+                break;
+
+            case 9:
+                handleAddPreferences(preferences);
+                break;
+
+            case 10:
+                handleSetBudget(preferences);
+                break;
+
+            case 11:
+                handleViewPreferences(preferences);
+                break;
+
+            case 12:
+                handleGenerateMealPlan(
+                    mealGenerator,
+                    mealPlan
+                );
+                break;
+
+            case 13:
+                handleViewMealPlan(mealPlan);
+                break;
+
+            case 14:
                 ux.signOut();
                 std::cout << "Signed out.\n";
                 break;
-            case 8:
+            case 15:
                 ux.saveToFile(kUsersFilePath);
                 running = false;
                 break;
             default:
-                std::cout << "Unknown option. Please choose 1-8.\n";
+                std::cout << "Unknown option. Please choose 1-15.\n";
         }
     }
 
