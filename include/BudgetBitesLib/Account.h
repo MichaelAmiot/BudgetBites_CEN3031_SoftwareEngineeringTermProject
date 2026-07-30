@@ -32,8 +32,14 @@ public:
 
 
 std::vector<std::string> getAllergies() const;
-};
 
+
+//used when loading allergies back in from a file, so the loaded
+//list replaces whatever (if anything) is currently stored
+void setAllergies(const std::vector<std::string>& loadedAllergies);
+
+
+};
 
 
 #endif //ACCOUNT_H

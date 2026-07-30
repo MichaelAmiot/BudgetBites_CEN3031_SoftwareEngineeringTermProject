@@ -5,6 +5,19 @@
 
 using namespace std;
 
+void checkUserAndImage(UX& ux) {
+    auto user = ux.currentUser();
+    if (!user) {
+        std::cout << "You must sign in first.\n";
+        return;
+    }
+
+    auto path = ux.getProfileImagePath(*user);
+    if (path) {
+        // ...
+    }
+}
+
 bool UX::registerUser(const string& username, const string& password) {
     if (username.empty()) {
         return false;
