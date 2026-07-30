@@ -187,7 +187,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 19,BBQ Pork Fried Rice,153,Rice,1000,g,1000,1000 g cooked rice,exact_name
 19,BBQ Pork Fried Rice,102,Green cabbage,0,as_needed,,Shredded cabbage,normalized_or_substitute
 19,BBQ Pork Fried Rice,96,Tomatoes,0,as_needed,,Tomato,normalized_or_substitute
-19,BBQ Pork Fried Rice,143,Lettuce,0,as_needed,,Shredded lettuce,exact_name
+19,BBQ Pork Fried Rice,116,Lettuce,0,as_needed,,Shredded lettuce,exact_name
 19,BBQ Pork Fried Rice,146,Eggs,3,garnish,,"3 eggs, cooked into an omelette and sliced 1 cm thick (as garnish)",exact_name
 20,Traditional Lasagne,133,Olive oil,2,tbsp,,2 tbsp olive oil,exact_name
 20,Traditional Lasagne,119,Onion,1,count,,"1 large onion, finely chopped",exact_name
@@ -274,7 +274,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 27,Pad Thai,94,Carrots,200,g,200,"Assorted vegetables (e.g., shredded carrots, white onions, red or green peppers)",exact_name
 27,Pad Thai,146,Eggs,2,count,,2 eggs,exact_name
 27,Pad Thai,118,Green onions,4,count,,4 chopped green onions,exact_name
-27,Pad Thai,160,Bean sprouts,0.75,pound,340,¾ pound (340 g) bean sprouts,exact_name
+27,Pad Thai,99,Bean sprouts,0.75,pound,340,¾ pound (340 g) bean sprouts,exact_name
 27,Pad Thai,161,Peanuts,0.75,cup,,¾ cup (175 ml) chopped unroasted peanuts,exact_name
 27,Pad Thai,110,Cilantro,0,garnish,,Cilantro (coriander) leaves (garnish),exact_name
 28,Tofu Tamale Pie,44,Tofu,4,ounces,113.4,"4 ounces tofu, washed, drained well, and broken up",exact_name
@@ -643,7 +643,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 71,Taco Salad,121,Chili pepper,1,tsp,,1 tsp chili powder,normalized_or_substitute
 71,Taco Salad,119,Onion,1,count,,"1 medium onion, chopped",exact_name
 71,Taco Salad,96,Tomatoes,3,count,,"3 medium tomatoes, diced",exact_name
-71,Taco Salad,143,Lettuce,1,lb,453.59,"1 lb (about ½ large head) lettuce, chopped",exact_name
+71,Taco Salad,116,Lettuce,1,lb,453.59,"1 lb (about ½ large head) lettuce, chopped",exact_name
 71,Taco Salad,9,Cheddar cheese,0.25,lb,113.4,"¼ lb cheddar cheese, grated",exact_name
 71,Taco Salad,64,Avocado,1,count,,"1 large avocado, peeled and sliced",exact_name
 71,Taco Salad,111,Corn,0.75,lb,340.19,¾ lb corn tortilla chips,exact_name

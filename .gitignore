@@ -70,5 +70,8 @@ Testing/
 
 .idea/
 
-# Rebuildable local database generated from data/seed/
+# Developer-local databases and temporary build artifacts.
 data/local/
+data/*.tmp.db
+
+# The distributable catalog is intentionally versioned at data/budgetbites.db.
