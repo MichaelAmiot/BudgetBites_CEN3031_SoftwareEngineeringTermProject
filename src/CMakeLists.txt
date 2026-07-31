@@ -1,11 +1,13 @@
 add_library(BudgetBitesLib
         Account.cpp
+        CsvFile.cpp
         Grocery.cpp
         Infrastructure.cpp
         MealPlan.cpp
         RecipeDataBase.cpp
         UX.cpp
         PasswordSecurity.cpp
+        UserInfoRepository.cpp
         UserRepository.cpp
         ProfileImageStore.cpp
         Preferences.cpp
