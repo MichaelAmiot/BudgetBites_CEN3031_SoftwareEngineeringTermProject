@@ -8,6 +8,7 @@ add_library(BudgetBitesLib
         UX.cpp
         PasswordSecurity.cpp
         UserInfoRepository.cpp
+        UserRepository.cpp
         ProfileImageStore.cpp
         Preferences.cpp
         MealGenerator.cpp

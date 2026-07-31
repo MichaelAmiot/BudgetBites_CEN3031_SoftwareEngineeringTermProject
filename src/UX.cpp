@@ -3,99 +3,91 @@
 #include "BudgetBitesLib/PasswordSecurity.h"
 #include "BudgetBitesLib/ProfileImageStore.h"
 
-UX::UX(const std::filesystem::path& storageDirectory)
-    : repository(storageDirectory) {}
+using namespace std;
 
-bool UX::registerUser(const std::string& username, const std::string& password) {
-    if (username.empty() || repository.getUserByUsername(username) || !PasswordSecurity::isStrong(password)) {
+bool UX::registerUser(const string& username, const string& password) {
+    if (username.empty()) {
         return false;
     }
-    const std::string salt = PasswordSecurity::generateSalt();
-    const auto user = repository.createUser(username, PasswordSecurity::hashPassword(password, salt), salt);
-    return user.has_value() && repository.save();
+    if (repository.find(username) != nullptr) {
+        return false; // username already taken
+    }
+    if (!PasswordSecurity::isStrong(password)) {
+        return false;
+    }
+
+    UserAccount account;
+    account.username = username;
+    account.passwordSalt = PasswordSecurity::generateSalt();
+    account.passwordHash = PasswordSecurity::hashPassword(password, account.passwordSalt);
+
+    repository.add(account);
+    return true;
 }
 
-bool UX::signIn(const std::string& username, const std::string& password) {
-    const auto user = repository.getUserByUsername(username);
-    if (!user || !PasswordSecurity::checkPassword(password, user->passwordSalt, user->passwordHash)) {
+bool UX::signIn(const string& username, const string& password) {
+    UserAccount* account = repository.find(username);
+    if (account == nullptr) {
         return false;
     }
-    // Keep the stable user ID in the session instead of the display name.
-    currentUserId = user->id;
+
+    if (!PasswordSecurity::checkPassword(password, account->passwordSalt, account->passwordHash)) {
+        return false;
+    }
+
+    currentUsername = username;
     return true;
 }
 
 void UX::signOut() {
-    currentUserId.reset();
+    currentUsername.reset();
 }
 
 bool UX::isSignedIn() const {
-    return currentUserId.has_value();
+    return currentUsername.has_value();
 }
 
-std::optional<std::string> UX::currentUser() const {
-    const auto user = currentUserInfo();
-    return user ? std::optional<std::string>(user->username) : std::nullopt;
+optional<string> UX::currentUser() const {
+    return currentUsername;
 }
 
-std::optional<UserInfo> UX::currentUserInfo() const {
-    return currentUserId ? repository.getUserById(*currentUserId) : std::nullopt;
-}
-
-bool UX::uploadProfileImage(const std::string& username, const std::string& sourceImagePath) {
-    const auto signedInUser = currentUser();
-    if (!signedInUser || *signedInUser != username) {
+bool UX::uploadProfileImage(const string& username, const string& sourceImagePath) {
+    // only let someone upload a picture for their own account
+    if (!currentUsername.has_value() || currentUsername != username) {
         return false;
     }
-    const auto storedPath = ProfileImageStore::store(username, sourceImagePath);
-    return storedPath && repository.updateProfileImagePath(*currentUserId, *storedPath) && repository.save();
-}
 
-std::optional<std::string> UX::getProfileImagePath(const std::string& username) const {
-    const auto user = repository.getUserByUsername(username);
-    if (!user || user->profileImagePath.empty()) {
-        return std::nullopt;
+    UserAccount* account = repository.find(username);
+    if (account == nullptr) {
+        return false;
     }
-    return user->profileImagePath;
+
+    auto storedPath = ProfileImageStore::store(username, sourceImagePath);
+    if (!storedPath.has_value()) {
+        return false;
+    }
+
+    account->profileImagePath = *storedPath;
+    return true;
 }
 
-bool UX::updateCurrentWeeklyBudget(double weeklyBudget) {
-    return currentUserId && repository.updateWeeklyBudget(*currentUserId, weeklyBudget) && repository.save();
+optional<string> UX::getProfileImagePath(const string& username) {
+    UserAccount* account = repository.find(username);
+    if (account == nullptr || account->profileImagePath.empty()) {
+        return nullopt;
+    }
+    return account->profileImagePath;
 }
 
-bool UX::replaceCurrentDietaryTagIds(const std::vector<int>& dietaryTagIds) {
-    return currentUserId && repository.replaceDietaryTagIds(*currentUserId, dietaryTagIds) && repository.save();
-}
-
-bool UX::replaceCurrentAllergenIds(const std::vector<int>& allergenIds) {
-    return currentUserId && repository.replaceAllergenIds(*currentUserId, allergenIds) && repository.save();
-}
-
-bool UX::replaceCurrentPantryItems(const std::vector<PantryItem>& pantryItems) {
-    return currentUserId && repository.replacePantryItems(*currentUserId, pantryItems) && repository.save();
-}
-
-std::vector<int> UX::getCurrentDietaryTagIds() const {
-    return currentUserId ? repository.getDietaryTagIds(*currentUserId) : std::vector<int>{};
-}
-
-std::vector<int> UX::getCurrentAllergenIds() const {
-    return currentUserId ? repository.getAllergenIds(*currentUserId) : std::vector<int>{};
-}
-
-std::vector<PantryItem> UX::getCurrentPantryItems() const {
-    return currentUserId ? repository.getPantryItems(*currentUserId) : std::vector<PantryItem>{};
-}
-
-bool UX::saveUserData() {
-    return repository.save();
-}
-
-bool UX::reloadUserData() {
-    currentUserId.reset();
-    return repository.load();
-}
-
-bool UX::isPasswordStrong(const std::string& password) {
+bool UX::isPasswordStrong(const string& password) {
     return PasswordSecurity::isStrong(password);
+}
+
+bool UX::saveToFile(const string& filePath) const {
+    return repository.saveToFile(filePath);
+}
+
+bool UX::loadFromFile(const string& filePath) {
+    currentUsername.reset();
+    return repository.loadFromFile(filePath);
 }
