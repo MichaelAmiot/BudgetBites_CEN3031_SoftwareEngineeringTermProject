@@ -26,18 +26,7 @@ public:
 
     std::optional<std::string> currentUser() const;
     
-    void checkUserAndImage(UX& ux) {
-        auto user = ux.currentUser();
-        if (!user) {
-            std::cout << "You must sign in first.\n";
-            return;
-        }
-
-        auto path = ux.getProfileImagePath(*user);
-        if (path) {
-            // ...
-        }
-    }
+    void checkUserAndImage(UX& ux);
 
     // only works if username is the person currently signed in
     bool uploadProfileImage(const std::string& username, const std::string& sourceImagePath);

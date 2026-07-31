@@ -8,9 +8,11 @@
 #include "BudgetBitesLib/MealGenerator.h"
 #include "BudgetBitesLib/Preferences.h"
 
+#include <fstream>
 #include <iostream>
 #include <limits>
 #include <map>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -26,12 +28,69 @@ using namespace std;
 namespace {
 
 const string usersFilePath = "users.txt";
+const string allergiesFilePath = "allergies.txt";
 
 // keeps each user's Account (allergies) in memory while the program runs.
-// Account isn't saved to the file the way UserRepository is, so
-// allergies get reset every time the program restarts.
-// TODO: figure out a way to save this along with everything else
+// Persisted separately from users.txt via saveAllergiesToFile/
+// loadAllergiesFromFile below, since UserRepository only knows about
+// UserAccount (username/password/image), not Account (allergies).
 map<string, Account> accountsByUser;
+
+// writes out one line per user with stored allergies, in the form
+// username,allergy1|allergy2|allergy3
+// (skips users who have no allergies entered so the file stays small)
+void saveAllergiesToFile(const string& filePath) {
+    ofstream out(filePath);
+    if (!out) {
+        return;
+    }
+
+    for (const auto& entry : accountsByUser) {
+        const string& username = entry.first;
+        const vector<string>& allergies = entry.second.getAllergies();
+
+        if (allergies.empty()) {
+            continue;
+        }
+
+        out << username << ",";
+        for (size_t i = 0; i < allergies.size(); i++) {
+            if (i > 0) {
+                out << "|";
+            }
+            out << allergies[i];
+        }
+        out << "\n";
+    }
+}
+
+// reads the file written by saveAllergiesToFile back into accountsByUser
+void loadAllergiesFromFile(const string& filePath) {
+    ifstream in(filePath);
+    if (!in) {
+        return; // no file yet, that's fine on first run
+    }
+
+    string line;
+    while (getline(in, line)) {
+        size_t commaPos = line.find(',');
+        if (commaPos == string::npos) {
+            continue;
+        }
+
+        string username = line.substr(0, commaPos);
+        string allergyList = line.substr(commaPos + 1);
+
+        vector<string> allergies;
+        stringstream ss(allergyList);
+        string allergy;
+        while (getline(ss, allergy, '|')) {
+            allergies.push_back(allergy);
+        }
+
+        accountsByUser[username].setAllergies(allergies);
+    }
+}
 
 // prints a prompt and reads a line of input
 string readLine(const string& prompt) {
@@ -163,6 +222,7 @@ void handleEnterAllergies(UX& ux) {
     accountsByUser[*ux.currentUser()].enterFoodAllergies();
 
     ux.saveToFile(usersFilePath);
+    saveAllergiesToFile(allergiesFilePath);
 }
 
 // shows allergies saved for the signed in user
@@ -270,6 +330,8 @@ int main() {
         cout << "Loaded existing accounts from " << usersFilePath << ".\n";
     }
 
+    loadAllergiesFromFile(allergiesFilePath);
+
     bool running = true;
 
     while (running) {
@@ -333,6 +395,7 @@ int main() {
                 break;
             case 15:
                 ux.saveToFile(usersFilePath);
+                saveAllergiesToFile(allergiesFilePath);
                 running = false;
                 break;
             default:
