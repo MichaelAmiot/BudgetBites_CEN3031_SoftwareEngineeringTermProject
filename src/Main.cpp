@@ -25,12 +25,7 @@ using namespace std;
 
 namespace {
 
-const string usersFilePath = "users.txt";
-
-// keeps each user's Account (allergies) in memory while the program runs.
-// Account isn't saved to the file the way UserRepository is, so
-// allergies get reset every time the program restarts.
-// TODO: figure out a way to save this along with everything else
+// Keeps free-text allergies in memory until the menu is migrated to controlled allergen IDs.
 map<string, Account> accountsByUser;
 
 // prints a prompt and reads a line of input
@@ -102,7 +97,6 @@ void handleRegister(UX& ux) {
     string password = readPassword("Choose a password (8+ chars, upper, lower, digit, special char): ");
 
     if (ux.registerUser(username, password)) {
-        ux.saveToFile(usersFilePath);
         cout << "Registered successfully. You can now sign in.\n";
     } else {
         cout << "Registration failed: the username may already be taken, "
@@ -129,7 +123,6 @@ void handleUploadImage(UX& ux) {
 
     string path = readLine("Path to image file (.png/.jpg/.jpeg/.bmp/.gif): ");
     if (ux.uploadProfileImage(*ux.currentUser(), path)) {
-        ux.saveToFile(usersFilePath);
         cout << "Profile image uploaded successfully.\n";
     } else {
         cout << "Upload failed: check that the file exists and has a "
@@ -162,7 +155,6 @@ void handleEnterAllergies(UX& ux) {
 
     accountsByUser[*ux.currentUser()].enterFoodAllergies();
 
-    ux.saveToFile(usersFilePath);
 }
 
 // shows allergies saved for the signed in user
@@ -266,8 +258,8 @@ int main() {
     MealPlan mealPlan;
     MealGenerator mealGenerator;
 
-    if (ux.loadFromFile(usersFilePath)) {
-        cout << "Loaded existing accounts from " << usersFilePath << ".\n";
+    if (ux.reloadUserData()) {
+        cout << "Loaded local user data.\n";
     }
 
     bool running = true;
@@ -332,7 +324,7 @@ int main() {
                 cout << "Signed out.\n";
                 break;
             case 15:
-                ux.saveToFile(usersFilePath);
+                ux.saveUserData();
                 running = false;
                 break;
             default:

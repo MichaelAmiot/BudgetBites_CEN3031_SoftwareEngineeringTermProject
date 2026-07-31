@@ -7,7 +7,7 @@ add_executable(BudgetBitesTests
         test_UX.cpp
         test_PasswordSecurity.cpp
         test_ProfileImageStore.cpp
-        test_UserRepository.cpp
+        test_UserInfoRepository.cpp
         test_Preferences.cpp
         ../src/MealGenerator.cpp
         ../include/BudgetBitesLib/MealGenerator.h
@@ -25,6 +25,10 @@ target_link_libraries(BudgetBitesTests
 
 target_include_directories(BudgetBitesTests
         PRIVATE ${CMAKE_SOURCE_DIR}/include
+)
+
+target_compile_definitions(BudgetBitesTests
+        PRIVATE BUDGETBITES_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
 )
 
 include(CTest)
