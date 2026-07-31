@@ -8,6 +8,11 @@ add_library(BudgetBitesLib
         PasswordSecurity.cpp
         UserRepository.cpp
         ProfileImageStore.cpp
+        Preferences.cpp
+        MealGenerator.cpp
+        ../include/BudgetBitesLib/MealGenerator.h
+        Ingredients.cpp
+        ../include/BudgetBitesLib/Ingredients.h
 
 )
 
@@ -17,6 +22,8 @@ target_include_directories(BudgetBitesLib
 
 add_executable(BudgetBites
         Main.cpp
+        Preferences.cpp
+        ../include/BudgetBitesLib/Preferences.h
 )
 
 target_link_libraries(BudgetBites
