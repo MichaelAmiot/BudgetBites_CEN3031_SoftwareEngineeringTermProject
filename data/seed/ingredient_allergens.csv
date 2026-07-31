@@ -1,151 +1,53 @@
-ingredient_id,allergen_id,status,review_status,note
-5,5,contains,verified,Named tree-nut ingredient.
-6,5,contains,verified,Named tree-nut ingredient.
-7,5,contains,verified,Named tree-nut ingredient.
-8,1,contains,verified,Ingredient name indicates milk-derived content.
-14,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-14,9,contains,verified,Named sesame ingredient.
-14,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-31,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-31,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-32,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-32,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-33,1,contains,verified,Ingredient name indicates milk-derived content.
-45,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-45,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-46,1,contains,verified,Ingredient name indicates milk-derived content.
-49,12,contains,verified,Named mustard ingredient.
-55,1,contains,verified,Ingredient name indicates milk-derived content.
-56,1,unknown,needs_review,Ingredient name indicates milk-derived content.
-57,1,unknown,needs_review,Ingredient name indicates milk-derived content.
-58,1,contains,needs_review,Ingredient name indicates milk-derived content.
-59,1,contains,verified,Ingredient name indicates milk-derived content.
-66,1,contains,verified,Ingredient name indicates milk-derived content.
-68,11,contains,verified,Named celery ingredient.
-69,11,contains,verified,Named celery ingredient.
-70,1,contains,verified,Ingredient name indicates milk-derived content.
-71,1,contains,verified,Ingredient name indicates milk-derived content.
-72,1,contains,verified,Ingredient name indicates milk-derived content.
-72,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-72,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-97,1,contains,verified,Ingredient name indicates milk-derived content.
-103,1,contains,verified,Ingredient name indicates milk-derived content.
-111,1,contains,verified,Ingredient name indicates milk-derived content.
-114,4,contains,verified,Named crustacean ingredient.
-115,1,contains,verified,Ingredient name indicates milk-derived content.
-116,1,contains,verified,Ingredient name indicates milk-derived content.
-118,1,contains,verified,Ingredient name indicates milk-derived content.
-119,1,contains,needs_review,Ingredient name indicates milk-derived content.
-123,1,contains,verified,Ingredient name indicates milk-derived content.
-125,1,contains,verified,Ingredient name indicates milk-derived content.
-136,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-136,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-137,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-137,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-138,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-138,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-140,14,unknown,needs_review,Wine-derived ingredient; do not infer sulphite content without product evidence.
-141,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-141,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-143,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-143,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-150,2,contains,verified,Ingredient name indicates egg content or an egg-derived preparation.
-152,2,contains,verified,Ingredient name indicates egg content or an egg-derived preparation.
-153,2,contains,verified,Ingredient name indicates egg content or an egg-derived preparation.
-154,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-154,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-159,1,contains,verified,Ingredient name indicates milk-derived content.
-163,11,contains,verified,Named celery ingredient.
-169,1,contains,verified,Ingredient name indicates milk-derived content.
-170,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-170,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-171,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-171,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-172,1,contains,verified,Ingredient name indicates milk-derived content.
-173,1,contains,verified,Ingredient name indicates milk-derived content.
-177,2,contains,verified,Ingredient name indicates egg content or an egg-derived preparation.
-188,1,contains,verified,Ingredient name indicates milk-derived content.
-198,12,contains,verified,Named mustard ingredient.
-199,6,unknown,needs_review,Choice ingredient includes groundnut oil; selected option must be verified.
-200,1,contains,verified,Ingredient name indicates milk-derived content.
-201,1,contains,verified,Ingredient name indicates milk-derived content.
-202,1,contains,verified,Ingredient name indicates milk-derived content.
-203,1,contains,verified,Ingredient name indicates milk-derived content.
-205,2,derived_from,needs_review,Ingredient name indicates egg content or an egg-derived preparation.
-215,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-215,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-228,1,contains,verified,Ingredient name indicates milk-derived content.
-229,8,derived_from,needs_review,Soy-derived ingredient; verify formulation for product-specific details.
-232,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-232,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-238,1,unknown,needs_review,Ingredient name indicates milk-derived content.
-240,1,contains,verified,Ingredient name indicates milk-derived content.
-241,2,derived_from,needs_review,Ingredient name indicates egg content or an egg-derived preparation.
-249,11,contains,verified,Named celery ingredient.
-251,1,contains,verified,Ingredient name indicates milk-derived content.
-253,1,contains,verified,Ingredient name indicates milk-derived content.
-254,1,contains,verified,Ingredient name indicates milk-derived content.
-256,1,contains,verified,Ingredient name indicates milk-derived content.
-257,1,contains,verified,Ingredient name indicates milk-derived content.
-258,14,unknown,needs_review,Wine-derived ingredient; do not infer sulphite content without product evidence.
-262,1,contains,verified,Ingredient name indicates milk-derived content.
-263,1,contains,needs_review,Ingredient name indicates milk-derived content.
-264,1,contains,verified,Ingredient name indicates milk-derived content.
-265,1,contains,verified,Ingredient name indicates milk-derived content.
-268,12,contains,verified,Named mustard ingredient.
-269,12,contains,verified,Named mustard ingredient.
-270,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-270,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-272,15,derived_from,needs_review,Named listed gluten cereal ingredient.
-273,1,contains,verified,Ingredient name indicates milk-derived content.
-273,15,derived_from,needs_review,Named listed gluten cereal ingredient.
-282,1,contains,verified,Ingredient name indicates milk-derived content.
-286,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-286,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-288,1,contains,verified,Ingredient name indicates milk-derived content.
-290,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-290,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-291,1,contains,verified,Ingredient name indicates milk-derived content.
-297,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-297,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-299,5,contains,verified,Named tree-nut ingredient.
-304,12,contains,verified,Named mustard ingredient.
-305,4,contains,verified,Named crustacean ingredient.
-306,1,contains,verified,Ingredient name indicates milk-derived content.
-313,15,derived_from,needs_review,Named listed gluten cereal ingredient.
-322,14,unknown,needs_review,Wine-derived ingredient; do not infer sulphite content without product evidence.
-323,11,contains,verified,Named celery ingredient.
-325,15,derived_from,needs_review,Named listed gluten cereal ingredient.
-326,14,unknown,needs_review,Wine-derived ingredient; do not infer sulphite content without product evidence.
-327,1,contains,verified,Ingredient name indicates milk-derived content.
-347,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-347,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-348,9,contains,verified,Named sesame ingredient.
-350,4,unknown,needs_review,Generic shellfish wording does not identify the species.
-350,10,unknown,needs_review,Generic shellfish wording does not identify the species.
-351,1,contains,verified,Ingredient name indicates milk-derived content.
-352,1,contains,verified,Ingredient name indicates milk-derived content.
-353,5,contains,verified,Named tree-nut ingredient.
-356,3,contains,verified,Named fish ingredient.
-358,1,contains,verified,Ingredient name indicates milk-derived content.
-359,1,contains,needs_review,Ingredient name indicates milk-derived content.
-360,8,derived_from,needs_review,Soy-derived ingredient; verify formulation for product-specific details.
-362,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-362,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-365,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-365,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-368,11,contains,verified,Named celery ingredient.
-390,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-390,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-391,1,contains,verified,Ingredient name indicates milk-derived content.
-396,9,contains,verified,Named sesame ingredient.
-423,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-423,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-431,14,unknown,needs_review,Wine-derived ingredient; do not infer sulphite content without product evidence.
-432,2,derived_from,needs_review,Ingredient name indicates egg content or an egg-derived preparation.
-432,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-432,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
-433,14,unknown,needs_review,Wine-derived ingredient; do not infer sulphite content without product evidence.
-439,1,contains,verified,Ingredient name indicates milk-derived content.
-440,7,derived_from,needs_review,Wheat is named or is the conventional base of this ingredient; verify formulation where relevant.
-440,15,derived_from,needs_review,Contains or is derived from a listed gluten cereal.
+ingredient_id,ingredient_name,allergen_id,allergen_name,status,note
+1,Milk (whole),1,Milk,contains,Named milk-derived ingredient.
+2,Buttermilk (whole),1,Milk,contains,Named milk-derived ingredient.
+3,Evaporated milk (whole),1,Milk,contains,Named milk-derived ingredient.
+4,"Yogurt (whole milk, plain)",1,Milk,contains,Named milk-derived ingredient.
+5,"Greek yogurt (whole milk, plain)",1,Milk,contains,Named milk-derived ingredient.
+6,Half-and-half cream,1,Milk,contains,Named milk-derived ingredient.
+7,Heavy cream,1,Milk,contains,Named milk-derived ingredient.
+8,Sour cream,1,Milk,contains,Named milk-derived ingredient.
+9,Cheddar cheese,1,Milk,contains,Named milk-derived ingredient.
+10,Feta cheese,1,Milk,contains,Named milk-derived ingredient.
+11,Mozzarella cheese (part-skim),1,Milk,contains,Named milk-derived ingredient.
+12,Parmesan cheese (dry grated),1,Milk,contains,Named milk-derived ingredient.
+13,Mexican cheese blend,1,Milk,contains,Named milk-derived ingredient.
+14,Cottage cheese,1,Milk,contains,Named milk-derived ingredient.
+15,Ricotta cheese,1,Milk,contains,Named milk-derived ingredient.
+28,Anchovies (canned),3,Fish,contains,Named fish ingredient.
+29,Mackerel (canned),3,Fish,contains,Named fish ingredient.
+30,"Salmon (fresh, raw)",3,Fish,contains,Named fish ingredient.
+31,Salmon (canned),3,Fish,contains,Named fish ingredient.
+32,"Sardines (canned, in oil)",3,Fish,contains,Named fish ingredient.
+33,"Tuna (fresh, raw)",3,Fish,contains,Named fish ingredient.
+34,Mussels (raw),10,Mollusc,contains,Named mollusc ingredient.
+35,Oysters (raw),10,Mollusc,contains,Named mollusc ingredient.
+44,Tofu,8,Soybean,derived_from,Soy is named or is the conventional base of this ingredient.
+45,Textured vegetable protein (dry),8,Soybean,derived_from,Soy is named or is the conventional base of this ingredient.
+46,Almonds (unsalted),5,Tree nut,contains,Named tree-nut ingredient.
+47,Cashews (unsalted),5,Tree nut,contains,Named tree-nut ingredient.
+48,Pecans (unsalted),5,Tree nut,contains,Named tree-nut ingredient.
+49,Pistachios (unsalted),5,Tree nut,contains,Named tree-nut ingredient.
+52,Sesame seeds,9,Sesame,contains,Named sesame ingredient.
+106,Celery,11,Celery,contains,Named celery ingredient.
+129,Butter,1,Milk,contains,Named milk-derived ingredient.
+130,Ghee,1,Milk,contains,Named milk-derived ingredient.
+134,Sesame oil,9,Sesame,contains,Named sesame ingredient.
+139,Cooking cream,1,Milk,contains,Named milk-derived ingredient.
+140,Cream cheese,1,Milk,contains,Named milk-derived ingredient.
+146,Eggs,2,Egg,contains,Named egg ingredient.
+148,Scallops,10,Mollusc,contains,Named mollusc ingredient.
+149,Barley,15,Gluten cereals,derived_from,Contains or is derived from a listed gluten cereal.
+150,Bread,7,Wheat,derived_from,Wheat is named or is the conventional base of this ingredient.
+150,Bread,15,Gluten cereals,derived_from,Contains or is derived from a listed gluten cereal.
+151,Couscous,7,Wheat,derived_from,Wheat is named or is the conventional base of this ingredient.
+151,Couscous,15,Gluten cereals,derived_from,Contains or is derived from a listed gluten cereal.
+152,Pasta,7,Wheat,derived_from,Wheat is named or is the conventional base of this ingredient.
+152,Pasta,15,Gluten cereals,derived_from,Contains or is derived from a listed gluten cereal.
+154,Flour (all purpose),7,Wheat,derived_from,Wheat is named or is the conventional base of this ingredient.
+154,Flour (all purpose),15,Gluten cereals,derived_from,Contains or is derived from a listed gluten cereal.
+157,Shrimp,4,Crustacean shellfish,contains,Named crustacean ingredient.
+158,Fish,3,Fish,contains,Named fish ingredient.
+159,Crab,4,Crustacean shellfish,contains,Named crustacean ingredient.
+161,Peanuts,6,Peanut,contains,Named peanut ingredient.
+162,Oats,15,Gluten cereals,derived_from,Contains or is derived from a listed gluten cereal.

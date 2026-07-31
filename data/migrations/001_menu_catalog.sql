@@ -25,19 +25,42 @@ CREATE TABLE IF NOT EXISTS recipes (
 CREATE TABLE IF NOT EXISTS ingredients (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL UNIQUE,
-    default_unit TEXT NOT NULL,
-    category TEXT NOT NULL
+    description TEXT NOT NULL,
+    price_100gm REAL NOT NULL CHECK (price_100gm >= 0),
+    purchase_unit_gram INTEGER NOT NULL CHECK (purchase_unit_gram > 0),
+    purchase_unit_label TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS recipe_ingredients (
+    id INTEGER PRIMARY KEY,
     recipe_id INTEGER NOT NULL,
     ingredient_id INTEGER NOT NULL,
-    quantity REAL,
-    unit TEXT,
-    PRIMARY KEY (recipe_id, ingredient_id),
+    quantity REAL NOT NULL CHECK (quantity >= 0),
+    unit TEXT NOT NULL,
+    weight_gram REAL CHECK (weight_gram IS NULL OR weight_gram >= 0),
+    source_ingredient_text TEXT NOT NULL,
+    match_type TEXT NOT NULL,
     FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE,
-    FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE RESTRICT,
-    CHECK (quantity IS NULL OR quantity >= 0)
+    FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS recipe_instructions (
+    recipe_id INTEGER PRIMARY KEY,
+    preparation_instructions TEXT NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS seasoner (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
+    source_examples TEXT NOT NULL,
+    review_status TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS recipes_seasoner (
+    recipe_id INTEGER PRIMARY KEY,
+    seasoners TEXT NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS allergens (
@@ -50,7 +73,6 @@ CREATE TABLE IF NOT EXISTS ingredient_allergens (
     ingredient_id INTEGER NOT NULL,
     allergen_id INTEGER NOT NULL,
     status TEXT NOT NULL CHECK (status IN ('contains', 'derived_from', 'may_contain', 'unknown')),
-    review_status TEXT NOT NULL CHECK (review_status IN ('verified', 'needs_review')),
     note TEXT NOT NULL,
     PRIMARY KEY (ingredient_id, allergen_id),
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE CASCADE,
@@ -69,13 +91,14 @@ CREATE TABLE IF NOT EXISTS ingredient_dietary_tags (
     ingredient_id INTEGER NOT NULL,
     dietary_tag_id INTEGER NOT NULL,
     status TEXT NOT NULL CHECK (status IN ('compatible', 'incompatible', 'conditional', 'unknown')),
-    review_status TEXT NOT NULL CHECK (review_status IN ('verified', 'needs_review')),
     note TEXT NOT NULL,
     PRIMARY KEY (ingredient_id, dietary_tag_id),
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE CASCADE,
     FOREIGN KEY (dietary_tag_id) REFERENCES dietary_tags(id) ON DELETE RESTRICT
 );
 
+CREATE INDEX IF NOT EXISTS idx_recipe_ingredients_recipe_id
+    ON recipe_ingredients (recipe_id);
 CREATE INDEX IF NOT EXISTS idx_recipe_ingredients_ingredient_id
     ON recipe_ingredients (ingredient_id);
 CREATE INDEX IF NOT EXISTS idx_ingredient_allergens_allergen_id
@@ -83,13 +106,28 @@ CREATE INDEX IF NOT EXISTS idx_ingredient_allergens_allergen_id
 CREATE INDEX IF NOT EXISTS idx_ingredient_dietary_tags_tag_id
     ON ingredient_dietary_tags (dietary_tag_id);
 
+CREATE VIEW IF NOT EXISTS recipe_ingredient_details AS
+SELECT
+    recipe_ingredients.id,
+    recipe_ingredients.recipe_id,
+    recipes.title AS recipe_name,
+    recipe_ingredients.ingredient_id,
+    ingredients.name AS ingredient_name,
+    recipe_ingredients.quantity,
+    recipe_ingredients.unit,
+    recipe_ingredients.weight_gram,
+    recipe_ingredients.source_ingredient_text,
+    recipe_ingredients.match_type
+FROM recipe_ingredients
+JOIN recipes ON recipes.id = recipe_ingredients.recipe_id
+JOIN ingredients ON ingredients.id = recipe_ingredients.ingredient_id;
+
 CREATE VIEW IF NOT EXISTS recipe_allergen_ingredients AS
 SELECT
     recipe_ingredients.recipe_id,
     ingredient_allergens.allergen_id,
     recipe_ingredients.ingredient_id,
-    ingredient_allergens.status,
-    ingredient_allergens.review_status
+    ingredient_allergens.status
 FROM recipe_ingredients
 JOIN ingredient_allergens
     ON ingredient_allergens.ingredient_id = recipe_ingredients.ingredient_id;
@@ -99,8 +137,7 @@ SELECT
     recipe_ingredients.recipe_id,
     ingredient_dietary_tags.dietary_tag_id,
     recipe_ingredients.ingredient_id,
-    ingredient_dietary_tags.status,
-    ingredient_dietary_tags.review_status
+    ingredient_dietary_tags.status
 FROM recipe_ingredients
 JOIN ingredient_dietary_tags
     ON ingredient_dietary_tags.ingredient_id = recipe_ingredients.ingredient_id
