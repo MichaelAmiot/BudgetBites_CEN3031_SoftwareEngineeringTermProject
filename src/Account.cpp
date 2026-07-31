@@ -77,3 +77,9 @@ vector<string> Account::getAllergies() const {
 
 
 }
+
+void Account::setAllergies(const vector<string>& loadedAllergies) {
+
+    allergies = loadedAllergies;
+
+}
