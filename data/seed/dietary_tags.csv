@@ -19,7 +19,7 @@ id,code,display_name,tag_group,description
 18,pork_free,Pork-free,exclusion,No pork-derived ingredients.
 19,beef_free,Beef-free,exclusion,No beef-derived ingredients.
 20,poultry_free,Poultry-free,exclusion,"No chicken, turkey, or other poultry ingredients."
-21,red_meat_free,Red-meat-free,exclusion,No listed beef or pork ingredients.
+21,red_meat_free,Red-meat-free,exclusion,"No listed beef, pork, lamb, or other mammalian meat ingredients."
 22,meat_free,Meat-free,exclusion,No land-meat or poultry ingredients; fish/seafood are assessed separately.
 23,seafood_free,Seafood-free,exclusion,"No fish, crustacean, or mollusc ingredients."
 24,alcohol_free,Alcohol-free,exclusion,No intentionally added alcoholic beverage ingredient.
