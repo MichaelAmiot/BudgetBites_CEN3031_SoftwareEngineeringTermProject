@@ -163,3 +163,4 @@ id,name,description,price_100gm,purchase_unit_gram,purchase_unit_label
 164,Ground meat (beef/pork blend),"Stewed, seasoned, ground beef and pork, Mexican style (Includes Picadillo de carne de rez y puerco)",0.754915,500,1 package (~500 g)
 165,Ham,"Ham, smoked or cured, cooked, lean and fat eaten",0.862722,500,1 package (~500 g)
 166,Sausage,"Sausage, NFS (Includes not cold cut)",0.884445,500,1 package (~500 g)
+167,Red bell pepper,"Pepper, sweet, red, raw; provisional price copied from green bell pepper",0.381545,250,approximately 250 g

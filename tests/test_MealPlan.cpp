@@ -17,16 +17,15 @@ TEST_CASE("New mean plan starts on empty", "[MealPlan]") {
     CHECK_FALSE(plan.isComplete());
 
 
-    CHECK(plan.getTotalEstimatedCost() == 0.0);
 }
 
 TEST_CASE("Meals are added", "[MealPlan]") {
     MealPlan plan;
 
-    REQUIRE(plan.setMeal(0, MealType::Breakfast, "Oatmeal", 1.25));
+    REQUIRE(plan.setMeal(0, MealType::Breakfast, 1));
 
 
-    REQUIRE(plan.setMeal(0, MealType::Lunch, "Chicken Wrap", 3.75));
+    REQUIRE(plan.setMeal(0, MealType::Lunch, 2));
 
 
     const MealEntry* breakfast = plan.getMeal(0, MealType::Breakfast);
@@ -39,27 +38,31 @@ TEST_CASE("Meals are added", "[MealPlan]") {
 
     REQUIRE(lunch != nullptr);
 
-    CHECK(breakfast->recipeName == "Oatmeal");
-
-    CHECK(breakfast->estimatedCost == 1.25);
-
-
-    CHECK(lunch->recipeName == "Chicken Wrap");
+    CHECK(breakfast->recipeId == 1);
+    CHECK(lunch->recipeId == 2);
     CHECK(plan.countMeals() == 2);
-
-    CHECK(plan.getTotalEstimatedCost() == 5.00);
 }
 
 TEST_CASE("A plan is complete after all 21 meal positions are filled", "[MealPlan]") {
     MealPlan plan;
 
     for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
-        REQUIRE(plan.setMeal(day, MealType::Breakfast, "Breakfast", 1.00));
-        REQUIRE(plan.setMeal(day, MealType::Lunch, "Lunch", 2.00));
-        REQUIRE(plan.setMeal(day, MealType::Dinner, "Dinner", 3.00));
+        REQUIRE(plan.setMeal(day, MealType::Breakfast, 1));
+        REQUIRE(plan.setMeal(day, MealType::Lunch, 2));
+        REQUIRE(plan.setMeal(day, MealType::Dinner, 3));
     }
 
     CHECK(plan.countMeals() == 21);
     CHECK(plan.isComplete());
-    CHECK(plan.getTotalEstimatedCost() == 42.00);
+}
+
+TEST_CASE("A meal can be cleared after storing a recipe ID", "[MealPlan]") {
+    MealPlan plan;
+    REQUIRE(plan.setMeal(0, MealType::Dinner, 3));
+
+    REQUIRE(plan.clearMeal(0, MealType::Dinner));
+    const MealEntry* dinner = plan.getMeal(0, MealType::Dinner);
+    REQUIRE(dinner != nullptr);
+    CHECK(dinner->isEmpty());
+    CHECK(plan.countMeals() == 0);
 }

@@ -8,7 +8,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 1,20-Minute Beef Stroganoff,117,Mushrooms,1,can,305,1 can (10.75_oz/305_g) condensed cream of mushroom soup (figures are for fat-free)
 1,20-Minute Beef Stroganoff,114,Garlic,1,teaspoon,,1 teaspoon bottled minced garlic
 1,20-Minute Beef Stroganoff,8,Sour cream,0.5,cup,,½ cup (250_ml/8.5_US fl_oz) sour cream (figures are for reduced-fat)
-1,20-Minute Beef Stroganoff,120,Parsley,0.25,cup,124.74,¼ cup (125_g/4.4_oz) finely-chopped fresh parsley
+1,20-Minute Beef Stroganoff,120,Parsley,0.25,cup,15,¼ cup (125_g/4.4_oz) finely-chopped fresh parsley
 2,African Cabbage Stew,163,Oil,2,tablespoons,,2 tablespoons avocado oil
 2,African Cabbage Stew,119,Onion,2,count,,"2 medium-size onions, neatly chopped"
 2,African Cabbage Stew,114,Garlic,4,count,,"4 medium-size garlic, minced"
@@ -19,25 +19,26 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 3,Agnolotti Pasta Soup (Agnolotti in Brodo),152,Pasta,250,grams,250,250 grams (8__9 ounces) of agnolotti or other small ravioli-type pasta
 3,Agnolotti Pasta Soup (Agnolotti in Brodo),139,Cooking cream,0.5,cup,,½ cup of single (light) cream
 3,Agnolotti Pasta Soup (Agnolotti in Brodo),120,Parsley,1,count,,1 handful of chopped flat-leaf parsley
-3,Agnolotti Pasta Soup (Agnolotti in Brodo),12,Parmesan cheese (dry grated),0,garnish,,Freshly-grated Parmesan cheese (Parmigiano-Reggiano) for garnish
+3,Agnolotti Pasta Soup (Agnolotti in Brodo),12,Parmesan cheese (dry grated),0,garnish,30,Freshly-grated Parmesan cheese (Parmigiano-Reggiano) for garnish
 4,Albanian Fried Meatballs,150,Bread,1,slice,,1 slice stale bread
 4,Albanian Fried Meatballs,164,Ground meat (beef/pork blend),1,lb,453.59,1 lb ground meat
 4,Albanian Fried Meatballs,119,Onion,1,count,,"1 small onion, finely-grated"
-4,Albanian Fried Meatballs,9,Cheddar cheese,2,tablespoons,,2 tablespoons chopped feta cheese
+4,Albanian Fried Meatballs,10,Feta cheese,2,tablespoons,,2 tablespoons chopped feta cheese
 4,Albanian Fried Meatballs,150,Bread,2,tablespoons,,2 tablespoons bread crumbs
 4,Albanian Fried Meatballs,129,Butter,2,tablespoons,,2 tablespoons oil or melted butter
 4,Albanian Fried Meatballs,120,Parsley,1,tablespoon,,1 tablespoon chopped parsley
 4,Albanian Fried Meatballs,154,Flour (all purpose),1,cup,,1 cup flour
 4,Albanian Fried Meatballs,133,Olive oil,1,cup,,1 cup oil (olive oil recommended)
-5,Albanian Mixed Vegetables,145,Potatoes,2,lbs,907.18,"2 lbs of various vegetables (peppers, eggplant, okra, zucchini, potatoes, etc.)"
+5,Albanian Mixed Vegetables,122,Green bell pepper,0.5,lbs,226.795,"2 lbs of various vegetables (peppers, eggplant, okra, zucchini, potatoes, etc.)"
+5,Albanian Mixed Vegetables,145,Potatoes,0.5,lbs,226.795,"2 lbs of various vegetables (peppers, eggplant, okra, zucchini, potatoes, etc.)"
+5,Albanian Mixed Vegetables,113,Eggplant,0.5,lbs,226.795,"2 lbs of various vegetables (peppers, eggplant, okra, zucchini, potatoes, etc.)"
+5,Albanian Mixed Vegetables,127,Zucchini,0.5,lbs,226.795,"2 lbs of various vegetables (peppers, eggplant, okra, zucchini, potatoes, etc.)"
 5,Albanian Mixed Vegetables,163,Oil,0.5,cup,,"½ cup oil, divided"
 5,Albanian Mixed Vegetables,119,Onion,1,cup,,1 cup chopped onion
 5,Albanian Mixed Vegetables,96,Tomatoes,1,cup,,1 cup peeled chopped tomatoes
 5,Albanian Mixed Vegetables,120,Parsley,1,tablespoon,,1 tablespoon chopped parsley
 6,Chicken Curry,22,Chicken breast,4,lb,1814.37,4 lb chicken
-6,Chicken Curry,121,Chili pepper,0.5,teaspoon,,½ teaspoon red chile powder
 6,Chicken Curry,4,"Yogurt (whole milk, plain)",100,ml,,100 ml coconut yogurt
-6,Chicken Curry,121,Chili pepper,1,teaspoon,,1 teaspoon chile powder
 6,Chicken Curry,131,Coconut oil,1,tablespoon,,1 tablespoon coconut oil
 6,Chicken Curry,96,Tomatoes,500,g,500,"500 g tomatoes, diced"
 6,Chicken Curry,4,"Yogurt (whole milk, plain)",150,ml,,150 ml coconut yogurt
@@ -46,22 +47,22 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 7,Black Bean Stir-Fry,114,Garlic,3,cloves,,"3 cloves garlic, minced"
 7,Black Bean Stir-Fry,121,Chili pepper,1,teaspoon,,"1__2 fresh hot chiles, minced (or ½ teaspoon hot red pepper flakes)"
 7,Black Bean Stir-Fry,118,Green onions,4,pieces,,"4 scallions, separated: white part minced, green part cut on the diagonal in ½-inch pieces"
-7,Black Bean Stir-Fry,42,Chickpeas (canned),3,tablespoons,,3 tablespoons Chinese black beans
 7,Black Bean Stir-Fry,134,Sesame oil,0.5,teaspoon,,½ teaspoon sesame oil
-7,Black Bean Stir-Fry,153,Rice,1,tablespoon,,1 tablespoon rice wine or sherry
-7,Black Bean Stir-Fry,34,Mussels (raw),2,pounds,450,"2 pounds (900 g) shellfish (clams, mussels, crabs, and/or lobster) or 1 pound (450 g) of shrimp, fish, poultry, or pork"
+7,Black Bean Stir-Fry,34,Mussels (raw),2,pounds,907.18,"2 pounds (900 g) shellfish (clams, mussels, crabs, and/or lobster) or 1 pound (450 g) of shrimp, fish, poultry, or pork"
 7,Black Bean Stir-Fry,163,Oil,1.5,tablespoons,,1½ tablespoons canola oil
 7,Black Bean Stir-Fry,119,Onion,0.5,cup,,½ cup onion cubes
-7,Black Bean Stir-Fry,122,Green bell pepper,1,count,,"1 red bell pepper or ½ red and ½ green peppers, cut in cubes"
-7,Black Bean Stir-Fry,94,Carrots,2,cups,,"2__3 cups, thinly sliced vegetables (cabbage, snow peas, and/or carrots"
-7,Black Bean Stir-Fry,153,Rice,0,optional,,"Steamed white rice, optional"
+7,Black Bean Stir-Fry,167,Red bell pepper,1,count,,"1 red bell pepper or ½ red and ½ green peppers, cut in cubes"
+7,Black Bean Stir-Fry,102,Green cabbage,0.666666667,cups,,"2__3 cups, thinly sliced vegetables (cabbage, snow peas, and/or carrots"
+7,Black Bean Stir-Fry,125,Snow peas,0.666666667,cups,,"2__3 cups, thinly sliced vegetables (cabbage, snow peas, and/or carrots"
+7,Black Bean Stir-Fry,94,Carrots,0.666666667,cups,,"2__3 cups, thinly sliced vegetables (cabbage, snow peas, and/or carrots"
+7,Black Bean Stir-Fry,153,Rice,0,optional,125,"Steamed white rice, optional"
 8,Greek Moussaka,113,Eggplant,1,count,,1 large eggplant (aubergine)
-8,Greek Moussaka,133,Olive oil,0,as_needed,,Greek olive oil
+8,Greek Moussaka,133,Olive oil,0,as_needed,15,Greek olive oil
 8,Greek Moussaka,119,Onion,1,count,,"1 large onion, chopped"
 8,Greek Moussaka,114,Garlic,6,cloves,,"6 cloves of garlic, chopped"
 8,Greek Moussaka,133,Olive oil,3,tablespoons,,3 tablespoons olive oil
 8,Greek Moussaka,18,Ground beef,1,kg,1000,1 kg (2.2 lbs) minced/ground beef or lamb
-8,Greek Moussaka,96,Tomatoes,1,oz,800,1 large tin (28 oz/800 g) diced tomatoes
+8,Greek Moussaka,96,Tomatoes,1,can,800,1 large tin (28 oz/800 g) diced tomatoes
 8,Greek Moussaka,120,Parsley,2,tablespoons,,2 tablespoons chopped fresh parsley
 8,Greek Moussaka,108,Basil,2,tablespoons,,2 tablespoons chopped fresh Greek basil (optional)
 8,Greek Moussaka,129,Butter,3,tablespoons,,3 tablespoons butter
@@ -70,7 +71,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 8,Greek Moussaka,12,Parmesan cheese (dry grated),0.5,cup,,½ cup (120 ml) freshly-grated Parmesan cheese
 8,Greek Moussaka,9,Cheddar cheese,1,cup,,"1 cup (250 ml) grated cheese (e.g. Edam, etc.)"
 8,Greek Moussaka,146,Eggs,1,count,,1 egg
-9,Potato and Chicken Stew (Ajiaco),22,Chicken breast,1,g,750,1 ea. (approximately 750 g) whole skin-on bone-in chicken breast
+9,Potato and Chicken Stew (Ajiaco),22,Chicken breast,1,count,750,1 ea. (approximately 750 g) whole skin-on bone-in chicken breast
 9,Potato and Chicken Stew (Ajiaco),119,Onion,1,count,,"1 onion, peeled"
 9,Potato and Chicken Stew (Ajiaco),118,Green onions,2,count,,2 scallions (white part and first 2 cm of green)
 9,Potato and Chicken Stew (Ajiaco),94,Carrots,2,count,,"2 carrots, peeled"
@@ -79,14 +80,14 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 9,Potato and Chicken Stew (Ajiaco),145,Potatoes,0.5,kg,500,0.5 kg small yellow potatoes. peeled
 9,Potato and Chicken Stew (Ajiaco),145,Potatoes,0.5,kg,500,0.5 kg small purple potatoes. peeled
 9,Potato and Chicken Stew (Ajiaco),145,Potatoes,0.5,kg,500,"0.5 kg mashing potatoes, peeled and sliced 2 cm thickness"
-9,Potato and Chicken Stew (Ajiaco),155,Green peas,0.25,ml,,0.25 ml frozen peas
+9,Potato and Chicken Stew (Ajiaco),155,Green peas,250,ml,140,0.25 ml frozen peas
 9,Potato and Chicken Stew (Ajiaco),111,Corn,4,count,,"4 ears of corn, quartered lengthwise and cooked"
 9,Potato and Chicken Stew (Ajiaco),7,Heavy cream,10,ml,,10 ml whipping cream mixed with 10 ml créme fraíche
 9,Potato and Chicken Stew (Ajiaco),64,Avocado,2,slices,,"2 ripe but firm Hass avocados, peeled, pitted and cut into eight slices right before serving"
 9,Potato and Chicken Stew (Ajiaco),110,Cilantro,10,ml,,10 ml of finely chopped cilantro
-10,Easy Chicken Soup,117,Mushrooms,0.5,g,15,½-ounce (15 g) package dried crimini or portobello mushrooms
+10,Easy Chicken Soup,117,Mushrooms,0.5,ounce,15,½-ounce (15 g) package dried crimini or portobello mushrooms
 10,Easy Chicken Soup,154,Flour (all purpose),0.5,cup,60,½ cup (60 g) all-purpose flour
-10,Easy Chicken Soup,22,Chicken breast,1.25,pounds,566.99,"1¼ pounds (570 g) boneless, skinless chicken thighs, halved"
+10,Easy Chicken Soup,23,Chicken thigh,1.25,pounds,566.99,"1¼ pounds (570 g) boneless, skinless chicken thighs, halved"
 10,Easy Chicken Soup,129,Butter,2,tablespoons,,2 tablespoons butter
 10,Easy Chicken Soup,133,Olive oil,1,tablespoon,,1 tablespoon olive oil
 10,Easy Chicken Soup,119,Onion,1,count,,"1 large yellow onion, diced"
@@ -98,36 +99,34 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 10,Easy Chicken Soup,106,Celery,2,stalks,,"2 celery stalks, chopped"
 10,Easy Chicken Soup,120,Parsley,0.5,cup,,½ cup chopped fresh parsley
 11,Kung Pao Chicken,22,Chicken breast,1,lb,453.59,"1 lb boneless, skinless chicken meat, cut into 1-inch cubes"
-11,Kung Pao Chicken,153,Rice,2,tbsp,,2 tbsp sherry or rice wine
 11,Kung Pao Chicken,163,Oil,4,tbsp,,4 tbsp cooking oil
 11,Kung Pao Chicken,161,Peanuts,0.5,cup,,½ cup shelled peanuts
 11,Kung Pao Chicken,121,Chili pepper,5,count,,5__10 small dried red chile peppers
 11,Kung Pao Chicken,114,Garlic,1,tsp,,1 tsp crushed garlic
 11,Kung Pao Chicken,122,Green bell pepper,1,count,,"1 green bell pepper, cut into ½-inch dice"
-11,Kung Pao Chicken,122,Green bell pepper,1,count,,"1 red bell pepper, cut into ½-inch dice"
+11,Kung Pao Chicken,167,Red bell pepper,1,count,,"1 red bell pepper, cut into ½-inch dice"
 11,Kung Pao Chicken,142,Bamboo shoots,1,can,141.75,"1 can (5 oz) sliced bamboo shoots (optional), drained"
 11,Kung Pao Chicken,106,Celery,3,stalks,,"3 stalks celery, chopped"
 11,Kung Pao Chicken,118,Green onions,4,pieces,,"4 green onions, cut into ½-inch pieces, including green tops"
-11,Kung Pao Chicken,153,Rice,2,tbsp,,2 tbsp rice vinegar
 11,Kung Pao Chicken,134,Sesame oil,1,tsp,,1 tsp sesame oil
 12,Three Sisters Stew,133,Olive oil,1,tablespoon,,1 tablespoon olive oil
 12,Three Sisters Stew,119,Onion,1,count,,"1 medium onion, chopped"
 12,Three Sisters Stew,114,Garlic,2,cloves,,"2 cloves garlic, minced"
 12,Three Sisters Stew,122,Green bell pepper,0.5,count,,"½ medium green or red bell pepper, cut into short, narrow strips"
 12,Three Sisters Stew,96,Tomatoes,1,can,425.24,"1 can (14__16 ounces) diced tomatoes, with liquid"
-12,Three Sisters Stew,42,Chickpeas (canned),2,cups,,2 cups cooked or canned pinto beans
+12,Three Sisters Stew,38,Pinto beans (canned),2,cups,,2 cups cooked or canned pinto beans
 12,Three Sisters Stew,111,Corn,2,cups,,2 cups corn kernels (from 2 large or medium ears)
 12,Three Sisters Stew,121,Chili pepper,1,count,,"1__2 fresh hot chiles, seeded and minced"
 12,Three Sisters Stew,110,Cilantro,3,tablespoons,,"3__4 tablespoons fresh cilantro, minced"
 13,Spaghetti and Meatballs,152,Pasta,1,pound,454,1 pound (454 g) dry spaghetti
-13,Spaghetti and Meatballs,164,Ground meat (beef/pork blend),2,pounds,907,2 pounds (907 g) ground chuck
+13,Spaghetti and Meatballs,18,Ground beef,2,pounds,907,2 pounds (907 g) ground chuck
 13,Spaghetti and Meatballs,19,Pork chop,2,pounds,907,2 pounds (907 g) ground pork shoulder
 13,Spaghetti and Meatballs,150,Bread,12,oz,340,12 oz (340 g) seasoned bread crumbs
 13,Spaghetti and Meatballs,12,Parmesan cheese (dry grated),1,cup,,1 cup (240 ml) grated Parmesan cheese or Romano cheese
 13,Spaghetti and Meatballs,120,Parsley,0.75,cup,,"¾ cup (180 ml) fresh parsley, minced"
 13,Spaghetti and Meatballs,146,Eggs,4,count,,4 eggs
 13,Spaghetti and Meatballs,114,Garlic,1,tbsp,,1 ½ tbsp finely-minced garlic
-13,Spaghetti and Meatballs,133,Olive oil,0,as_needed,,Olive oil
+13,Spaghetti and Meatballs,133,Olive oil,0,as_needed,15,Olive oil
 13,Spaghetti and Meatballs,114,Garlic,3,cloves,,3 garlic cloves
 13,Spaghetti and Meatballs,114,Garlic,4,cloves,,"4 cloves garlic, crushed or chopped"
 13,Spaghetti and Meatballs,119,Onion,1,count,,"1 small onion, finely chopped"
@@ -145,17 +144,16 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 14,Tagliatelle Bake,12,Parmesan cheese (dry grated),1.75,cups,200,1¾ cups (200_g/7.1_oz) grated parmesan cheese
 14,Tagliatelle Bake,11,Mozzarella cheese (part-skim),200,g,200,200_g (7.1_oz) of mozzarella
 14,Tagliatelle Bake,139,Cooking cream,0.75,cup,,¾ cup (200_ml/6.8_US fl_oz) cream
-14,Tagliatelle Bake,108,Basil,0,as_needed,,A few basil leaves
+14,Tagliatelle Bake,108,Basil,0,as_needed,25,A few basil leaves
 15,Pineapple Teriyaki,153,Rice,2,cups,,2 cups uncooked rice
 15,Pineapple Teriyaki,133,Olive oil,1,tbsp,,1__2 tbsp vegetable or olive oil
 15,Pineapple Teriyaki,22,Chicken breast,2,cups,,"2 cups cubed chicken, tofu, or vegetarian ""chicken"" (usually flavored, pressed gluten)"
 15,Pineapple Teriyaki,119,Onion,1,count,,"1 yellow or white onion, diced"
 15,Pineapple Teriyaki,122,Green bell pepper,1,count,,"1__2 bell peppers (whatever color(s) you prefer), diced"
-15,Pineapple Teriyaki,117,Mushrooms,0,optional,,Some sliced mushrooms (optional)
+15,Pineapple Teriyaki,117,Mushrooms,0,optional,62.5,Some sliced mushrooms (optional)
 15,Pineapple Teriyaki,114,Garlic,1,cloves,,"1__2 cloves garlic (optional), minced, depending upon your teriyaki sauce"
 16,Curry Chicken I,22,Chicken breast,1,count,,1 whole chicken
 16,Curry Chicken I,114,Garlic,4,cloves,,"4 cloves garlic, minced"
-16,Curry Chicken I,121,Chili pepper,2,tsp,,2 tsp red chile powder
 16,Curry Chicken I,4,"Yogurt (whole milk, plain)",150,ml,,150 ml yoghurt
 16,Curry Chicken I,110,Cilantro,20,count,,20 coriander leaves
 16,Curry Chicken I,119,Onion,2,count,,"2 onions, sliced into rings"
@@ -185,10 +183,10 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 19,BBQ Pork Fried Rice,118,Green onions,6,pieces,,"6 scallion, cut into 2 cm pieces"
 19,BBQ Pork Fried Rice,146,Eggs,4,count,,"4 eggs, mixed"
 19,BBQ Pork Fried Rice,153,Rice,1000,g,1000,1000 g cooked rice
-19,BBQ Pork Fried Rice,102,Green cabbage,0,as_needed,,Shredded cabbage
-19,BBQ Pork Fried Rice,96,Tomatoes,0,as_needed,,Tomato
-19,BBQ Pork Fried Rice,116,Lettuce,0,as_needed,,Shredded lettuce
-19,BBQ Pork Fried Rice,146,Eggs,3,garnish,,"3 eggs, cooked into an omelette and sliced 1 cm thick (as garnish)"
+19,BBQ Pork Fried Rice,102,Green cabbage,0,as_needed,62.5,Shredded cabbage
+19,BBQ Pork Fried Rice,96,Tomatoes,0,as_needed,62.5,Tomato
+19,BBQ Pork Fried Rice,116,Lettuce,0,as_needed,62.5,Shredded lettuce
+19,BBQ Pork Fried Rice,146,Eggs,3,count,150,"3 eggs, cooked into an omelette and sliced 1 cm thick (as garnish)"
 20,Traditional Lasagne,133,Olive oil,2,tbsp,,2 tbsp olive oil
 20,Traditional Lasagne,119,Onion,1,count,,"1 large onion, finely chopped"
 20,Traditional Lasagne,94,Carrots,2,count,,"2 carrots, finely chopped"
@@ -198,7 +196,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 20,Traditional Lasagne,96,Tomatoes,1,can,800,1 can (28 oz/800 g) crushed tomatoes
 20,Traditional Lasagne,108,Basil,10,count,,"10__15 basil leaves, chopped or torn"
 20,Traditional Lasagne,152,Pasta,1,count,,1 pack of lasagne pasta sheets
-20,Traditional Lasagne,12,Parmesan cheese (dry grated),0,as_needed,,Finely-grated parmesan
+20,Traditional Lasagne,12,Parmesan cheese (dry grated),0,as_needed,62.5,Finely-grated parmesan
 21,Chickpea Stew,42,Chickpeas (canned),150,g,150,150 g of dry or 500 g of cooked chickpeas
 21,Chickpea Stew,119,Onion,2,cups,,2__3 ea. (2__3 cups) chopped medium onions
 21,Chickpea Stew,127,Zucchini,2,cups,,2__3 cups chopped zucchini
@@ -208,7 +206,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 21,Chickpea Stew,114,Garlic,4,cloves,,"4__6 cloves garlic, minced"
 21,Chickpea Stew,161,Peanuts,4,tbsp,,"4 Tbsp crunchy, unsweetened peanut butter"
 21,Chickpea Stew,110,Cilantro,2,tbsp,,"2 Tbsp cilantro sprig, finely chopped (optional, for garnish)"
-22,Chicken and Black-eyed Pea Stew,155,Green peas,1,cup,,1 cup of dry black-eyed peas (or about 2 cups canned)
+22,Chicken and Black-eyed Pea Stew,41,Black-eyed peas (dried),1,cup,,1 cup of dry black-eyed peas (or about 2 cups canned)
 22,Chicken and Black-eyed Pea Stew,163,Oil,2,tbsp,,2__3 tbsp vegetable oil or chicken fat
 22,Chicken and Black-eyed Pea Stew,119,Onion,2,cups,,2 medium (~2 cups) chopped white or red onions
 22,Chicken and Black-eyed Pea Stew,94,Carrots,2,cups,,2 ea. (~2 cups) chopped carrots
@@ -218,7 +216,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 22,Chicken and Black-eyed Pea Stew,96,Tomatoes,2,cups,453.59,"2 cups canned tomatoes (crushed or diced), or 1 pound diced fresh tomatoes."
 22,Chicken and Black-eyed Pea Stew,22,Chicken breast,1,pound,453.59,1 pound bone-in chicken meat (e.g. two chicken legs)
 22,Chicken and Black-eyed Pea Stew,121,Chili pepper,2,count,,2 medium to hot chile peppers (optional)
-23,Beef and Barley Stew,16,Beef steak,3,pounds,1250,"3 pounds (1.25 kg) beef, cubed"
+23,Beef and Barley Stew,16,Beef steak,3,pounds,1360.78,"3 pounds (1.25 kg) beef, cubed"
 23,Beef and Barley Stew,119,Onion,1,count,,"1 white onion, diced"
 23,Beef and Barley Stew,145,Potatoes,4,count,,4 cubed potatoes
 23,Beef and Barley Stew,149,Barley,1,cup,240,1 cup (240 g) barley
@@ -227,7 +225,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 23,Beef and Barley Stew,120,Parsley,1,bunch,,1 bunch parsley
 23,Beef and Barley Stew,163,Oil,2,tablespoons,,2 tablespoons vegetable oil
 23,Beef and Barley Stew,117,Mushrooms,1,lb,450,1 lb (450 g) mushrooms
-23,Beef and Barley Stew,42,Chickpeas (canned),1,count,,1 pkg frozen green beans
+23,Beef and Barley Stew,100,Green beans,1,count,,1 pkg frozen green beans
 23,Beef and Barley Stew,114,Garlic,3,cloves,,3 cloves halved garlic
 23,Beef and Barley Stew,106,Celery,3,stalks,,3 stalks celery
 23,Beef and Barley Stew,94,Carrots,4,count,,4 large carrots
@@ -236,13 +234,12 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 24,Maffé (West African Peanut Stew) I,119,Onion,1,count,,"1 large onion, finely chopped"
 24,Maffé (West African Peanut Stew) I,114,Garlic,3,cloves,,"3 garlic cloves, minced"
 24,Maffé (West African Peanut Stew) I,161,Peanuts,1,cup,,1 cup smooth peanut butter
-24,Maffé (West African Peanut Stew) I,121,Chili pepper,1,teaspoon,,1 teaspoon chile powder (adjust to your preferred level of spiciness)
 24,Maffé (West African Peanut Stew) I,96,Tomatoes,1,can,396.89,1 can (14 ounces) diced tomatoes
 24,Maffé (West African Peanut Stew) I,94,Carrots,2,count,,"2 carrots, diced"
 24,Maffé (West African Peanut Stew) I,145,Potatoes,2,count,,"2 potatoes, diced"
 24,Maffé (West African Peanut Stew) I,122,Green bell pepper,1,count,,"1 bell pepper (any color of your choice), diced"
 24,Maffé (West African Peanut Stew) I,144,Okra,1,cup,,1 cup sliced okra
-24,Maffé (West African Peanut Stew) I,110,Cilantro,0,garnish,,"Fresh cilantro or parsley, chopped (for garnish)"
+24,Maffé (West African Peanut Stew) I,110,Cilantro,0,garnish,30,"Fresh cilantro or parsley, chopped (for garnish)"
 25,Entula (Ugandan Eggplant Stew),113,Eggplant,2,count,,"2 large eggplants, diced"
 25,Entula (Ugandan Eggplant Stew),96,Tomatoes,1,cup,,1 cup diced tomatoes
 25,Entula (Ugandan Eggplant Stew),119,Onion,1,cup,,1 cup diced onions
@@ -252,46 +249,41 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 25,Entula (Ugandan Eggplant Stew),145,Potatoes,1,cup,,1 cup diced potatoes
 25,Entula (Ugandan Eggplant Stew),114,Garlic,3,cloves,,"3 cloves of garlic, minced"
 25,Entula (Ugandan Eggplant Stew),163,Oil,2,tablespoons,,2 tablespoons vegetable oil
-25,Entula (Ugandan Eggplant Stew),121,Chili pepper,0.5,teaspoon,,"½ teaspoon chile powder (optional, for heat)"
-25,Entula (Ugandan Eggplant Stew),110,Cilantro,0,garnish,,"Fresh cilantro or parsley, chopped (for garnish)"
+25,Entula (Ugandan Eggplant Stew),110,Cilantro,0,garnish,30,"Fresh cilantro or parsley, chopped (for garnish)"
 26,Couscous bil Khodra (Libyan Vegetable Couscous),133,Olive oil,2,tablespoons,,2 tablespoons olive oil
 26,Couscous bil Khodra (Libyan Vegetable Couscous),119,Onion,1,count,,"1 onion, finely chopped"
 26,Couscous bil Khodra (Libyan Vegetable Couscous),114,Garlic,2,cloves,,"2 cloves of garlic, minced"
 26,Couscous bil Khodra (Libyan Vegetable Couscous),94,Carrots,1,count,,"1 carrot, diced"
 26,Couscous bil Khodra (Libyan Vegetable Couscous),127,Zucchini,1,count,,"1 zucchini, diced"
 26,Couscous bil Khodra (Libyan Vegetable Couscous),122,Green bell pepper,1,count,,"1 bell pepper, diced"
-26,Couscous bil Khodra (Libyan Vegetable Couscous),42,Chickpeas (canned),1,cup,,"1 cup green beans, trimmed and cut into bite-sized pieces"
+26,Couscous bil Khodra (Libyan Vegetable Couscous),100,Green beans,1,cup,,"1 cup green beans, trimmed and cut into bite-sized pieces"
 26,Couscous bil Khodra (Libyan Vegetable Couscous),42,Chickpeas (canned),1,cup,,"1 cup canned chickpeas, rinsed and drained"
 26,Couscous bil Khodra (Libyan Vegetable Couscous),96,Tomatoes,2,count,,"2 tomatoes, diced"
 26,Couscous bil Khodra (Libyan Vegetable Couscous),151,Couscous,2,cups,,2 cups couscous
-26,Couscous bil Khodra (Libyan Vegetable Couscous),110,Cilantro,0,garnish,,"Fresh parsley or cilantro, chopped (for garnish)"
+26,Couscous bil Khodra (Libyan Vegetable Couscous),110,Cilantro,0,garnish,30,"Fresh parsley or cilantro, chopped (for garnish)"
 27,Pad Thai,152,Pasta,0.5,pound,225,½ pound (225 g) rice noodles
-27,Pad Thai,153,Rice,3,ml,,3+ tablespoons (50 ml) white vinegar (or rice vinegar)
 27,Pad Thai,163,Oil,4,tablespoons,,4 tablespoons (60 ml) vegetable oil
 27,Pad Thai,114,Garlic,2,cloves,,"2 cloves garlic, chopped"
-27,Pad Thai,121,Chili pepper,2,tablespoons,,2 tablespoons (30 ml) dried red chili pepper flakes (or to taste)
 27,Pad Thai,22,Chicken breast,0.5,pound,225,"½ pound (225 g) of shrimp, tofu, chicken, squid, or beef (or a combination thereof)"
-27,Pad Thai,94,Carrots,200,g,200,"Assorted vegetables (e.g., shredded carrots, white onions, red or green peppers)"
+27,Pad Thai,94,Carrots,66.67,g,66.67,"Assorted vegetables (e.g., shredded carrots, white onions, red or green peppers)"
+27,Pad Thai,119,Onion,66.67,g,66.67,"Assorted vegetables (e.g., shredded carrots, white onions, red or green peppers)"
+27,Pad Thai,122,Green bell pepper,66.66,g,66.66,"Assorted vegetables (e.g., shredded carrots, white onions, red or green peppers)"
 27,Pad Thai,146,Eggs,2,count,,2 eggs
 27,Pad Thai,118,Green onions,4,count,,4 chopped green onions
 27,Pad Thai,99,Bean sprouts,0.75,pound,340,¾ pound (340 g) bean sprouts
 27,Pad Thai,161,Peanuts,0.75,cup,,¾ cup (175 ml) chopped unroasted peanuts
-27,Pad Thai,110,Cilantro,0,garnish,,Cilantro (coriander) leaves (garnish)
+27,Pad Thai,110,Cilantro,0,garnish,30,Cilantro (coriander) leaves (garnish)
 28,Tofu Tamale Pie,44,Tofu,4,ounces,113.4,"4 ounces tofu, washed, drained well, and broken up"
 28,Tofu Tamale Pie,9,Cheddar cheese,1,ounce,28.35,"1 ounce sharp cheddar cheese, grated"
 28,Tofu Tamale Pie,119,Onion,1,ounce,28.35,1 ounce finely-diced onion
 28,Tofu Tamale Pie,106,Celery,0.5,cup,,½ cup finely-chopped celery
 28,Tofu Tamale Pie,94,Carrots,1,count,,"1 medium carrot, grated"
-28,Tofu Tamale Pie,96,Tomatoes,8,ounces,226.8,8 ounces tomato juice
-28,Tofu Tamale Pie,114,Garlic,0.5,teaspoon,,½ teaspoon garlic salt
-28,Tofu Tamale Pie,121,Chili pepper,2,teaspoons,,2 teaspoons chili powder or to taste
-28,Tofu Tamale Pie,111,Corn,1,ounce,28.35,1 ounce corn meal
 29,Chicken Quesadilla,134,Sesame oil,1,tablespoon,,1 tablespoon sesame oil
 29,Chicken Quesadilla,114,Garlic,1,tablespoon,,1 tablespoon minced garlic
 29,Chicken Quesadilla,119,Onion,1,count,,"1 medium yellow onion, julienned"
-29,Chicken Quesadilla,122,Green bell pepper,1,count,,"1 red bell pepper, julienned"
+29,Chicken Quesadilla,167,Red bell pepper,1,count,,"1 red bell pepper, julienned"
 29,Chicken Quesadilla,122,Green bell pepper,1,count,,"1 green bell pepper, julienned"
-29,Chicken Quesadilla,22,Chicken breast,4,ounces,680.39,"4 boneless skinless chicken breasts (about 6 ounces each), grilled and cut into ½-inch strips"
+29,Chicken Quesadilla,22,Chicken breast,4,count,680.39,"4 boneless skinless chicken breasts (about 6 ounces each), grilled and cut into ½-inch strips"
 29,Chicken Quesadilla,110,Cilantro,1,tablespoon,,1 tablespoon chopped cilantro
 29,Chicken Quesadilla,154,Flour (all purpose),4,count,,4 ea. 10-inch flour tortillas
 29,Chicken Quesadilla,9,Cheddar cheese,8,ounces,226.8,8 ounces (about 2 cups) shredded Colby Jack cheese
@@ -301,13 +293,13 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 30,Tibs (Ethiopian Sauteed Meat and Vegetables),114,Garlic,3,cloves,,"3 cloves of garlic, minced"
 30,Tibs (Ethiopian Sauteed Meat and Vegetables),22,Chicken breast,500,grams,500,"500 grams (1 lb) boneless meat (beef, lamb, or chicken), cut into bite-sized pieces"
 30,Tibs (Ethiopian Sauteed Meat and Vegetables),129,Butter,2,tablespoons,,2 tablespoons butter
-30,Tibs (Ethiopian Sauteed Meat and Vegetables),110,Cilantro,0,garnish,,"Fresh parsley or cilantro, chopped, for garnish"
+30,Tibs (Ethiopian Sauteed Meat and Vegetables),110,Cilantro,0,garnish,30,"Fresh parsley or cilantro, chopped, for garnish"
 31,Hot and Sour Soup,22,Chicken breast,0.333333333,cup,,__ cup cooked shredded chicken or pork
 31,Hot and Sour Soup,117,Mushrooms,0.75,cup,,"¾ cup mushrooms, diced"
 31,Hot and Sour Soup,142,Bamboo shoots,0.5,cup,,"½ cup canned bamboo shoots, julienned"
-31,Hot and Sour Soup,44,Tofu,4,oz,127.57,"4 ½ oz block of tofu, cut into ¼-inch dice"
+31,Hot and Sour Soup,44,Tofu,4.5,oz,127.57,"4 ½ oz block of tofu, cut into ¼-inch dice"
 31,Hot and Sour Soup,146,Eggs,1,count,,"1 egg, beaten"
-31,Hot and Sour Soup,119,Onion,3,stalks,,"3 green onion stalks, diced (including tops)"
+31,Hot and Sour Soup,118,Green onions,3,stalks,,"3 green onion stalks, diced (including tops)"
 31,Hot and Sour Soup,134,Sesame oil,0.75,teaspoon,,¾ teaspoon toasted sesame oil
 32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),133,Olive oil,2,tablespoons,,2 tablespoons olive oil
 32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),119,Onion,1,count,,"1 large onion, finely chopped"
@@ -315,8 +307,8 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),94,Carrots,2,count,,"2 medium carrots, peeled and sliced"
 32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),145,Potatoes,2,count,,"2 medium potatoes, peeled and diced"
 32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),122,Green bell pepper,1,count,,"1 medium bell pepper, diced"
-32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),42,Chickpeas (canned),1,cup,,"1 cup green beans, trimmed and cut into bite-sized pieces"
-32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),110,Cilantro,0,garnish,,"Fresh cilantro or parsley, chopped, for garnish"
+32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),100,Green beans,1,cup,,"1 cup green beans, trimmed and cut into bite-sized pieces"
+32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),110,Cilantro,0,garnish,30,"Fresh cilantro or parsley, chopped, for garnish"
 33,Spaghetti Pie,152,Pasta,115,g,115,115 g (4 oz) spaghetti
 33,Spaghetti Pie,129,Butter,2,tablespoons,,"2 tablespoons butter, plus extra for greasing"
 33,Spaghetti Pie,114,Garlic,2,cloves,,2 garlic cloves
@@ -331,7 +323,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 33,Spaghetti Pie,146,Eggs,1,count,,1 egg
 33,Spaghetti Pie,11,Mozzarella cheese (part-skim),1.5,cups,180,1½ cups (180 g / 6.5 oz) grated mozzarella cheese
 34,Spicy Roast Brisket,163,Oil,1,tbsp,,1 tbsp vegetable oil
-34,Spicy Roast Brisket,16,Beef steak,1,kg,907.18,1 kg (2 pound) piece of beef brisket
+34,Spicy Roast Brisket,16,Beef steak,1,kg,1000,1 kg (2 pound) piece of beef brisket
 34,Spicy Roast Brisket,119,Onion,1,cup,,1 cup sliced or coarsely-chopped onions
 34,Spicy Roast Brisket,106,Celery,1,cup,,1 cup thinly sliced stalk of celery
 34,Spicy Roast Brisket,114,Garlic,2,tsp,,2 tsp minced garlic cloves
@@ -351,18 +343,17 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 36,Chipotle Chili,119,Onion,1,count,,"1 large sweet onion, coarsely chopped"
 36,Chipotle Chili,119,Onion,1,count,,"1 small red onion, coarsely chopped"
 36,Chipotle Chili,114,Garlic,3,cloves,,"3__10 garlic cloves, minced"
-36,Chipotle Chili,121,Chili pepper,2,tsp,,2 tsp chili powder
 36,Chipotle Chili,121,Chili pepper,4,count,,4__5 small sweet chiles
 36,Chipotle Chili,121,Chili pepper,1,can,,1 small can of chipotle chiles in adobo sauce
-36,Chipotle Chili,96,Tomatoes,1,oz,411,"1 large can (14.5 oz / 411 g) of chopped tomatoes, or more"
-36,Chipotle Chili,42,Chickpeas (canned),1,can,411,"1 can (14.5 oz / 411 g) black beans, drained and rinsed"
+36,Chipotle Chili,96,Tomatoes,1,can,411,"1 large can (14.5 oz / 411 g) of chopped tomatoes, or more"
+36,Chipotle Chili,36,Black beans (canned),1,can,411,"1 can (14.5 oz / 411 g) black beans, drained and rinsed"
 36,Chipotle Chili,39,Kidney beans (canned),1,can,411,"1 can (14.5 oz / 411 g) dark kidney beans, drained and rinsed"
-36,Chipotle Chili,8,Sour cream,0,as_needed,,"tableside additions such as sour cream, shredded cheese, Fritos, Cheese-its, etc."
+36,Chipotle Chili,8,Sour cream,0,as_needed,62.5,"tableside additions such as sour cream, shredded cheese, Fritos, Cheese-its, etc."
 37,Alicha Wot (Mild Ethiopian Stew),133,Olive oil,2,tablespoons,,2 tablespoons olive oil
 37,Alicha Wot (Mild Ethiopian Stew),119,Onion,2,count,,"2 large onions, finely chopped"
 37,Alicha Wot (Mild Ethiopian Stew),114,Garlic,4,cloves,,"4 cloves of garlic, minced"
 37,Alicha Wot (Mild Ethiopian Stew),16,Beef steak,500,grams,500,"500 grams (1 lb) beef, cubed"
-37,Alicha Wot (Mild Ethiopian Stew),110,Cilantro,0,garnish,,"Fresh cilantro or parsley, chopped, for garnish"
+37,Alicha Wot (Mild Ethiopian Stew),110,Cilantro,0,garnish,30,"Fresh cilantro or parsley, chopped, for garnish"
 38,Jambalaya II,22,Chicken breast,3,lbs,1400,3 lbs (1400 g) cooked chicken strips
 38,Jambalaya II,119,Onion,1,cup,,1 cup (240 ml) chopped onion
 38,Jambalaya II,122,Green bell pepper,1,cup,,1 cup (240 ml) chopped green bell pepper
@@ -385,8 +376,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 40,Baked Penne,152,Pasta,1,cup,125,1 cup (125_g/4.4_oz) uncooked penne pasta
 40,Baked Penne,15,Ricotta cheese,1,cup,300,1 cup (300_g/11_oz) ricotta cheese
 40,Baked Penne,146,Eggs,4,count,,"4 eggs, separated and brought to room temperature"
-40,Baked Penne,129,Butter,0.25,cup,124.74,"¼ cup (½ stick/125_g/4.4_oz) unsalted butter, melted"
-40,Baked Penne,139,Cooking cream,0.125,tsp,,__ tsp cream of tartar
+40,Baked Penne,129,Butter,0.25,cup,56.7,"¼ cup (½ stick/125_g/4.4_oz) unsalted butter, melted"
 40,Baked Penne,114,Garlic,1,tsp,,1 tsp minced garlic
 40,Baked Penne,120,Parsley,1,tbsp,,"1 tbsp flat-leaf parsley, finely chopped"
 40,Baked Penne,11,Mozzarella cheese (part-skim),0.5,cup,60,½ cup (60_g/2.1_oz) grated mozzarella cheese
@@ -396,24 +386,21 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 41,Nasi Goreng (Indonesian Fried Rice),114,Garlic,1,clove,,1 clove garlic
 41,Nasi Goreng (Indonesian Fried Rice),119,Onion,2,count,,2 shallots
 41,Nasi Goreng (Indonesian Fried Rice),121,Chili pepper,1,count,,1 red chile pepper
-41,Nasi Goreng (Indonesian Fried Rice),163,Oil,1,tbsp,,1 Tbsp fish oil
 41,Nasi Goreng (Indonesian Fried Rice),131,Coconut oil,10,ml,,10 ml coconut oil
-41,Nasi Goreng (Indonesian Fried Rice),42,Chickpeas (canned),20,count,,20 stink beans or green beans
+41,Nasi Goreng (Indonesian Fried Rice),100,Green beans,20,count,,20 stink beans or green beans
 41,Nasi Goreng (Indonesian Fried Rice),22,Chicken breast,100,g,100,"100 g chicken fillet, cut into small pieces"
 41,Nasi Goreng (Indonesian Fried Rice),157,Shrimp,100,g,100,100 g small prawns
 41,Nasi Goreng (Indonesian Fried Rice),16,Beef steak,2,count,,2 spoons of tinned corned beef
-41,Nasi Goreng (Indonesian Fried Rice),166,Sausage,0,as_needed,,Sliced hot dogs or sausages
-41,Nasi Goreng (Indonesian Fried Rice),22,Chicken breast,0,as_needed,,Sliced chicken liver
-41,Nasi Goreng (Indonesian Fried Rice),119,Onion,0,as_needed,,Spring onion
+41,Nasi Goreng (Indonesian Fried Rice),166,Sausage,0,as_needed,125,Sliced hot dogs or sausages
+41,Nasi Goreng (Indonesian Fried Rice),118,Green onions,0,as_needed,25,Spring onion
 42,Kari Ayam (Indonesian Chicken Curry),22,Chicken breast,1,lb,450,"1 lb (450 g) boneless, skinless chicken parts"
-42,Kari Ayam (Indonesian Chicken Curry),119,Onion,5,cup,,"5 Asian shallots, sliced (or ½ cup chopped onions)"
+42,Kari Ayam (Indonesian Chicken Curry),119,Onion,5,count,,"5 Asian shallots, sliced (or ½ cup chopped onions)"
 42,Kari Ayam (Indonesian Chicken Curry),114,Garlic,2,cloves,,"2 cloves garlic, minced"
 42,Kari Ayam (Indonesian Chicken Curry),47,Cashews (unsalted),6,count,,"6 kimiri (candlenuts), ground"
 42,Kari Ayam (Indonesian Chicken Curry),156,Coconut milk,1,cup,,1 cup (240 ml) coconut milk
 42,Kari Ayam (Indonesian Chicken Curry),163,Oil,2,tbsp,,2 tbsp cooking oil
 42,Kari Ayam (Indonesian Chicken Curry),121,Chili pepper,2,optional,,2 hot chiles (optional)
-42,Kari Ayam (Indonesian Chicken Curry),157,Shrimp,0.25,tsp,,¼ tsp terasi (fermented shrimp paste)
-43,Chicken Cacciatore,119,Onion,1,cups,,"1 ½ cups (360 ml), chopped onion"
+43,Chicken Cacciatore,119,Onion,1.5,cups,,"1 ½ cups (360 ml), chopped onion"
 43,Chicken Cacciatore,22,Chicken breast,3,lbs,1350,"3 lbs (1350 g), chicken parts with skin removed"
 43,Chicken Cacciatore,96,Tomatoes,14,oz,400,14 oz (400 g) can of tomatoes with juice
 43,Chicken Cacciatore,117,Mushrooms,10,oz,280,"10 oz (280 g) can of mushroom pieces, drained"
@@ -422,22 +409,22 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 44,Fasolia (Ethiopian Green Bean Stew),119,Onion,1,count,,"1 large onion, finely chopped"
 44,Fasolia (Ethiopian Green Bean Stew),114,Garlic,3,cloves,,"3 cloves of garlic, minced"
 44,Fasolia (Ethiopian Green Bean Stew),96,Tomatoes,2,count,,"2 medium-sized tomatoes, diced"
-44,Fasolia (Ethiopian Green Bean Stew),42,Chickpeas (canned),500,grams,453.59,"500 grams (1 lb) fresh green beans, trimmed and cut into bite-sized pieces"
-44,Fasolia (Ethiopian Green Bean Stew),110,Cilantro,0,garnish,,"Fresh cilantro or parsley, chopped, for garnish"
+44,Fasolia (Ethiopian Green Bean Stew),100,Green beans,500,grams,500,"500 grams (1 lb) fresh green beans, trimmed and cut into bite-sized pieces"
+44,Fasolia (Ethiopian Green Bean Stew),110,Cilantro,0,garnish,30,"Fresh cilantro or parsley, chopped, for garnish"
 45,Cape Malay Butter Chicken,4,"Yogurt (whole milk, plain)",0.5,cup,,½ cup yoghurt
 45,Cape Malay Butter Chicken,163,Oil,1,tablespoon,,1 tablespoon oil
 45,Cape Malay Butter Chicken,22,Chicken breast,2,count,,2 chickens (split in halves)
 45,Cape Malay Butter Chicken,129,Butter,0.25,cup,,¼ cup butter
 45,Cape Malay Butter Chicken,96,Tomatoes,1,can,,1 can (1 cup) tomato purée
 45,Cape Malay Butter Chicken,139,Cooking cream,0.25,cup,,¼ cup cream
-46,Paprika Chicken,22,Chicken breast,1,pounds,1133.98,1 ea. (2-3 pounds) chicken
+46,Paprika Chicken,22,Chicken breast,1,count,1133.98,1 ea. (2-3 pounds) chicken
 46,Paprika Chicken,119,Onion,2,count,,"2 medium onions, chopped"
 46,Paprika Chicken,133,Olive oil,5,tablespoons,,5__7 tablespoons olive oil
 46,Paprika Chicken,8,Sour cream,1,cup,,1 cup sour cream
 46,Paprika Chicken,7,Heavy cream,0.25,cup,,¼___ cup heavy cream
-46,Paprika Chicken,120,Parsley,0,as_needed,,Fresh green parsley
+46,Paprika Chicken,120,Parsley,0,as_needed,25,Fresh green parsley
 46,Paprika Chicken,122,Green bell pepper,1,optional,,1 green bell pepper (optional)
-46,Paprika Chicken,122,Green bell pepper,0.5,optional,,½ red bell pepper (optional)
+46,Paprika Chicken,167,Red bell pepper,0.5,optional,,½ red bell pepper (optional)
 46,Paprika Chicken,94,Carrots,1,optional,,"1 carrot (optional), thinly sliced"
 46,Paprika Chicken,119,Onion,1,optional,,"1 onion (optional), thinly sliced"
 47,Chicken Fried Rice,129,Butter,2,tbsp,,2 tbsp butter
@@ -446,10 +433,10 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 47,Chicken Fried Rice,118,Green onions,2,pieces,,"2 scallion, cut into 1 cm pieces"
 47,Chicken Fried Rice,94,Carrots,200,g,200,200 g carrot
 47,Chicken Fried Rice,22,Chicken breast,200,g,200,200 g minced raw chicken
-47,Chicken Fried Rice,153,Rice,1,cup,550,1 cup (550 g) cooked rice
-47,Chicken Fried Rice,96,Tomatoes,0,as_needed,,Tomato
-47,Chicken Fried Rice,146,Eggs,0,as_needed,,Fried egg
-48,Peri-Peri Chicken,122,Green bell pepper,2,count,,2 small red bell peppers
+47,Chicken Fried Rice,153,Rice,1,cup,200,1 cup (550 g) cooked rice
+47,Chicken Fried Rice,96,Tomatoes,0,as_needed,62.5,Tomato
+47,Chicken Fried Rice,146,Eggs,0,as_needed,100,Fried egg
+48,Peri-Peri Chicken,167,Red bell pepper,2,count,,2 small red bell peppers
 48,Peri-Peri Chicken,114,Garlic,5,cloves,,5 medium-size garlic cloves
 48,Peri-Peri Chicken,119,Onion,1,count,,1 medium-size onion
 48,Peri-Peri Chicken,133,Olive oil,0.75,cup,,¾ cup olive oil
@@ -462,7 +449,6 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 49,Kedjenou Chicken (Chicken and Vegetable Stew),96,Tomatoes,6,count,,"6 medium size tomatoes, chopped"
 49,Kedjenou Chicken (Chicken and Vegetable Stew),113,Eggplant,2,count,,"2 eggplants, diced"
 50,Lentil and Sausage Stew,43,Lentils (dried),250,grams,250,250 grams dry brown lentils
-50,Lentil and Sausage Stew,43,Lentils (dried),1,litre,,1 litre water for the lentils (needed for the sauce; don't use more)
 50,Lentil and Sausage Stew,94,Carrots,1,count,,"1 carrot, diced"
 50,Lentil and Sausage Stew,119,Onion,1,count,,"1 onion, chopped"
 50,Lentil and Sausage Stew,145,Potatoes,2,count,,"2__3 potatoes, peeled"
@@ -476,7 +462,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 51,Buttermilk Fried Chicken with Pan Gravy,120,Parsley,1,tablespoon,,1 tablespoon parsley
 51,Buttermilk Fried Chicken with Pan Gravy,154,Flour (all purpose),200,g,200,"Flour seasoned with herbs and spices (e.g. pepper, cayenne, salt, ground coriander, cinnamon, thyme, oregano)"
 51,Buttermilk Fried Chicken with Pan Gravy,132,Corn oil,100,g,100,Oil (e.g. peanut or corn oil)
-51,Buttermilk Fried Chicken with Pan Gravy,163,Oil,0,as_needed,,Oil
+51,Buttermilk Fried Chicken with Pan Gravy,163,Oil,0,as_needed,15,Oil
 51,Buttermilk Fried Chicken with Pan Gravy,119,Onion,1,count,,"1 small onion (or shallots), chopped"
 51,Buttermilk Fried Chicken with Pan Gravy,114,Garlic,1,clove,,1 clove of garlic
 51,Buttermilk Fried Chicken with Pan Gravy,154,Flour (all purpose),3,tablespoons,,3__4 tablespoons flour
@@ -489,8 +475,8 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 52,Galician Garbanzo Soup,106,Celery,1,stalk,,"1 medium stalk celery, diced"
 52,Galician Garbanzo Soup,155,Green peas,0.5,cup,,½ cup green peas (fresh or frozen)
 52,Galician Garbanzo Soup,96,Tomatoes,2,cup,,"2 medium-sized ripe tomatoes, peeled and seeded or 1 cup chopped canned tomatoes"
-52,Galician Garbanzo Soup,108,Basil,0,garnish,,"Minced fresh basil, for garnish"
-53,Black Bean Chili,42,Chickpeas (canned),3.5,cups,,3½ cups (8 dL) dried black beans
+52,Galician Garbanzo Soup,108,Basil,0,garnish,30,"Minced fresh basil, for garnish"
+53,Black Bean Chili,36,Black beans (canned),3.5,cups,,3½ cups (8 dL) dried black beans
 53,Black Bean Chili,163,Oil,2,tablespoons,,2 tablespoons (30 mL) corn oil or other vegetable oil
 53,Black Bean Chili,119,Onion,1,count,,"1 medium onion, diced"
 53,Black Bean Chili,114,Garlic,2,cloves,,"2 cloves garlic, minced"
@@ -498,21 +484,21 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 53,Black Bean Chili,121,Chili pepper,0.25,count,,¼ ancho chile
 53,Black Bean Chili,96,Tomatoes,1.5,cups,,1½ cups (350 mL) diced tomatoes
 53,Black Bean Chili,96,Tomatoes,1.5,cups,,1½ cups (350 mL) tomato puree
-53,Black Bean Chili,8,Sour cream,0,garnish,,Sour cream for garnish
+53,Black Bean Chili,8,Sour cream,0,garnish,30,Sour cream for garnish
 54,Egyptian Lentil Soup,43,Lentils (dried),1,cup,,"1 cup red lentils, rinsed"
 54,Egyptian Lentil Soup,119,Onion,1,count,,"1 medium onion, finely chopped"
 54,Egyptian Lentil Soup,114,Garlic,2,cloves,,"2 cloves of garlic, minced"
 54,Egyptian Lentil Soup,133,Olive oil,2,tablespoons,,2 tablespoons olive oil
-54,Egyptian Lentil Soup,110,Cilantro,0,garnish,,"Fresh parsley or cilantro, chopped (for garnish)"
+54,Egyptian Lentil Soup,110,Cilantro,0,garnish,30,"Fresh parsley or cilantro, chopped (for garnish)"
 55,Garbanzo Bean Stew,133,Olive oil,1,tablespoon,,1 tablespoon olive oil
 55,Garbanzo Bean Stew,119,Onion,1,count,,"1 medium red onion, chopped"
-55,Garbanzo Bean Stew,122,Green bell pepper,1,count,,"1 red bell pepper, peeled, cored and chopped"
+55,Garbanzo Bean Stew,167,Red bell pepper,1,count,,"1 red bell pepper, peeled, cored and chopped"
 55,Garbanzo Bean Stew,114,Garlic,2,cloves,,"2 cloves garlic, minced"
 55,Garbanzo Bean Stew,145,Potatoes,0.5,pound,226.8,"½ pound new or boiling potatoes, unpeeled and cut into bite-sized chunks"
 55,Garbanzo Bean Stew,42,Chickpeas (canned),2,cups,425.24,"2 cups cooked chickpeas (garbanzo beans), drained or 1 can (15 ounces) chickpeas, rinsed and drained"
 55,Garbanzo Bean Stew,96,Tomatoes,1,can,411.07,1 can (14½ ounces) diced tomatoes plus their liquid
 55,Garbanzo Bean Stew,153,Rice,2,cups,,2 cups hot cooked rice
-55,Garbanzo Bean Stew,120,Parsley,0,optional,,"Chopped parsley, optional garnish"
+55,Garbanzo Bean Stew,120,Parsley,0,optional,30,"Chopped parsley, optional garnish"
 56,Tuna Noodle Casserole,33,"Tuna (fresh, raw)",2,cans,680.39,2 cans (drained) or pouches (12 ounces each) tuna
 56,Tuna Noodle Casserole,1,Milk (whole),1,cup,,1 cup milk
 56,Tuna Noodle Casserole,152,Pasta,4,cups,,"4 cups hot, cooked medium egg noodles"
@@ -521,7 +507,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 56,Tuna Noodle Casserole,150,Bread,2,tablespoons,,2 tablespoons dry bread crumbs
 56,Tuna Noodle Casserole,129,Butter,1,tablespoon,,1 tablespoon melted butter
 56,Tuna Noodle Casserole,119,Onion,1,teaspoons,,1__2 teaspoons dried minced onion (onion)
-56,Tuna Noodle Casserole,9,Cheddar cheese,3,ounces,99.23,"3__4 ounces cheese, shredded or sliced to cover casserole"
+56,Tuna Noodle Casserole,9,Cheddar cheese,3.5,ounces,99.23,"3__4 ounces cheese, shredded or sliced to cover casserole"
 57,Corn Chowder I,129,Butter,2,tablespoon,,2 tablespoon butter or margarine
 57,Corn Chowder I,119,Onion,1,cup,,1 cup chopped onion
 57,Corn Chowder I,106,Celery,0.5,cup,,½ cup chopped celery
@@ -534,34 +520,31 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 58,Fisherman's Casserole,1,Milk (whole),0.666666667,cup,,__ cup milk
 58,Fisherman's Casserole,119,Onion,0.5,cup,,½ cup chopped onion
 58,Fisherman's Casserole,106,Celery,1,can,304.76,1 can (10¾ ounces) cream of celery soup
-58,Fisherman's Casserole,30,"Salmon (fresh, raw)",1,can,418.16,1 can (14¾ ounces) salmon
-58,Fisherman's Casserole,155,Green peas,1,ounces,226.8,1 bag (8 ounces) frozen peas
+58,Fisherman's Casserole,31,"Salmon (canned)",1,can,418.16,1 can (14¾ ounces) salmon
+58,Fisherman's Casserole,155,Green peas,1,package,226.8,1 bag (8 ounces) frozen peas
 58,Fisherman's Casserole,150,Bread,1,cup,,1 cup bread crumbs
 58,Fisherman's Casserole,129,Butter,2,tablespoons,,"2 tablespoons butter, melted"
-59,General Tso's Chicken,22,Chicken breast,750,g,750,"750 g (1.65 lb) raw chicken dark meat, boneless and skinless."
+59,General Tso's Chicken,23,Chicken thigh,750,g,750,"750 g (1.65 lb) raw chicken dark meat, boneless and skinless."
 59,General Tso's Chicken,146,Eggs,1,count,,1 egg
 59,General Tso's Chicken,163,Oil,700,ml,,"700 ml (3 cups) oil to deep fry, or enough oil to shallow-fry"
-59,General Tso's Chicken,153,Rice,1,tbsp,,1 tbsp rice vinegar
-59,General Tso's Chicken,153,Rice,1,tbsp,,1 tbsp red Shaoxing rice wine
 59,General Tso's Chicken,114,Garlic,1,tbsp,,1 tbsp crushed and minced garlic
 59,General Tso's Chicken,118,Green onions,4,count,,"4 spring onions, chopped"
 59,General Tso's Chicken,121,Chili pepper,1,tbsp,,1 tbsp chopped dried chile peppers
 60,Saffron Rice and Beans,133,Olive oil,0.5,cup,,½ cup olive oil
 60,Saffron Rice and Beans,145,Potatoes,1,count,,"1 small potato, sliced extremely thin"
 60,Saffron Rice and Beans,119,Onion,1,count,,"1 big onion, cut into chunks or sliced thin"
-60,Saffron Rice and Beans,122,Green bell pepper,2,count,,"2__3 red bell peppers, sliced"
-60,Saffron Rice and Beans,96,Tomatoes,1,slices,,"1__3 tomatoes, cut into cubes or slices"
+60,Saffron Rice and Beans,167,Red bell pepper,2,count,,"2__3 red bell peppers, sliced"
+60,Saffron Rice and Beans,96,Tomatoes,1,count,,"1__3 tomatoes, cut into cubes or slices"
 60,Saffron Rice and Beans,114,Garlic,5,cloves,,5__10 cloves garlic
-60,Saffron Rice and Beans,121,Chili pepper,1,tablespoon,,1__2 tablespoon ground chile or chile powder
 60,Saffron Rice and Beans,153,Rice,1,cup,,1 cup basmati rice
-60,Saffron Rice and Beans,42,Chickpeas (canned),1,can,,1 can black beans
-60,Saffron Rice and Beans,12,Parmesan cheese (dry grated),0,as_needed,,Cheese (Parmesan or cotija work best)
+60,Saffron Rice and Beans,36,Black beans (canned),1,can,,1 can black beans
+60,Saffron Rice and Beans,12,Parmesan cheese (dry grated),0,as_needed,62.5,Cheese (Parmesan or cotija work best)
 61,Pasta and Bean Soup,133,Olive oil,1,count,,1 large dash of premium olive oil
 61,Pasta and Bean Soup,114,Garlic,5,cloves,,"5 cloves of garlic, peeled and chopped"
 61,Pasta and Bean Soup,119,Onion,1,count,,"1 onion, peeled and chopped"
-61,Pasta and Bean Soup,96,Tomatoes,4,g,235,"4 very red tomatoes, chopped finely or one tin (235 g) chopped tomatoes"
+61,Pasta and Bean Soup,96,Tomatoes,1,can,235,"4 very red tomatoes, chopped finely or one tin (235 g) chopped tomatoes"
 61,Pasta and Bean Soup,96,Tomatoes,3,count,,3 large squeezes of Italian tomato purée
-61,Pasta and Bean Soup,42,Chickpeas (canned),2,cans,235,2 cans (235 g) borlotti beans
+61,Pasta and Bean Soup,42,Chickpeas (canned),2,cans,470,2 cans (235 g) borlotti beans
 61,Pasta and Bean Soup,120,Parsley,1,count,,1 large handful of chopped parsley
 61,Pasta and Bean Soup,152,Pasta,5,count,,5 handfuls of pasta shells or penne
 61,Pasta and Bean Soup,139,Cooking cream,100,ml,,100 ml single fresh cream (optional)
@@ -573,16 +556,16 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 62,Puerto Rican Chicken Soup (Asopao),153,Rice,1,cup,,1 cup uncooked long-grain white rice
 62,Puerto Rican Chicken Soup (Asopao),154,Flour (all purpose),0.25,cup,,¼ cup all-purpose flour
 62,Puerto Rican Chicken Soup (Asopao),129,Butter,2,tbsp,,2__3 tbsp oil or margarine
-62,Puerto Rican Chicken Soup (Asopao),120,Parsley,0,as_needed,,parsley
+62,Puerto Rican Chicken Soup (Asopao),120,Parsley,0,as_needed,25,parsley
 63,Hamburger Deluxe,18,Ground beef,0.75,lb,350,¾ lb (350 g) lean ground beef
 63,Hamburger Deluxe,147,Lamb,0.25,lb,110,¼ lb (110 g) ground lamb
 63,Hamburger Deluxe,146,Eggs,1,count,,1 egg
 63,Hamburger Deluxe,162,Oats,0.5,cup,,½ cup (125 ml) rolled oats
 63,Hamburger Deluxe,114,Garlic,2,cloves,,"2 cloves garlic, minced"
 63,Hamburger Deluxe,163,Oil,1,tablespoon,,1 tablespoon (15 ml) grapeseed oil (or other lightly flavoured oil)
-63,Hamburger Deluxe,9,Cheddar cheese,0,as_needed,,"Cheese, smoked cheddar is best, but any cheddar or your favourite cheese will do"
-63,Hamburger Deluxe,8,Sour cream,0,as_needed,,Sour cream
-63,Hamburger Deluxe,140,Cream cheese,0,as_needed,,"Plain cream cheese, sliced thinly"
+63,Hamburger Deluxe,9,Cheddar cheese,0,as_needed,62.5,"Cheese, smoked cheddar is best, but any cheddar or your favourite cheese will do"
+63,Hamburger Deluxe,8,Sour cream,0,as_needed,62.5,Sour cream
+63,Hamburger Deluxe,140,Cream cheese,0,as_needed,62.5,"Plain cream cheese, sliced thinly"
 63,Hamburger Deluxe,119,Onion,1,count,,"1 Vidalia onion, coarsely chopped (Spanish onion will do)"
 63,Hamburger Deluxe,117,Mushrooms,0.25,pound,110,"¼ pound (110 g) button mushrooms, sliced thin"
 63,Hamburger Deluxe,129,Butter,1,tablespoon,,1 tablespoon butter
@@ -595,12 +578,10 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 64,Liberian Eggplant Stew,122,Green bell pepper,1,count,,"1 bell pepper, diced"
 64,Liberian Eggplant Stew,113,Eggplant,2,count,,"2 large eggplants, peeled and diced"
 65,Tofu Saltado,44,Tofu,400,g,400,400 g firm tofu
-65,Tofu Saltado,163,Oil,3,tsp,,3 tsp crispy chilli in oil
 65,Tofu Saltado,163,Oil,6,tbsp,,6 tbsp vegetable oil
 65,Tofu Saltado,119,Onion,2,count,,2 red onions
-65,Tofu Saltado,122,Green bell pepper,2,count,,2 red bell peppers
+65,Tofu Saltado,167,Red bell pepper,2,count,,2 red bell peppers
 65,Tofu Saltado,114,Garlic,4,cloves,,"4 garlic cloves, minced or crushed"
-65,Tofu Saltado,153,Rice,1,tbsp,,1 tbsp rice wine vinegar or white wine vinegar
 65,Tofu Saltado,96,Tomatoes,500,g,500,500 g tomatoes
 65,Tofu Saltado,145,Potatoes,500,g,500,500 g potatoes
 65,Tofu Saltado,110,Cilantro,30,g,30,30 g fresh coriander (cilantro)
@@ -609,7 +590,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 66,Cinnamon Chicken,119,Onion,1,count,,"1 small onion, diced"
 66,Cinnamon Chicken,96,Tomatoes,1,can,793.79,1 can (28 oz/800 ml) whole tomatoes
 66,Cinnamon Chicken,114,Garlic,3,cloves,,"3 cloves of garlic, minced"
-66,Cinnamon Chicken,9,Cheddar cheese,4,count,,Enough pasta for 4 servings (cheese tortellini is good)
+66,Cinnamon Chicken,152,Pasta,4,count,,Enough pasta for 4 servings (cheese tortellini is good)
 67,Hearty Beef Vegetable Soup,16,Beef steak,1,pound,453.59,"1 pound beef round steak, cut into ¾-inch cubes"
 67,Hearty Beef Vegetable Soup,129,Butter,1,tablespoon,,1 tablespoon margarine
 67,Hearty Beef Vegetable Soup,119,Onion,0.5,cup,,½ cup chopped onion
@@ -618,7 +599,7 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 67,Hearty Beef Vegetable Soup,96,Tomatoes,1,can,411.07,1 can (14.5 ounces) stewed tomatoes
 67,Hearty Beef Vegetable Soup,94,Carrots,2,cups,,2 cups sliced carrots
 67,Hearty Beef Vegetable Soup,152,Pasta,2,cups,,2 cups bow-tie noodles
-68,Ratatouille I,133,Olive oil,0,as_needed,,Olive oil
+68,Ratatouille I,133,Olive oil,0,as_needed,15,Olive oil
 68,Ratatouille I,119,Onion,1,count,,1 onion
 68,Ratatouille I,114,Garlic,1,clove,,"1 clove garlic, or to taste"
 68,Ratatouille I,113,Eggplant,1,count,,1 eggplant (aubergine)
@@ -632,33 +613,30 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 69,Egyptian Stuffed Eggplant (Mahshi Betinjan),119,Onion,1,count,,"1 small onion, finely chopped"
 69,Egyptian Stuffed Eggplant (Mahshi Betinjan),114,Garlic,2,cloves,,"2 garlic cloves, minced"
 69,Egyptian Stuffed Eggplant (Mahshi Betinjan),120,Parsley,0.25,cup,,"¼ cup fresh parsley, finely chopped"
-69,Egyptian Stuffed Eggplant (Mahshi Betinjan),133,Olive oil,0,as_needed,,Olive oil for drizzling
+69,Egyptian Stuffed Eggplant (Mahshi Betinjan),133,Olive oil,0,as_needed,15,Olive oil for drizzling
 70,Mesir Wat (Spicy Ethiopian Lentil Stew),43,Lentils (dried),2,cups,,"2 cups red lentils, rinsed"
 70,Mesir Wat (Spicy Ethiopian Lentil Stew),119,Onion,1,count,,"1 large onion, finely chopped"
 70,Mesir Wat (Spicy Ethiopian Lentil Stew),114,Garlic,4,cloves,,"4 cloves of garlic, minced"
 70,Mesir Wat (Spicy Ethiopian Lentil Stew),133,Olive oil,2,tablespoons,,2 tablespoons olive oil
-70,Mesir Wat (Spicy Ethiopian Lentil Stew),110,Cilantro,0,garnish,,"Fresh parsley or cilantro, chopped, for garnish"
+70,Mesir Wat (Spicy Ethiopian Lentil Stew),110,Cilantro,0,garnish,30,"Fresh parsley or cilantro, chopped, for garnish"
 71,Taco Salad,22,Chicken breast,1,lb,453.59,"1 lb boneless chicken, diced"
 71,Taco Salad,39,Kidney beans (canned),1,lb,453.59,1 lb kidney beans
-71,Taco Salad,121,Chili pepper,1,tsp,,1 tsp chili powder
 71,Taco Salad,119,Onion,1,count,,"1 medium onion, chopped"
 71,Taco Salad,96,Tomatoes,3,count,,"3 medium tomatoes, diced"
 71,Taco Salad,116,Lettuce,1,lb,453.59,"1 lb (about ½ large head) lettuce, chopped"
 71,Taco Salad,9,Cheddar cheese,0.25,lb,113.4,"¼ lb cheddar cheese, grated"
 71,Taco Salad,64,Avocado,1,count,,"1 large avocado, peeled and sliced"
-71,Taco Salad,111,Corn,0.75,lb,340.19,¾ lb corn tortilla chips
 72,Almond Pancakes,154,Flour (all purpose),1,cup,150,1 cup (150 g / 5.3 oz) bleached all-purpose flour
 72,Almond Pancakes,2,Buttermilk (whole),0.75,cup,172.93,¾ cup (180 ml / 6.1 oz) buttermilk
 72,Almond Pancakes,1,Milk (whole),0.25,cup,56.7,¼ cup (60 ml / 2 oz) milk
 72,Almond Pancakes,146,Eggs,1,count,,1 egg
 72,Almond Pancakes,129,Butter,2,tablespoons,,"2 tablespoons unsalted butter, melted"
-72,Almond Pancakes,163,Oil,0,as_needed,,Vegetable oil for brushing griddle
-73,Baked Oatmeal,162,Oats,3,cups,720,3 cups (720 g) quick-cooking oats
+72,Almond Pancakes,163,Oil,0,as_needed,15,Vegetable oil for brushing griddle
+73,Baked Oatmeal,162,Oats,3,cups,240,3 cups (720 g) quick-cooking oats
 73,Baked Oatmeal,1,Milk (whole),1,cup,,1 cup (240 ml) milk
 73,Baked Oatmeal,129,Butter,0.5,cup,120,½ cup (120 g) butter (melted)
 73,Baked Oatmeal,146,Eggs,2,count,,2 eggs
 74,Blueberry Pancakes,154,Flour (all purpose),1.75,cup,,1¾ cup all-purpose flour
-74,Blueberry Pancakes,139,Cooking cream,1.5,tsp,,1½ tsp cream of tartar (or baking powder)
 74,Blueberry Pancakes,2,Buttermilk (whole),2,cups,,2 cups buttermilk
 74,Blueberry Pancakes,146,Eggs,4,count,,"4 eggs, separated"
 74,Blueberry Pancakes,129,Butter,0.25,cup,,¼ cup butter (optional)
@@ -671,55 +649,50 @@ recipe_id,recipe_name,ingredient_id,ingredient_name,quantity,unit,weight_gram,so
 77,Easy Peach Cobbler,129,Butter,1,count,,1 stick margarine
 77,Easy Peach Cobbler,154,Flour (all purpose),0.75,cup,,¾ cup all-purpose flour
 77,Easy Peach Cobbler,1,Milk (whole),0.75,cup,,¾ cup milk
-78,Strawberry Frozen Yogurt,4,"Yogurt (whole milk, plain)",1,cup,,1 cup 2% fat Greek yogurt
+78,Strawberry Frozen Yogurt,5,"Greek yogurt (whole milk, plain)",1,cup,,1 cup 2% fat Greek yogurt
 79,Panna Cotta (Basic),7,Heavy cream,2,cups,,2 cups (480 ml) heavy cream
-79,Panna Cotta (Basic),42,Chickpeas (canned),1.5,tsp,,1½ tsp vanilla essence or 1 small vanilla bean
-39,Cioppino (Italian Seafood Stew),158,Fish,1,pounds,680.39,"1 ½ pounds tilapia (or other white, firm-fleshed fish), cut into 2-inch chunks"
+39,Cioppino (Italian Seafood Stew),158,Fish,1.5,pounds,680.39,"1 ½ pounds tilapia (or other white, firm-fleshed fish), cut into 2-inch chunks"
 41,Nasi Goreng (Indonesian Fried Rice),158,Fish,4,count,,4 fish meatballs
-41,Nasi Goreng (Indonesian Fried Rice),158,Fish,0,as_needed,,Sliced salted dried fish
 10,Easy Chicken Soup,57,Lemon,0.5,count,,"½ lemon, juiced"
-12,Three Sisters Stew,95,Winter squash,1,lb,907.18,1 ea. (2 lb) small pumpkin or butternut or carnival squash
+12,Three Sisters Stew,95,Winter squash,1,count,907.18,1 ea. (2 lb) small pumpkin or butternut or carnival squash
 15,Pineapple Teriyaki,80,Pineapple,1,can,425.24,"1 can (14__16 oz) cubed pineapple, drained"
-15,Pineapple Teriyaki,80,Pineapple,0.25,cup,,¼ cup water or reserved pineapple juice
 17,Tofu in Spiced Coconut Sauce,46,Almonds (unsalted),0.25,cup,,"¼ cup (or more) slivered almonds, lightly toasted"
 18,Tom Kha Kai,121,Chili pepper,3,count,,"3__4 mini Thai bird chilies, finely chopped"
 18,Tom Kha Kai,58,Lime,3,tablespoons,,3 tablespoons lime juice
 19,BBQ Pork Fried Rice,121,Chili pepper,20,g,20,20 g jalapeño
-19,BBQ Pork Fried Rice,112,Cucumber,0,as_needed,,Cucumber
+19,BBQ Pork Fried Rice,112,Cucumber,0,as_needed,62.5,Cucumber
 24,Maffé (West African Peanut Stew) I,92,Spinach,1,cup,,1 cup chopped leafy greens (such as spinach or kale)
-27,Pad Thai,58,Lime,0,garnish,,Wedge of lime (garnish)
+27,Pad Thai,58,Lime,0,garnish,30,Wedge of lime (garnish)
 29,Chicken Quesadilla,52,Sesame seeds,1,tablespoon,,1 tablespoon sesame seeds
 30,Tibs (Ethiopian Sauteed Meat and Vegetables),57,Lemon,0.25,cup,,¼ cup lemon juice
-30,Tibs (Ethiopian Sauteed Meat and Vegetables),57,Lemon,0,as_needed,,"Lemon wedges, for serving"
+30,Tibs (Ethiopian Sauteed Meat and Vegetables),57,Lemon,0,as_needed,25,"Lemon wedges, for serving"
 32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),105,Cauliflower,1,cup,,1 cup cauliflower florets
 32,Yetakelt Wot (Ethiopian Spiced Vegetable Stew),93,Broccoli,1,cup,,1 cup broccoli florets
 33,Spaghetti Pie,150,Bread,2,tablespoons,,2 tablespoons breadcrumbs
 35,Chicken Alfredo,57,Lemon,0.5,cup,,½ cup lemon juice
-36,Chipotle Chili,164,Ground meat (beef/pork blend),3,count,,"3__4 leftover hamburger patties, grilled and chilled"
+36,Chipotle Chili,18,Ground beef,3,count,,"3__4 leftover hamburger patties, grilled and chilled"
 41,Nasi Goreng (Indonesian Fried Rice),112,Cucumber,1,count,,1 cucumber
-41,Nasi Goreng (Indonesian Fried Rice),105,Cauliflower,0,as_needed,,Cauliflower
+41,Nasi Goreng (Indonesian Fried Rice),105,Cauliflower,0,as_needed,62.5,Cauliflower
 45,Cape Malay Butter Chicken,57,Lemon,2,tablespoons,,2 tablespoons lemon juice
-47,Chicken Fried Rice,112,Cucumber,0,as_needed,,Cucumber
+47,Chicken Fried Rice,112,Cucumber,0,as_needed,62.5,Cucumber
 48,Peri-Peri Chicken,121,Chili pepper,5,count,,5 small bird's eye chillies (adjust to your taste)
 48,Peri-Peri Chicken,57,Lemon,1,count,,"1 medium-size lemon, juiced"
 49,Kedjenou Chicken (Chicken and Vegetable Stew),121,Chili pepper,2,count,,"2 whole habanero peppers  (optional), neatly cut"
 54,Egyptian Lentil Soup,57,Lemon,1,tablespoon,,1 tablespoon lemon juice
 61,Pasta and Bean Soup,92,Spinach,1,optional,,"1 handful of fresh, chopped spinach (optional)"
-62,Puerto Rican Chicken Soup (Asopao),57,Lemon,0,as_needed,,Lemon juice
+62,Puerto Rican Chicken Soup (Asopao),57,Lemon,0,as_needed,25,Lemon juice
 66,Cinnamon Chicken,77,Peach,0.25,tablespoons,,"¼___ peach, chopped finely OR 1__2 tablespoons honey"
 67,Hearty Beef Vegetable Soup,92,Spinach,2,cups,,2 cups torn fresh spinach leaves
 75,Oatmeal Banana Waffle,65,Banana,0.5,count,,½ banana
 77,Easy Peach Cobbler,77,Peach,5,count,,"5 fresh peaches, sliced"
 78,Strawberry Frozen Yogurt,88,Strawberries,2,cups,453.59,2 cups (16 oz) fresh strawberries
 6,Chicken Curry,57,Lemon,0.5,count,,Juice of ½ lemon
-18,Tom Kha Kai,57,Lemon,4,stalks,,"4 stalks lemongrass, cut into 1-inch (2.5 cm) pieces or split lengthwise"
 19,BBQ Pork Fried Rice,121,Chili pepper,5,count,,"5 red chillies, minced"
 20,Traditional Lasagne,135,White sugar,0.5,tsp,,½ tsp white granulated sugar
-22,Chicken and Black-eyed Pea Stew,57,Lemon,2,tsp,,2 tsp curry powder stirred into the juice of ½ lemon
+22,Chicken and Black-eyed Pea Stew,57,Lemon,0.5,count,,2 tsp curry powder stirred into the juice of ½ lemon
 27,Pad Thai,135,White sugar,0.25,cup,,¼ cup and 1 tablespoon (75 ml) palm sugar (or granulated sugar)
 34,Spicy Roast Brisket,136,Brown sugar,1,tbsp,,1 tbsp brown sugar
 39,Cioppino (Italian Seafood Stew),107,Fennel bulb,1,count,,"1 large fennel bulb, thinly sliced"
-42,Kari Ayam (Indonesian Chicken Curry),57,Lemon,1,tsp,,"1 tsp lemongrass, minced or grated"
 43,Chicken Cacciatore,135,White sugar,1,tsp,,1 tsp granulated sugar
 45,Cape Malay Butter Chicken,121,Chili pepper,1,tablespoon,,1 ½ tablespoon freshly pounded red chillies
 62,Puerto Rican Chicken Soup (Asopao),121,Chili pepper,0.25,tsp,,¼ tsp hot pepper

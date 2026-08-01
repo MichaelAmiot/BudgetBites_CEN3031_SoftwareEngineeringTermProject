@@ -1,0 +1,26 @@
+seasoner_id,seasoner_name,dietary_tag_id,dietary_tag_name,note
+30,Soy sauce,10,Soy-free,Seasoner directly conflicts with this dietary tag.
+31,Oyster sauce,1,Vegan,Seasoner directly conflicts with this dietary tag.
+31,Oyster sauce,2,Vegetarian,Seasoner directly conflicts with this dietary tag.
+31,Oyster sauce,16,Mollusc-free,Seasoner directly conflicts with this dietary tag.
+31,Oyster sauce,17,Shellfish-free,Seasoner directly conflicts with this dietary tag.
+31,Oyster sauce,23,Seafood-free,Seasoner directly conflicts with this dietary tag.
+32,Fish sauce,1,Vegan,Seasoner directly conflicts with this dietary tag.
+32,Fish sauce,2,Vegetarian,Seasoner directly conflicts with this dietary tag.
+32,Fish sauce,14,Fish-free,Seasoner directly conflicts with this dietary tag.
+32,Fish sauce,23,Seafood-free,Seasoner directly conflicts with this dietary tag.
+33,Hoisin sauce,10,Soy-free,Seasoner directly conflicts with this dietary tag.
+34,Teriyaki sauce,10,Soy-free,Seasoner directly conflicts with this dietary tag.
+41,Wine / beer / liqueur,24,Alcohol-free,Seasoner directly conflicts with this dietary tag.
+44,Gelatin,1,Vegan,Conventional gelatin is animal-derived.
+44,Gelatin,2,Vegetarian,Conventional gelatin is animal-derived.
+44,Gelatin,22,Meat-free,Conventional gelatin is animal-derived.
+44,Gelatin,26,Gelatin-free,Seasoner directly conflicts with this dietary tag.
+49,Pine nuts,8,Tree-nut-free,Seasoner directly conflicts with this dietary tag.
+49,Pine nuts,9,Nut-free,Seasoner directly conflicts with this dietary tag.
+64,Fermented black beans,10,Soy-free,Seasoner directly conflicts with this dietary tag.
+65,Shrimp paste,1,Vegan,Seasoner directly conflicts with this dietary tag.
+65,Shrimp paste,2,Vegetarian,Seasoner directly conflicts with this dietary tag.
+65,Shrimp paste,15,Crustacean-free,Seasoner directly conflicts with this dietary tag.
+65,Shrimp paste,17,Shellfish-free,Seasoner directly conflicts with this dietary tag.
+65,Shrimp paste,23,Seafood-free,Seasoner directly conflicts with this dietary tag.

@@ -21,6 +21,10 @@ string toLower(const string& s) {
 
 }
 
+string UserRepository::defaultStoragePath() {
+    return "data/local/users.csv";
+}
+
 UserAccount* UserRepository::find(const string& username) {
     string target = toLower(username);
     for (int i = 0; i < accounts.size(); i++) {

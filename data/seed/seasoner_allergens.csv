@@ -1,0 +1,10 @@
+seasoner_id,seasoner_name,allergen_id,allergen_name,note
+19,Mustard,12,Mustard,Named mustard ingredient.
+30,Soy sauce,8,Soybean,Soy is named and is the conventional base of soy sauce.
+31,Oyster sauce,10,Mollusc,Named oyster-derived sauce.
+32,Fish sauce,3,Fish,Named fish-derived sauce.
+33,Hoisin sauce,8,Soybean,Soy is the conventional base of hoisin sauce.
+34,Teriyaki sauce,8,Soybean,Soy sauce is the conventional base of teriyaki sauce.
+49,Pine nuts,5,Tree nut,Named tree-nut ingredient.
+64,Fermented black beans,8,Soybean,Chinese fermented black beans are conventionally fermented black soybeans.
+65,Shrimp paste,4,Crustacean shellfish,Named shrimp-derived paste.

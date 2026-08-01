@@ -98,6 +98,9 @@ void writeField(std::ofstream& output, const std::string& value) {
 namespace CsvFile {
 
 bool read(const std::filesystem::path& path, Table& table, std::string& error) {
+    table = {};
+    error.clear();
+
     std::ifstream input(path, std::ios::binary);
     if (!input) {
         error = "Unable to open CSV file: " + path.string();
@@ -108,7 +111,6 @@ bool read(const std::filesystem::path& path, Table& table, std::string& error) {
         static_cast<unsigned char>(contents[1]) == 0xBB && static_cast<unsigned char>(contents[2]) == 0xBF) {
         contents.erase(0, 3);
     }
-    table = {};
     return parse(contents, table, error);
 }
 
@@ -118,17 +120,22 @@ bool write(
     const std::vector<std::vector<std::string>>& rows,
     std::string& error
 ) {
+    error.clear();
+
     for (const auto& row : rows) {
         if (row.size() != headers.size()) {
             error = "CSV row does not match the header column count.";
             return false;
         }
     }
-    std::error_code directoryError;
-    std::filesystem::create_directories(path.parent_path(), directoryError);
-    if (directoryError) {
-        error = "Unable to create CSV directory: " + path.parent_path().string();
-        return false;
+    const auto directory = path.parent_path();
+    if (!directory.empty()) {
+        std::error_code directoryError;
+        std::filesystem::create_directories(directory, directoryError);
+        if (directoryError) {
+            error = "Unable to create CSV directory: " + directory.string();
+            return false;
+        }
     }
     // Write a temp file first so a failed save does not damage existing data.
     const auto temporaryPath = path.string() + ".tmp";

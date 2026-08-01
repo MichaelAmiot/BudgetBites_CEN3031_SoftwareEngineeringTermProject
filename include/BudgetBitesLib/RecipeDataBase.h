@@ -8,7 +8,7 @@
 #include <vector>
 
 struct Recipe {
-    int id;
+    int recipeId;
     std::string title;
     std::optional<int> servings;
     std::optional<int> prepMinutes;
@@ -30,7 +30,7 @@ struct RecipeFilter {
 };
 
 struct Ingredient {
-    int id;
+    int ingredientId;
     std::string name;
     std::string description;
     double pricePer100Grams;
@@ -59,7 +59,7 @@ struct RecipeCostItem {
 };
 
 struct DietaryTag {
-    int id;
+    int dietaryTagId;
     std::string code;
     std::string displayName;
     std::string tagGroup;
@@ -67,12 +67,18 @@ struct DietaryTag {
 };
 
 struct Allergen {
-    int id;
+    int allergenId;
     std::string code;
     std::string displayName;
 };
 
-// Loads the shared CSV catalog once and provides read-only queries.
+struct Seasoner {
+    int seasonerId;
+    std::string name;
+    std::string sourceExamples;
+};
+
+// Loads the recipe data and provides read-only queries.
 class RecipeDataBase {
 public:
     explicit RecipeDataBase(const std::filesystem::path& seedDirectory = defaultSeedDirectory());
@@ -97,10 +103,10 @@ public:
 
     std::vector<DietaryTag> getDietaryTags() const;
     std::vector<Allergen> getAllergens() const;
-    // Removes recipes that conflict with the selected diet or allergens.
+    // Filters recipes by dietary tags and allergens.
     std::vector<Recipe> findCompatibleRecipes(
-        const std::vector<std::string>& dietaryTagCodes,
-        const std::vector<std::string>& allergenCodes
+        const std::vector<int>& dietaryTagIds,
+        const std::vector<int>& allergenIds
     ) const;
 
 private:
@@ -111,11 +117,14 @@ private:
     std::unordered_map<int, Ingredient> ingredientsById_;
     std::unordered_map<int, std::vector<RecipeIngredient>> recipeIngredientsByRecipe_;
     std::unordered_map<int, std::string> instructionsByRecipe_;
-    std::unordered_map<int, std::vector<std::string>> seasonersByRecipe_;
+    std::unordered_map<int, Seasoner> seasonersById_;
+    std::unordered_map<int, std::vector<int>> seasonersByRecipe_;
     std::unordered_map<int, DietaryTag> dietaryTagsById_;
     std::unordered_map<int, Allergen> allergensById_;
-    std::unordered_map<int, std::unordered_set<std::string>> dietaryConflictsByIngredient_;
-    std::unordered_map<int, std::unordered_set<std::string>> allergensByIngredient_;
+    std::unordered_map<int, std::unordered_set<int>> dietaryConflictsByIngredient_;
+    std::unordered_map<int, std::unordered_set<int>> allergensByIngredient_;
+    std::unordered_map<int, std::unordered_set<int>> dietaryConflictsBySeasoner_;
+    std::unordered_map<int, std::unordered_set<int>> allergensBySeasoner_;
     bool loaded_ = false;
     std::string lastError_;
 };

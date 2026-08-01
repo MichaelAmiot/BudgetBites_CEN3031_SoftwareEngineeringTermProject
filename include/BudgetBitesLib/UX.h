@@ -1,10 +1,15 @@
 #pragma once
 
-#include <iostream>
+#include <filesystem>
 #include <optional>
 #include <string>
 
 #include "UserRepository.h"
+#include "UserInfoRepository.h"
+
+class Account;
+class Preferences;
+class Ingredients;
 
 // Handles registering, signing in, and profile pictures for
 // BudgetBites. Uses PasswordSecurity and ProfileImageStore to do the
@@ -12,7 +17,9 @@
 // accounts are supposed to work.
 class UX {
 public:
-    UX() {}
+    // The default keeps supplemental data in data/local; tests can provide a temporary folder.
+    explicit UX(const std::filesystem::path& userInfoStorageDirectory = UserInfoRepository::defaultStorageDirectory())
+        : userInfoRepository(userInfoStorageDirectory) {}
 
     // fails if username is empty, already taken, or password isn't strong enough
     bool registerUser(const std::string& username, const std::string& password);
@@ -26,19 +33,6 @@ public:
 
     std::optional<std::string> currentUser() const;
 
-    void checkUserAndImage(UX& ux) {
-        auto user = ux.currentUser();
-        if (!user) {
-            std::cout << "You must sign in first.\n";
-            return;
-        }
-
-        auto path = ux.getProfileImagePath(*user);
-        if (path) {
-            // ...
-        }
-    }
-
     // only works if username is the person currently signed in
     bool uploadProfileImage(const std::string& username, const std::string& sourceImagePath);
 
@@ -46,10 +40,21 @@ public:
 
     static bool isPasswordStrong(const std::string& password);
 
+    // Loads the signed-in user's saved budget, catalog IDs, and pantry items.
+    bool loadCurrentUserInfo(Account& account, Preferences& preferences, Ingredients& ingredients);
+
+    // Saves the signed-in user's budget, catalog IDs, and pantry items.
+    bool saveCurrentUserInfo(
+        const Account& account,
+        const Preferences& preferences,
+        const Ingredients& ingredients
+    );
+
     bool saveToFile(const std::string& filePath) const;
     bool loadFromFile(const std::string& filePath);
 
 private:
     UserRepository repository;
+    UserInfoRepository userInfoRepository;
     std::optional<std::string> currentUsername;
 };

@@ -15,6 +15,9 @@ struct UserAccount {
 // them to a file so they aren't lost when the program closes.
 class UserRepository {
 public:
+    // Default local location for account credentials and profile image paths.
+    static std::string defaultStoragePath();
+
     // returns a pointer to the account with this username, or nullptr
     // if there isn't one. Not case sensitive.
     UserAccount* find(const std::string& username);
@@ -23,11 +26,11 @@ public:
 
     int size() const;
 
-    // writes all the accounts out to a simple text file
-    bool saveToFile(const std::string& filePath) const;
+    // Writes all accounts to a comma-separated local file.
+    bool saveToFile(const std::string& filePath = defaultStoragePath()) const;
 
-    // reads accounts back in from a file made by saveToFile
-    bool loadFromFile(const std::string& filePath);
+    // Reads accounts back in from a file made by saveToFile.
+    bool loadFromFile(const std::string& filePath = defaultStoragePath());
 
 private:
     std::vector<UserAccount> accounts;
