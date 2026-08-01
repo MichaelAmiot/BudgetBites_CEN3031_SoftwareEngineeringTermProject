@@ -12,6 +12,7 @@ add_executable(BudgetBitesTests
         test_Preferences.cpp
         test_MealGenerator.cpp
         test_ingredients.cpp
+        TestUtils.h
 )
 
 target_link_libraries(BudgetBitesTests

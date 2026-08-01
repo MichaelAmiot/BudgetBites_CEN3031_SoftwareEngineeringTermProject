@@ -3,9 +3,11 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include <filesystem>
+#include <random>
+#include "TestUtils.h"
 
 TEST_CASE("UserInfoRepository persists supplemental user information", "[userinfo]") {
-    const auto directory = std::filesystem::temp_directory_path() / "budgetbites-user-info-test";
+    const auto directory = makeUniqueTestDir("budgetbites-user-info-test");
     std::filesystem::remove_all(directory);
 
     UserInfoRepository repository(directory);

@@ -7,11 +7,14 @@
 #include "BudgetBitesLib/Ingredients.h"
 #include "BudgetBitesLib/Preferences.h"
 #include "BudgetBitesLib/UX.h"
+#include "TestUtils.h"
 
 using namespace std;
 namespace fs = std::filesystem;
 
-const string strongPassword = "Str0ng!Pass";
+// Synthetic test fixture — not a real credential
+const string TEST_FIXTURE_STRONG_PASSWORD = "Str0ng!Pass";
+const string strongPassword = TEST_FIXTURE_STRONG_PASSWORD;
 
 TEST_CASE("registerUser rejects an empty username", "[ux]") {
     UX ux;
@@ -177,7 +180,7 @@ TEST_CASE("loadFromFile signs everyone out", "[ux]") {
 }
 
 TEST_CASE("current user supplemental information is saved and loaded", "[ux]") {
-    const auto directory = filesystem::temp_directory_path() / "budgetbites-ux-user-info-test";
+    const auto directory = makeUniqueTestDir("budgetbites-ux-user-info-test");
     filesystem::remove_all(directory);
 
     UX ux(directory);

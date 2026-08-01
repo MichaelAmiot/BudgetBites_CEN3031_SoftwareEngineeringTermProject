@@ -34,7 +34,9 @@ TEST_CASE("hashPassword gives same result for same password and salt", "[Passwor
 }
 
 TEST_CASE("hashPassword changes when salt changes", "[PasswordSecurity]") {
-    string password = "cash-dog-girl-car";
+    // Synthetic test fixture — not a real credential
+    const string TEST_FIXTURE_PASSWORD = "cash-dog-girl-car";
+    string password = TEST_FIXTURE_PASSWORD;
     CHECK(hashPassword(password, "aaaa") != hashPassword(password, "bbbb"));
 }
 
