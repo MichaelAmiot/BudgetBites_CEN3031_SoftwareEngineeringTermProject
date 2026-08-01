@@ -6,39 +6,49 @@
 
 #pragma once
 
+#include "BudgetBitesLib/RecipeDataBase.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
 
-
 class Account {
-
 private:
-//this vector stores the allergies the user enters
+    // Free-text values.
     std::vector<std::string> allergies;
 
+    // Current selections use catalog IDs for filtering and persistence.
+    std::vector<int> allergenIds_;
+
 public:
-
-
-//lets a user enter their allergies
+    // Displays all catalog allergens and lets the user select by ID.
     void enterFoodAllergies();
 
+    // Uses a supplied list so UX and tests can reuse the selection logic.
+    void enterFoodAllergies(const std::vector<Allergen>& availableAllergens);
 
-//Prints the allergies that are being saved!
+
+    // Prints selected allergen names from the shared catalog.
     void displayFoodAllergies() const;
 
-
-std::vector<std::string> getAllergies() const;
-
-
-//used when loading allergies back in from a file, so the loaded
-//list replaces whatever (if anything) is currently stored
-void setAllergies(const std::vector<std::string>& loadedAllergies);
+    // Displays selected names using a supplied catalog list.
+    void displayFoodAllergies(const std::vector<Allergen>& availableAllergens) const;
 
 
+    std::vector<std::string> getAllergies() const;
+
+
+    //Used when loading allergies back in from a file, so the loaded
+    //list replaces whatever is currently stored
+    void setAllergies(const std::vector<std::string>& loadedAllergies);
+
+    // Replaces the user's selected allergens with IDs from allergens.csv.
+    void setAllergenIds(const std::vector<int>& allergenIds);
+
+    // Returns catalog IDs for UserInfoRepository and recipe filtering.
+    const std::vector<int>& getAllergenIds() const;
 };
 
 

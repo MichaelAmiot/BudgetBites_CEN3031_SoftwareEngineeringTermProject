@@ -46,9 +46,14 @@ TEST_CASE("RecipeDataBase applies filters and excludes dietary conflicts", "[rec
         return recipe.cookMinutes.has_value() && *recipe.cookMinutes <= 40;
     }));
 
-    const auto dairyFree = database.findCompatibleRecipes({"dairy_free"}, {});
+    const auto dairyFree = database.findCompatibleRecipes({4}, {});
     CHECK(std::none_of(dairyFree.begin(), dairyFree.end(), [](const Recipe& recipe) {
-        return recipe.id == 1;
+        return recipe.recipeId == 1;
+    }));
+
+    const auto milkFree = database.findCompatibleRecipes({}, {1});
+    CHECK(std::none_of(milkFree.begin(), milkFree.end(), [](const Recipe& recipe) {
+        return recipe.recipeId == 1;
     }));
 
     CHECK(database.getDietaryTags().size() == 26);

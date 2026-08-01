@@ -7,7 +7,10 @@
 #include <array>
 #include <cstddef>
 #include <iosfwd>
+#include <optional>
 #include <string>
+
+class RecipeDataBase;
 
 //using this to represent the three meal positions
 
@@ -20,8 +23,8 @@ enum class MealType {
 //stores the info needed to display in a weekely plan
 
 struct MealEntry {
-    std:: string recipeName;
-    double estimatedCost = 0.0;
+    // The catalog remains the source of recipe names, ingredients, and costs.
+    std::optional<int> recipeId;
 
     bool isEmpty() const;
 };
@@ -54,13 +57,21 @@ public:
     const std::string& getPlanName() const;
 
 
-    //this adds or relaces a meal
-    //also returns false when dayIndex is outside 0-6
-    // recipeName is empty, or when estimatedCost is negative
+    // Adds or replaces a meal with a recipe from the shared catalog.
+    bool setMeal(std::size_t dayIndex,
+        MealType mealType,
+        int recipeId);
+
+    // Temporary bridge for callers that still pass recipe titles.
+    bool setMeal(std::size_t dayIndex,
+        MealType mealType,
+        const std::string& recipeName);
+
+    // Temporary bridge for callers that still provide a copied meal cost.
     bool setMeal(std::size_t dayIndex,
         MealType mealType,
         const std::string& recipeName,
-        double estimatedCost =0.0);
+        double legacyEstimatedCost);
 
 
     const MealEntry* getMeal(std::size_t dayIndex, MealType mealType) const; //returns a pointer to meal oe nullptr
@@ -76,10 +87,12 @@ public:
 
 
     bool isComplete() const; //true only when all 21 positions are full
-    double getTotalEstimatedCost() const; // add estimated costs of all meals in the plan
 
-    //prints weekly plan
+    // Prints recipe IDs when a catalog is not available.
     void display(std::ostream& output) const;
+
+    // Prints recipe names by looking up the IDs in the shared catalog.
+    void display(std::ostream& output, const RecipeDataBase& catalog) const;
 
     static std:: string dayName(std::size_t dayIndex); //converts day index to name like "monday"
 

@@ -19,7 +19,8 @@ void checkUserAndImage(UX& ux) {
 }
 
 bool UX::registerUser(const string& username, const string& password) {
-    if (username.empty()) {
+    // Account records use commas and lines as delimiters, so usernames cannot contain them.
+    if (username.empty() || username.find_first_of(",\r\n") != string::npos) {
         return false;
     }
     if (repository.find(username) != nullptr) {

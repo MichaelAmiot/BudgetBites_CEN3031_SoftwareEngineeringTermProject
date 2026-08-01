@@ -9,7 +9,6 @@ using namespace std;
 namespace fs = std::filesystem;
 
 namespace ProfileImageStore {
-
     optional<string> store(const string& username, const string& sourceImagePath) {
         fs::path source(sourceImagePath);
 
@@ -37,9 +36,11 @@ namespace ProfileImageStore {
         }
 
         // make sure the destination folder exists
-        fs::create_directory("profile_images");
+        const fs::path destinationDirectory =
+                fs::path("data") / "local" / "profile_images";
+        fs::create_directories(destinationDirectory);
 
-        fs::path destPath = fs::path("profile_images") / (username + ext);
+        fs::path destPath = destinationDirectory / (username + ext);
 
         // copy the bytes over manually
         ifstream in(source, ios::binary);
@@ -51,5 +52,4 @@ namespace ProfileImageStore {
 
         return destPath.string();
     }
-
 }

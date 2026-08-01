@@ -1,24 +1,16 @@
 #pragma once
 
+#include "BudgetBitesLib/Ingredients.h"
+
 #include <filesystem>
 #include <optional>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
-struct UserInfo {
-    int id;
+struct UserExtraInfo {
     std::string username;
-    std::string passwordHash;
-    std::string passwordSalt;
-    std::string profileImagePath;
     double weeklyBudget = 0.0;
-};
-
-struct PantryItem {
-    int ingredientId;
-    // Empty grams means the user has the item but did not measure it.
-    std::optional<double> availableGrams;
 };
 
 // Stores user-only data in local CSV files, separate from the shared catalog.
@@ -31,32 +23,28 @@ public:
     const std::string& lastError() const noexcept;
     static std::filesystem::path defaultStorageDirectory();
 
-    std::optional<UserInfo> createUser(
-        const std::string& username,
-        const std::string& passwordHash,
-        const std::string& passwordSalt
-    );
-    std::optional<UserInfo> getUserById(int userId) const;
-    std::optional<UserInfo> getUserByUsername(const std::string& username) const;
-    bool updateProfileImagePath(int userId, const std::string& profileImagePath);
-    bool updateWeeklyBudget(int userId, double weeklyBudget);
+    // Adds a default supplemental record if this username does not have one yet.
+    bool ensureUser(const std::string& username);
+    std::optional<UserExtraInfo> getUserByUsername(const std::string& username) const;
+    bool updateWeeklyBudget(const std::string& username, double weeklyBudget);
 
-    bool replaceDietaryTagIds(int userId, const std::vector<int>& dietaryTagIds);
-    bool replaceAllergenIds(int userId, const std::vector<int>& allergenIds);
-    bool replacePantryItems(int userId, const std::vector<PantryItem>& pantryItems);
-    std::vector<int> getDietaryTagIds(int userId) const;
-    std::vector<int> getAllergenIds(int userId) const;
-    std::vector<PantryItem> getPantryItems(int userId) const;
+    bool replaceDietaryTagIds(const std::string& username, const std::vector<int>& dietaryTagIds);
+    bool replaceAllergenIds(const std::string& username, const std::vector<int>& allergenIds);
+    bool replacePantryItems(const std::string& username, const std::vector<PantryItem>& pantryItems);
+    std::vector<int> getDietaryTagIds(const std::string& username) const;
+    std::vector<int> getAllergenIds(const std::string& username) const;
+    std::vector<PantryItem> getPantryItems(const std::string& username) const;
 
 private:
     bool fail(const std::string& message);
-    bool hasUser(int userId) const;
+    bool hasUser(const std::string& username) const;
 
     std::filesystem::path storageDirectory_;
-    std::unordered_map<int, UserInfo> usersById_;
+    // Lowercase usernames are internal keys; the original spelling is kept for saving.
+    std::unordered_map<std::string, UserExtraInfo> usersByUsername_;
     // User choices keep catalog IDs, so catalog names can change safely.
-    std::unordered_map<int, std::vector<int>> dietaryTagIdsByUser_;
-    std::unordered_map<int, std::vector<int>> allergenIdsByUser_;
-    std::unordered_map<int, std::vector<PantryItem>> pantryItemsByUser_;
+    std::unordered_map<std::string, std::vector<int>> dietaryTagIdsByUser_;
+    std::unordered_map<std::string, std::vector<int>> allergenIdsByUser_;
+    std::unordered_map<std::string, std::vector<PantryItem>> pantryItemsByUser_;
     std::string lastError_;
 };

@@ -1,11 +1,12 @@
 #include "BudgetBitesLib/MealPlan.h"
-#include <iomanip>
+#include "BudgetBitesLib/RecipeDataBase.h"
+
 #include <ostream>
 #include <utility>
 
 
 bool MealEntry::isEmpty() const {
-    return recipeName.empty();
+    return !recipeId.has_value();
 
 }
 
@@ -32,8 +33,8 @@ const std::string& MealPlan::getPlanName() const {
 
 }
 
-bool MealPlan::setMeal(std::size_t dayIndex, MealType mealType, const std::string& recipeName, double estimatedCost) {
-    if (recipeName.empty() || estimatedCost < 0.0) {
+bool MealPlan::setMeal(std::size_t dayIndex, MealType mealType, int recipeId) {
+    if (recipeId <= 0) {
         return false;
     }
 
@@ -42,9 +43,38 @@ bool MealPlan::setMeal(std::size_t dayIndex, MealType mealType, const std::strin
         return false;
     }
 
-    meal->recipeName = recipeName;
-    meal->estimatedCost = estimatedCost;
+    meal->recipeId = recipeId;
     return true;
+}
+
+bool MealPlan::setMeal(
+    std::size_t dayIndex,
+    MealType mealType,
+    const std::string& recipeName
+) {
+    RecipeDataBase catalog;
+    if (!catalog.isLoaded()) {
+        return false;
+    }
+
+    RecipeFilter filter;
+    filter.titleContains = recipeName;
+    for (const Recipe& recipe : catalog.searchRecipes(filter)) {
+        if (recipe.title == recipeName) {
+            return setMeal(dayIndex, mealType, recipe.recipeId);
+        }
+    }
+    return false;
+}
+
+bool MealPlan::setMeal(
+    std::size_t dayIndex,
+    MealType mealType,
+    const std::string& recipeName,
+    double legacyEstimatedCost
+) {
+    (void)legacyEstimatedCost;
+    return setMeal(dayIndex, mealType, recipeName);
 }
 
 const MealEntry* MealPlan::getMeal(std::size_t dayIndex,
@@ -125,34 +155,8 @@ bool MealPlan::isComplete() const {
 }
 
 
-double MealPlan::getTotalEstimatedCost() const {
-
-    double total = 0.0;
-
-    for (const DailyMealPlan& day : days_) {
-
-
-        total += day.breakfast.estimatedCost;
-        total += day.lunch.estimatedCost;
-        total += day.dinner.estimatedCost;
-
-
-    }
-    return total;
-
-
-}
-
-
-
-
 void MealPlan::display(std::ostream& output) const {
     output << "\n=== " << planName_ << " ===\n";
-
-    const std::ios::fmtflags originalFlags = output.flags();
-    const std::streamsize originalPrecision = output.precision();
-
-    output << std::fixed << std::setprecision(2);
 
     for (std::size_t dayIndex = 0; dayIndex < kDaysInWeek; ++dayIndex ) {
         const DailyMealPlan& day = days_[dayIndex];
@@ -164,27 +168,44 @@ void MealPlan::display(std::ostream& output) const {
 
             if (meal.isEmpty()) {
                 output << "Not selected\n";
-
             }else {
-                output << meal.recipeName
-                << " (Estimated cost: $" << meal.estimatedCost << ")\n";
-
+                output << "Recipe #" << *meal.recipeId << '\n';
             }
-
         };
 
         printMeal("Breakfast", day.breakfast);
         printMeal("Lunch", day.lunch);
         printMeal("Dinner", day.dinner);
 
-
     }
+}
 
-    output <<"\nThe total estimated weekly cost: $"
-        <<getTotalEstimatedCost() << "\n";
+void MealPlan::display(std::ostream& output, const RecipeDataBase& catalog) const {
+    output << "\n=== " << planName_ << " ===\n";
 
-    output.flags(originalFlags);
-    output.precision(originalPrecision);
+    for (std::size_t dayIndex = 0; dayIndex < kDaysInWeek; ++dayIndex) {
+        const DailyMealPlan& day = days_[dayIndex];
+        output << "\n" << dayName(dayIndex) << ":\n";
+
+        const auto printMeal = [&output, &catalog](const char* label, const MealEntry& meal) {
+            output << " " << label << ": ";
+            if (meal.isEmpty()) {
+                output << "Not selected\n";
+                return;
+            }
+
+            const auto recipe = catalog.getRecipeById(*meal.recipeId);
+            if (!recipe) {
+                output << "Recipe #" << *meal.recipeId << " is unavailable\n";
+                return;
+            }
+            output << recipe->title << " [" << recipe->primaryEquipment << "]\n";
+        };
+
+        printMeal("Breakfast", day.breakfast);
+        printMeal("Lunch", day.lunch);
+        printMeal("Dinner", day.dinner);
+    }
 }
 
 std::string MealPlan::dayName(std::size_t dayIndex) {
@@ -249,6 +270,3 @@ const MealEntry* MealPlan::selectMeal(std::size_t dayIndex, MealType mealType) c
 
     return nullptr;
 }
-
-
-

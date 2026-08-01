@@ -67,7 +67,7 @@ UserInfoRepository::UserInfoRepository(const std::filesystem::path& storageDirec
 }
 
 bool UserInfoRepository::load() {
-    usersById_.clear();
+    usersByUsername_.clear();
     dietaryTagIdsByUser_.clear();
     allergenIdsByUser_.clear();
     pantryItemsByUser_.clear();
@@ -87,30 +87,35 @@ bool UserInfoRepository::load() {
         return table.headers == headers ? true : fail(filename + " headers do not match the user-data schema.");
     };
 
+    // Load the base username and budget table before its linked ID tables.
     CsvFile::Table users;
-    if (!readOptional("user_info.csv", {"user_id", "username", "password_hash", "password_salt", "profile_image_path", "weekly_budget"}, users)) {
+    if (!readOptional("user_info.csv", {"username", "weekly_budget"}, users)) {
         return false;
     }
     for (const Row& row : users.rows) {
-        const auto userId = integer(row[0]);
-        const auto budget = real(row[5]);
-        if (!userId || !budget || *budget < 0.0 || row[1].empty() || !usersById_.emplace(*userId, UserInfo{*userId, row[1], row[2], row[3], row[4], *budget}).second) {
+        const auto budget = real(row[1]);
+        if (row[0].empty() || !budget || *budget < 0.0 ||
+            !usersByUsername_.emplace(lower(row[0]), UserExtraInfo{row[0], *budget}).second) {
             return fail("user_info.csv contains an invalid or duplicate record.");
         }
     }
 
-    const auto loadIdRelations = [&](const std::string& filename, const std::string& valueHeader, std::unordered_map<int, std::vector<int>>& target) {
+    // Dietary preferences and allergens use one row per selected catalog ID.
+    const auto loadIdRelations = [&](
+        const std::string& filename,
+        const std::string& valueHeader,
+        std::unordered_map<std::string, std::vector<int>>& target
+    ) {
         CsvFile::Table table;
-        if (!readOptional(filename, {"user_id", valueHeader}, table)) {
+        if (!readOptional(filename, {"username", valueHeader}, table)) {
             return false;
         }
         for (const Row& row : table.rows) {
-            const auto userId = integer(row[0]);
             const auto valueId = integer(row[1]);
-            if (!userId || !valueId || !hasUser(*userId)) {
+            if (row[0].empty() || !valueId || !hasUser(row[0])) {
                 return fail(filename + " contains an invalid linked record.");
             }
-            target[*userId].push_back(*valueId);
+            target[lower(row[0])].push_back(*valueId);
         }
         for (auto& entry : target) {
             entry.second = uniqueIds(entry.second);
@@ -122,54 +127,56 @@ bool UserInfoRepository::load() {
         return false;
     }
 
+    // A blank available_grams field means the user owns an unmeasured amount.
     CsvFile::Table pantryItems;
-    if (!readOptional("user_pantry_items.csv", {"user_id", "ingredient_id", "available_grams"}, pantryItems)) {
+    if (!readOptional("user_pantry_items.csv", {"username", "ingredient_id", "available_grams"}, pantryItems)) {
         return false;
     }
     for (const Row& row : pantryItems.rows) {
-        const auto userId = integer(row[0]);
         const auto ingredientId = integer(row[1]);
         const auto grams = real(row[2]);
-        if (!userId || !ingredientId || (row[2].size() && (!grams || *grams < 0.0)) || !hasUser(*userId)) {
+        if (row[0].empty() || !ingredientId ||
+            (!row[2].empty() && (!grams || *grams < 0.0)) || !hasUser(row[0])) {
             return fail("user_pantry_items.csv contains an invalid linked record.");
         }
-        pantryItemsByUser_[*userId].push_back({*ingredientId, grams});
+        pantryItemsByUser_[lower(row[0])].push_back({*ingredientId, grams});
     }
     return true;
 }
 
 bool UserInfoRepository::save() {
-    std::vector<int> userIds;
-    userIds.reserve(usersById_.size());
-    for (const auto& entry : usersById_) {
-        userIds.push_back(entry.first);
+    std::vector<std::string> usernames;
+    usernames.reserve(usersByUsername_.size());
+    for (const auto& entry : usersByUsername_) {
+        usernames.push_back(entry.first);
     }
     // Stable row order keeps local files easy to review.
-    std::sort(userIds.begin(), userIds.end());
+    std::sort(usernames.begin(), usernames.end());
 
+    // Rebuild all four tables from the current in-memory supplemental data.
     std::vector<Row> users;
     std::vector<Row> dietaryTags;
     std::vector<Row> allergens;
     std::vector<Row> pantryItems;
-    for (const int userId : userIds) {
-        const UserInfo& user = usersById_.at(userId);
-        users.push_back({std::to_string(user.id), user.username, user.passwordHash, user.passwordSalt, user.profileImagePath, decimal(user.weeklyBudget)});
-        for (const int tagId : getDietaryTagIds(userId)) {
-            dietaryTags.push_back({std::to_string(userId), std::to_string(tagId)});
+    for (const std::string& usernameKey : usernames) {
+        const UserExtraInfo& user = usersByUsername_.at(usernameKey);
+        users.push_back({user.username, decimal(user.weeklyBudget)});
+        for (const int tagId : getDietaryTagIds(usernameKey)) {
+            dietaryTags.push_back({user.username, std::to_string(tagId)});
         }
-        for (const int allergenId : getAllergenIds(userId)) {
-            allergens.push_back({std::to_string(userId), std::to_string(allergenId)});
+        for (const int allergenId : getAllergenIds(usernameKey)) {
+            allergens.push_back({user.username, std::to_string(allergenId)});
         }
-        for (const PantryItem& item : getPantryItems(userId)) {
-            pantryItems.push_back({std::to_string(userId), std::to_string(item.ingredientId), item.availableGrams ? decimal(*item.availableGrams) : ""});
+        for (const PantryItem& item : getPantryItems(usernameKey)) {
+            pantryItems.push_back({user.username, std::to_string(item.ingredientId), item.availableGrams ? decimal(*item.availableGrams) : ""});
         }
     }
 
     std::string error;
-    if (!CsvFile::write(storageDirectory_ / "user_info.csv", {"user_id", "username", "password_hash", "password_salt", "profile_image_path", "weekly_budget"}, users, error) ||
-        !CsvFile::write(storageDirectory_ / "user_dietary_tags.csv", {"user_id", "dietary_tag_id"}, dietaryTags, error) ||
-        !CsvFile::write(storageDirectory_ / "user_allergens.csv", {"user_id", "allergen_id"}, allergens, error) ||
-        !CsvFile::write(storageDirectory_ / "user_pantry_items.csv", {"user_id", "ingredient_id", "available_grams"}, pantryItems, error)) {
+    if (!CsvFile::write(storageDirectory_ / "user_info.csv", {"username", "weekly_budget"}, users, error) ||
+        !CsvFile::write(storageDirectory_ / "user_dietary_tags.csv", {"username", "dietary_tag_id"}, dietaryTags, error) ||
+        !CsvFile::write(storageDirectory_ / "user_allergens.csv", {"username", "allergen_id"}, allergens, error) ||
+        !CsvFile::write(storageDirectory_ / "user_pantry_items.csv", {"username", "ingredient_id", "available_grams"}, pantryItems, error)) {
         return fail(error);
     }
     return true;
@@ -183,95 +190,80 @@ std::filesystem::path UserInfoRepository::defaultStorageDirectory() {
     return "data/local";
 }
 
-std::optional<UserInfo> UserInfoRepository::createUser(
-    const std::string& username,
-    const std::string& passwordHash,
-    const std::string& passwordSalt
-) {
-    if (username.empty() || getUserByUsername(username)) {
-        lastError_ = "Username is empty or already exists.";
-        return std::nullopt;
+bool UserInfoRepository::ensureUser(const std::string& username) {
+    if (username.empty()) {
+        return fail("Username is empty.");
     }
-    int nextId = 1;
-    for (const auto& entry : usersById_) {
-        nextId = std::max(nextId, entry.first + 1);
+    const std::string usernameKey = lower(username);
+    if (!usersByUsername_.count(usernameKey)) {
+        usersByUsername_.emplace(usernameKey, UserExtraInfo{username, 0.0});
     }
-    UserInfo user{nextId, username, passwordHash, passwordSalt, "", 0.0};
-    usersById_.emplace(user.id, user);
-    return user;
-}
-
-std::optional<UserInfo> UserInfoRepository::getUserById(int userId) const {
-    const auto found = usersById_.find(userId);
-    return found == usersById_.end() ? std::nullopt : std::optional<UserInfo>(found->second);
-}
-
-std::optional<UserInfo> UserInfoRepository::getUserByUsername(const std::string& username) const {
-    const auto target = lower(username);
-    for (const auto& entry : usersById_) {
-        if (lower(entry.second.username) == target) {
-            return entry.second;
-        }
-    }
-    return std::nullopt;
-}
-
-bool UserInfoRepository::updateProfileImagePath(int userId, const std::string& profileImagePath) {
-    const auto found = usersById_.find(userId);
-    if (found == usersById_.end()) {
-        return fail("User does not exist.");
-    }
-    found->second.profileImagePath = profileImagePath;
     return true;
 }
 
-bool UserInfoRepository::updateWeeklyBudget(int userId, double weeklyBudget) {
-    const auto found = usersById_.find(userId);
-    if (found == usersById_.end() || weeklyBudget < 0.0) {
+std::optional<UserExtraInfo> UserInfoRepository::getUserByUsername(const std::string& username) const {
+    const auto found = usersByUsername_.find(lower(username));
+    return found == usersByUsername_.end()
+        ? std::nullopt
+        : std::optional<UserExtraInfo>(found->second);
+}
+
+bool UserInfoRepository::updateWeeklyBudget(const std::string& username, double weeklyBudget) {
+    const auto found = usersByUsername_.find(lower(username));
+    if (found == usersByUsername_.end() || weeklyBudget < 0.0) {
         return fail("User does not exist or budget is negative.");
     }
     found->second.weeklyBudget = weeklyBudget;
     return true;
 }
 
-bool UserInfoRepository::replaceDietaryTagIds(int userId, const std::vector<int>& dietaryTagIds) {
-    if (!hasUser(userId)) {
+bool UserInfoRepository::replaceDietaryTagIds(
+    const std::string& username,
+    const std::vector<int>& dietaryTagIds
+) {
+    if (!hasUser(username)) {
         return fail("User does not exist.");
     }
-    dietaryTagIdsByUser_[userId] = uniqueIds(dietaryTagIds);
+    dietaryTagIdsByUser_[lower(username)] = uniqueIds(dietaryTagIds);
     return true;
 }
 
-bool UserInfoRepository::replaceAllergenIds(int userId, const std::vector<int>& allergenIds) {
-    if (!hasUser(userId)) {
+bool UserInfoRepository::replaceAllergenIds(
+    const std::string& username,
+    const std::vector<int>& allergenIds
+) {
+    if (!hasUser(username)) {
         return fail("User does not exist.");
     }
-    allergenIdsByUser_[userId] = uniqueIds(allergenIds);
+    allergenIdsByUser_[lower(username)] = uniqueIds(allergenIds);
     return true;
 }
 
-bool UserInfoRepository::replacePantryItems(int userId, const std::vector<PantryItem>& pantryItems) {
-    if (!hasUser(userId) || std::any_of(pantryItems.begin(), pantryItems.end(), [](const PantryItem& item) {
+bool UserInfoRepository::replacePantryItems(
+    const std::string& username,
+    const std::vector<PantryItem>& pantryItems
+) {
+    if (!hasUser(username) || std::any_of(pantryItems.begin(), pantryItems.end(), [](const PantryItem& item) {
         return item.ingredientId <= 0 || (item.availableGrams && *item.availableGrams < 0.0);
     })) {
         return fail("User does not exist or pantry item is invalid.");
     }
-    pantryItemsByUser_[userId] = pantryItems;
+    pantryItemsByUser_[lower(username)] = pantryItems;
     return true;
 }
 
-std::vector<int> UserInfoRepository::getDietaryTagIds(int userId) const {
-    const auto found = dietaryTagIdsByUser_.find(userId);
+std::vector<int> UserInfoRepository::getDietaryTagIds(const std::string& username) const {
+    const auto found = dietaryTagIdsByUser_.find(lower(username));
     return found == dietaryTagIdsByUser_.end() ? std::vector<int>{} : found->second;
 }
 
-std::vector<int> UserInfoRepository::getAllergenIds(int userId) const {
-    const auto found = allergenIdsByUser_.find(userId);
+std::vector<int> UserInfoRepository::getAllergenIds(const std::string& username) const {
+    const auto found = allergenIdsByUser_.find(lower(username));
     return found == allergenIdsByUser_.end() ? std::vector<int>{} : found->second;
 }
 
-std::vector<PantryItem> UserInfoRepository::getPantryItems(int userId) const {
-    const auto found = pantryItemsByUser_.find(userId);
+std::vector<PantryItem> UserInfoRepository::getPantryItems(const std::string& username) const {
+    const auto found = pantryItemsByUser_.find(lower(username));
     return found == pantryItemsByUser_.end() ? std::vector<PantryItem>{} : found->second;
 }
 
@@ -280,6 +272,6 @@ bool UserInfoRepository::fail(const std::string& message) {
     return false;
 }
 
-bool UserInfoRepository::hasUser(int userId) const {
-    return usersById_.count(userId) != 0;
+bool UserInfoRepository::hasUser(const std::string& username) const {
+    return usersByUsername_.count(lower(username)) != 0;
 }

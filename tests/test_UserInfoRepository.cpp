@@ -4,26 +4,31 @@
 
 #include <filesystem>
 
-TEST_CASE("UserInfoRepository persists profile preferences and pantry items", "[userinfo]") {
+TEST_CASE("UserInfoRepository persists supplemental user information", "[userinfo]") {
     const auto directory = std::filesystem::temp_directory_path() / "budgetbites-user-info-test";
     std::filesystem::remove_all(directory);
 
     UserInfoRepository repository(directory);
-    const auto user = repository.createUser("student", "password-hash", "password-salt");
-    REQUIRE(user.has_value());
-    REQUIRE(repository.updateWeeklyBudget(user->id, 45.0));
-    REQUIRE(repository.replaceDietaryTagIds(user->id, {1, 4}));
-    REQUIRE(repository.replaceAllergenIds(user->id, {1}));
-    REQUIRE(repository.replacePantryItems(user->id, {{22, 300.0}, {153, std::nullopt}}));
+    REQUIRE(repository.ensureUser("student"));
+    REQUIRE(repository.ensureUser("STUDENT"));
+    REQUIRE(repository.updateWeeklyBudget("student", 45.0));
+    REQUIRE(repository.replaceDietaryTagIds("student", {1, 4, 1}));
+    REQUIRE(repository.replaceAllergenIds("student", {1}));
+    REQUIRE(repository.replacePantryItems("student", {{22, 300.0}, {153, std::nullopt}}));
     REQUIRE(repository.save());
 
     UserInfoRepository reloaded(directory);
     const auto savedUser = reloaded.getUserByUsername("STUDENT");
     REQUIRE(savedUser.has_value());
+    CHECK(savedUser->username == "student");
     CHECK(savedUser->weeklyBudget == 45.0);
-    CHECK(reloaded.getDietaryTagIds(savedUser->id) == std::vector<int>{1, 4});
-    CHECK(reloaded.getAllergenIds(savedUser->id) == std::vector<int>{1});
-    CHECK(reloaded.getPantryItems(savedUser->id).size() == 2);
+    CHECK(reloaded.getDietaryTagIds("STUDENT") == std::vector<int>{1, 4});
+    CHECK(reloaded.getAllergenIds("STUDENT") == std::vector<int>{1});
+    const auto pantryItems = reloaded.getPantryItems("STUDENT");
+    REQUIRE(pantryItems.size() == 2);
+    REQUIRE(pantryItems[0].availableGrams.has_value());
+    CHECK(*pantryItems[0].availableGrams == 300.0);
+    CHECK_FALSE(pantryItems[1].availableGrams.has_value());
 
     std::filesystem::remove_all(directory);
 }

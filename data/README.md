@@ -20,6 +20,7 @@ data/
 │   ├── ingredient_dietary_tags.csv
 │   └── Sources/                # Raw downloaded or parsed source material
 └── local/                      # Per-user CSV data; ignored by Git
+    ├── users.csv               # Credentials and profile image paths
     ├── user_info.csv
     ├── user_dietary_tags.csv
     ├── user_allergens.csv
@@ -31,8 +32,9 @@ in-memory indexes for recipe, ingredient, seasoner, dietary, and allergen
 queries. Compatibility filtering checks confirmed conflicts from both
 ingredients and seasoners.
 `UserInfoRepository` reads and writes the local user CSV files separately, so
-catalog updates never overwrite a user's account, budget, preferences, or
-pantry.
+catalog updates never overwrite a user's budget, preferences, or pantry.
+`users.csv` is owned by `UserRepository`; the four supplemental tables use the
+username as their link to that account.
 
 The raw source files in `seed/Sources/` are retained for catalog maintenance.
 They are not read by the application at runtime.
