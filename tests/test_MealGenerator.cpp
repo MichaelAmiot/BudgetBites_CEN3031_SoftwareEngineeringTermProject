@@ -9,6 +9,7 @@
 #include "BudgetBitesLib/RecipeDataBase.h"
 
 #include <filesystem>
+#include <unordered_map>
 #include <unordered_set>
 
 namespace {
@@ -155,4 +156,243 @@ TEST_CASE("Catalog generator applies dietary and allergen IDs as hard filters", 
             CHECK(compatibleIds.count(*meal->recipeId) == 1);
         }
     }
+}
+
+TEST_CASE("Catalog generator limits recipe use to three when candidates are available", "[MealGenerator]") {
+    RecipeDataBase catalog(catalogPath());
+    REQUIRE(catalog.isLoaded());
+
+    Preferences preferences;
+    preferences.setDietaryTagIds({2});
+    REQUIRE(preferences.setBudget(100.0));
+
+    MealPlan mealPlan;
+    MealGenerator generator;
+    REQUIRE(generator.generateWeeklyMealPlan(
+        mealPlan,
+        catalog,
+        Account{},
+        preferences,
+        Ingredients{}
+    ));
+
+    std::unordered_map<int, int> recipeUseCounts;
+    for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
+        for (const MealType mealType : {MealType::Breakfast, MealType::Lunch, MealType::Dinner}) {
+            const MealEntry* meal = mealPlan.getMeal(day, mealType);
+            REQUIRE(meal != nullptr);
+            REQUIRE(meal->recipeId.has_value());
+            ++recipeUseCounts[*meal->recipeId];
+        }
+    }
+
+    for (const auto& entry : recipeUseCounts) {
+        CHECK(entry.second <= 3);
+    }
+}
+
+TEST_CASE("Catalog generator remains complete under maximum catalog restrictions", "[MealGenerator]") {
+    RecipeDataBase catalog(catalogPath());
+    REQUIRE(catalog.isLoaded());
+
+    Preferences preferences;
+    std::vector<int> dietaryTagIds;
+    for (const DietaryTag& tag : catalog.getDietaryTags()) {
+        dietaryTagIds.push_back(tag.dietaryTagId);
+    }
+    preferences.setDietaryTagIds(dietaryTagIds);
+    REQUIRE(preferences.setBudget(100.0));
+
+    Account account;
+    std::vector<int> allergenIds;
+    for (const Allergen& allergen : catalog.getAllergens()) {
+        allergenIds.push_back(allergen.allergenId);
+    }
+    account.setAllergenIds(allergenIds);
+
+    const auto compatible = catalog.findCompatibleRecipes(dietaryTagIds, allergenIds);
+    REQUIRE_FALSE(compatible.empty());
+
+    MealPlan mealPlan;
+    MealGenerator generator;
+    REQUIRE(generator.generateWeeklyMealPlan(
+        mealPlan,
+        catalog,
+        account,
+        preferences,
+        Ingredients{}
+    ));
+    CHECK(mealPlan.isComplete());
+
+    std::unordered_map<int, int> recipeUseCounts;
+    for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
+        for (const MealType mealType : {MealType::Breakfast, MealType::Lunch, MealType::Dinner}) {
+            const MealEntry* meal = mealPlan.getMeal(day, mealType);
+            REQUIRE(meal != nullptr);
+            REQUIRE(meal->recipeId.has_value());
+            ++recipeUseCounts[*meal->recipeId];
+        }
+    }
+    for (const auto& entry : recipeUseCounts) {
+        CHECK(entry.second <= 3);
+    }
+}
+
+TEST_CASE("Budget-first mode creates the same lowest-cost plan for different budgets", "[MealGenerator]") {
+    RecipeDataBase catalog(catalogPath());
+    REQUIRE(catalog.isLoaded());
+
+    Account account;
+    account.setAllergenIds({6});
+    Preferences lowBudgetPreferences;
+    lowBudgetPreferences.setDietaryTagIds({4});
+    REQUIRE(lowBudgetPreferences.setBudget(0.0));
+    Preferences highBudgetPreferences = lowBudgetPreferences;
+    REQUIRE(highBudgetPreferences.setBudget(100.0));
+
+    MealGenerator generator;
+    MealPlan lowBudgetPlan;
+    MealPlan highBudgetPlan;
+    const MealGenerationResult lowBudgetResult = generator.generateWeeklyMealPlan(
+        lowBudgetPlan,
+        catalog,
+        account,
+        lowBudgetPreferences,
+        Ingredients{},
+        MealGenerationMode::BudgetFirst
+    );
+    const MealGenerationResult highBudgetResult = generator.generateWeeklyMealPlan(
+        highBudgetPlan,
+        catalog,
+        account,
+        highBudgetPreferences,
+        Ingredients{},
+        MealGenerationMode::BudgetFirst
+    );
+
+    REQUIRE(lowBudgetResult.complete);
+    REQUIRE(highBudgetResult.complete);
+    CHECK(lowBudgetResult.estimatedCost == highBudgetResult.estimatedCost);
+    CHECK_FALSE(lowBudgetResult.withinBudget);
+    CHECK(highBudgetResult.withinBudget);
+    for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
+        for (const MealType mealType : {MealType::Breakfast, MealType::Lunch, MealType::Dinner}) {
+            REQUIRE(lowBudgetPlan.getMeal(day, mealType) != nullptr);
+            REQUIRE(highBudgetPlan.getMeal(day, mealType) != nullptr);
+            CHECK(
+                lowBudgetPlan.getMeal(day, mealType)->recipeId ==
+                highBudgetPlan.getMeal(day, mealType)->recipeId
+            );
+        }
+    }
+}
+
+TEST_CASE("Budget-first mode does not cost more than the normal plan", "[MealGenerator]") {
+    RecipeDataBase catalog(catalogPath());
+    REQUIRE(catalog.isLoaded());
+
+    Preferences preferences;
+    preferences.setDietaryTagIds({2});
+    REQUIRE(preferences.setBudget(100.0));
+
+    MealGenerator generator;
+    MealPlan normalPlan;
+    MealPlan budgetPlan;
+    const MealGenerationResult normalResult = generator.generateWeeklyMealPlan(
+        normalPlan,
+        catalog,
+        Account{},
+        preferences,
+        Ingredients{},
+        MealGenerationMode::Normal
+    );
+    const MealGenerationResult budgetResult = generator.generateWeeklyMealPlan(
+        budgetPlan,
+        catalog,
+        Account{},
+        preferences,
+        Ingredients{},
+        MealGenerationMode::BudgetFirst
+    );
+
+    REQUIRE(normalResult.complete);
+    REQUIRE(budgetResult.complete);
+    CHECK(budgetResult.estimatedCost <= normalResult.estimatedCost);
+}
+
+TEST_CASE("Strict-budget mode may return a partial plan without exceeding budget", "[MealGenerator]") {
+    RecipeDataBase catalog(catalogPath());
+    REQUIRE(catalog.isLoaded());
+
+    Preferences preferences;
+    REQUIRE(preferences.setBudget(40.0));
+
+    MealPlan mealPlan;
+    MealGenerator generator;
+    const MealGenerationResult result = generator.generateWeeklyMealPlan(
+        mealPlan,
+        catalog,
+        Account{},
+        preferences,
+        Ingredients{},
+        MealGenerationMode::StrictBudget
+    );
+
+    REQUIRE(result.generated);
+    CHECK_FALSE(result.complete);
+    CHECK(result.withinBudget);
+    CHECK(result.mealsGenerated == mealPlan.countMeals());
+    CHECK(result.mealsGenerated < MealPlan::kDaysInWeek * 3);
+    CHECK(result.estimatedCost <= preferences.getBudget());
+}
+
+TEST_CASE("Strict-budget mode creates a complete plan when the budget is sufficient", "[MealGenerator]") {
+    RecipeDataBase catalog(catalogPath());
+    REQUIRE(catalog.isLoaded());
+
+    Preferences preferences;
+    REQUIRE(preferences.setBudget(100.0));
+
+    MealPlan mealPlan;
+    MealGenerator generator;
+    const MealGenerationResult result = generator.generateWeeklyMealPlan(
+        mealPlan,
+        catalog,
+        Account{},
+        preferences,
+        Ingredients{},
+        MealGenerationMode::StrictBudget
+    );
+
+    CHECK(result.generated);
+    CHECK(result.complete);
+    CHECK(result.withinBudget);
+    CHECK(result.mealsGenerated == MealPlan::kDaysInWeek * 3);
+    CHECK(result.estimatedCost <= preferences.getBudget());
+}
+
+TEST_CASE("Strict-budget mode returns an empty plan for a zero budget", "[MealGenerator]") {
+    RecipeDataBase catalog(catalogPath());
+    REQUIRE(catalog.isLoaded());
+
+    Preferences preferences;
+    REQUIRE(preferences.setBudget(0.0));
+
+    MealPlan mealPlan;
+    MealGenerator generator;
+    const MealGenerationResult result = generator.generateWeeklyMealPlan(
+        mealPlan,
+        catalog,
+        Account{},
+        preferences,
+        Ingredients{},
+        MealGenerationMode::StrictBudget
+    );
+
+    CHECK_FALSE(result.generated);
+    CHECK_FALSE(result.complete);
+    CHECK(result.withinBudget);
+    CHECK(result.mealsGenerated == 0);
+    CHECK(result.estimatedCost == 0.0);
+    CHECK(mealPlan.countMeals() == 0);
 }
