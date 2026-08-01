@@ -12,6 +12,8 @@ data/
 │   ├── recipe_instructions.csv
 │   ├── seasoner.csv
 │   ├── recipes_seasoner.csv
+│   ├── seasoner_allergens.csv
+│   ├── seasoner_dietary_tags.csv
 │   ├── allergens.csv
 │   ├── ingredient_allergens.csv
 │   ├── dietary_tags.csv
@@ -25,7 +27,9 @@ data/
 ```
 
 `RecipeDataBase` loads the catalog CSV files once at startup and builds
-in-memory indexes for recipe, ingredient, dietary, and allergen queries.
+in-memory indexes for recipe, ingredient, seasoner, dietary, and allergen
+queries. Compatibility filtering checks confirmed conflicts from both
+ingredients and seasoners.
 `UserInfoRepository` reads and writes the local user CSV files separately, so
 catalog updates never overwrite a user's account, budget, preferences, or
 pantry.
