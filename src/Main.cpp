@@ -148,6 +148,45 @@ std::optional<MealType> readMealType() {
     return std::nullopt;
 }
 
+std::optional<MealGenerationMode> readMealGenerationMode() {
+    std::cout << "\nChoose meal-plan mode:\n"
+              << "1. Normal plan\n"
+              << "   Generates all 21 meals with more variety. It may exceed your budget.\n"
+              << "2. Budget-first plan\n"
+              << "   Generates all 21 meals at the lowest estimated cost found.\n"
+              << "   Recipes may repeat and the result may still exceed your budget.\n"
+              << "3. Strict-budget plan\n"
+              << "   Never exceeds your budget, but may generate fewer than 21 meals.\n";
+    const auto choice = readInteger("Mode: ");
+    if (!choice) {
+        return std::nullopt;
+    }
+    if (*choice == 1) {
+        return MealGenerationMode::Normal;
+    }
+    if (*choice == 2) {
+        return MealGenerationMode::BudgetFirst;
+    }
+    if (*choice == 3) {
+        return MealGenerationMode::StrictBudget;
+    }
+    return std::nullopt;
+}
+
+void clearGeneratedPlan(
+    MealPlan& mealPlan,
+    Grocery& grocery,
+    std::optional<MealGenerationMode>& currentPlanMode
+) {
+    if (mealPlan.countMeals() == 0) {
+        return;
+    }
+    mealPlan.clearAllMeals();
+    grocery = Grocery{};
+    currentPlanMode.reset();
+    std::cout << "The previous meal plan was cleared because user settings changed.\n";
+}
+
 bool saveAccountData(UX& ux, const std::string& accountPath) {
     if (ux.saveToFile(accountPath)) {
         return true;
@@ -244,20 +283,49 @@ void handleGenerateMealPlan(
     const RecipeDataBase& catalog,
     const Account& account,
     const Preferences& preferences,
-    const Ingredients& ingredients
+    const Ingredients& ingredients,
+    std::optional<MealGenerationMode>& currentPlanMode
 ) {
-    if (!generator.generateWeeklyMealPlan(
-            mealPlan,
-            catalog,
-            account,
-            preferences,
-            ingredients)) {
-        std::cout << "Unable to generate a complete plan with the current restrictions.\n";
+    const auto mode = readMealGenerationMode();
+    if (!mode) {
+        std::cout << "Please choose a mode from 1 to 3.\n";
         return;
     }
 
+    const MealGenerationResult result = generator.generateWeeklyMealPlan(
+        mealPlan,
+        catalog,
+        account,
+        preferences,
+        ingredients,
+        *mode
+    );
     grocery.buildFromMealPlan(mealPlan, catalog, ingredients);
-    std::cout << "Weekly meal plan generated.\n";
+
+    if (!result.generated) {
+        currentPlanMode.reset();
+        if (*mode == MealGenerationMode::StrictBudget) {
+            std::cout << "No meals could be planned within this budget.\n";
+        } else {
+            std::cout << "Unable to generate a complete plan with the current restrictions.\n";
+        }
+        return;
+    }
+
+    currentPlanMode = *mode;
+    if (*mode == MealGenerationMode::Normal) {
+        std::cout << "Normal weekly meal plan generated.\n";
+    } else if (*mode == MealGenerationMode::BudgetFirst) {
+        std::cout << "Budget-first weekly meal plan generated.\n";
+    } else {
+        std::cout << "Strict-budget meal plan generated.\n"
+                  << "Meals planned: " << result.mealsGenerated
+                  << " / " << MealPlan::kDaysInWeek * 3 << '\n';
+    }
+
+    if (!result.complete && *mode != MealGenerationMode::StrictBudget) {
+        std::cout << "Unable to generate a complete plan with the current restrictions.\n";
+    }
     MainHelper::displayBudgetStatus(grocery, preferences, std::cout);
 }
 
@@ -283,7 +351,8 @@ void handleReplaceMeal(
     const RecipeDataBase& catalog,
     const Account& account,
     const Preferences& preferences,
-    const Ingredients& ingredients
+    const Ingredients& ingredients,
+    const std::optional<MealGenerationMode>& currentPlanMode
 ) {
     if (mealPlan.countMeals() == 0) {
         std::cout << "Generate a meal plan first.\n";
@@ -312,6 +381,8 @@ void handleReplaceMeal(
     std::cout << "\nCompatible recipes (ID: title):\n";
     MainHelper::displayRecipeOptions(candidates, std::cout);
     const auto recipeId = readInteger("Replacement recipe ID: ");
+    const MealPlan originalPlan = mealPlan;
+    const Grocery originalGrocery = grocery;
     if (!recipeId || !MainHelper::replaceMeal(
             mealPlan,
             grocery,
@@ -323,6 +394,14 @@ void handleReplaceMeal(
             preferences,
             ingredients)) {
         std::cout << "That recipe cannot be used for this meal.\n";
+        return;
+    }
+
+    if (currentPlanMode == MealGenerationMode::StrictBudget &&
+        !grocery.isWithinBudget(preferences.getBudget())) {
+        mealPlan = originalPlan;
+        grocery = originalGrocery;
+        std::cout << "That replacement would exceed the strict budget.\n";
         return;
     }
 
@@ -372,6 +451,7 @@ int main() {
     MealPlan mealPlan;
     Grocery grocery;
     MealGenerator mealGenerator;
+    std::optional<MealGenerationMode> currentPlanMode;
     bool running = true;
 
     while (running) {
@@ -388,7 +468,9 @@ int main() {
                     handleRegister(ux, accountPath);
                     break;
                 case 2:
-                    handleSignIn(ux, account, preferences, ingredients, mealPlan, grocery);
+                    if (handleSignIn(ux, account, preferences, ingredients, mealPlan, grocery)) {
+                        currentPlanMode.reset();
+                    }
                     break;
                 case 3:
                     saveAccountData(ux, accountPath);
@@ -418,6 +500,7 @@ int main() {
                     break;
                 }
                 saveUserSettings(ux, account, preferences, ingredients);
+                clearGeneratedPlan(mealPlan, grocery, currentPlanMode);
                 std::cout << "Weekly budget saved.\n";
                 break;
             }
@@ -425,11 +508,13 @@ int main() {
                 preferences.enterDietaryPreferences(catalog.getDietaryTags());
                 finishFormattedInput();
                 saveUserSettings(ux, account, preferences, ingredients);
+                clearGeneratedPlan(mealPlan, grocery, currentPlanMode);
                 break;
             case 4:
                 account.enterFoodAllergies(catalog.getAllergens());
                 finishFormattedInput();
                 saveUserSettings(ux, account, preferences, ingredients);
+                clearGeneratedPlan(mealPlan, grocery, currentPlanMode);
                 break;
             case 5:
                 ingredients.enterIngredients(catalog.getAllIngredients());
@@ -437,6 +522,7 @@ int main() {
                     finishFormattedInput();
                 }
                 saveUserSettings(ux, account, preferences, ingredients);
+                clearGeneratedPlan(mealPlan, grocery, currentPlanMode);
                 break;
             case 6:
                 handleUploadImage(ux, accountPath);
@@ -454,7 +540,8 @@ int main() {
                     catalog,
                     account,
                     preferences,
-                    ingredients
+                    ingredients,
+                    currentPlanMode
                 );
                 break;
             case 9:
@@ -474,7 +561,8 @@ int main() {
                     catalog,
                     account,
                     preferences,
-                    ingredients
+                    ingredients,
+                    currentPlanMode
                 );
                 break;
             case 12:
@@ -487,10 +575,12 @@ int main() {
                 break;
             case 13:
                 closeSession(ux, account, preferences, ingredients, mealPlan, grocery, accountPath);
+                currentPlanMode.reset();
                 std::cout << "Signed out.\n";
                 break;
             case 14:
                 closeSession(ux, account, preferences, ingredients, mealPlan, grocery, accountPath);
+                currentPlanMode.reset();
                 running = false;
                 break;
             default:

@@ -5,6 +5,7 @@
 #ifndef BUDGETBITES_MEALGENERATOR_H
 #define BUDGETBITES_MEALGENERATOR_H
 
+#include <cstddef>
 #include <string>
 #include <vector>
 
@@ -14,6 +15,20 @@ class Account;
 class Ingredients;
 class Preferences;
 class RecipeDataBase;
+
+enum class MealGenerationMode {
+    Normal,
+    BudgetFirst,
+    StrictBudget
+};
+
+struct MealGenerationResult {
+    bool generated = false;
+    bool complete = false;
+    bool withinBudget = false;
+    std::size_t mealsGenerated = 0;
+    double estimatedCost = 0.0;
+};
 
 class MealGenerator {
 
@@ -37,6 +52,16 @@ public:
         const Account& account,
         const Preferences& preferences,
         const Ingredients& pantry
+    );
+
+    // Generates a plan using the selected balance of variety, cost, and completeness.
+    MealGenerationResult generateWeeklyMealPlan(
+        MealPlan& mealPlan,
+        const RecipeDataBase& catalog,
+        const Account& account,
+        const Preferences& preferences,
+        const Ingredients& pantry,
+        MealGenerationMode mode
     );
 
 };
