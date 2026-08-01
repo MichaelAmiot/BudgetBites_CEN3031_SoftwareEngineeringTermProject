@@ -1,6 +1,7 @@
 add_executable(BudgetBitesTests
         test_account.cpp
         test_grocery.cpp
+        test_MainHelper.cpp
         test_MealPlan.cpp
         test_infrastructure.cpp
         test_RecipeDataBase.cpp
@@ -9,11 +10,7 @@ add_executable(BudgetBitesTests
         test_ProfileImageStore.cpp
         test_UserInfoRepository.cpp
         test_Preferences.cpp
-        ../src/MealGenerator.cpp
-        ../include/BudgetBitesLib/MealGenerator.h
         test_MealGenerator.cpp
-        ../src/Ingredients.cpp
-        ../include/BudgetBitesLib/Ingredients.h
         test_ingredients.cpp
 )
 

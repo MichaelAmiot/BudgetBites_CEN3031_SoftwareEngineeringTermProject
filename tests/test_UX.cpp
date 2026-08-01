@@ -3,6 +3,9 @@
 #include <filesystem>
 #include <fstream>
 
+#include "BudgetBitesLib/Account.h"
+#include "BudgetBitesLib/Ingredients.h"
+#include "BudgetBitesLib/Preferences.h"
 #include "BudgetBitesLib/UX.h"
 
 using namespace std;
@@ -171,4 +174,39 @@ TEST_CASE("loadFromFile signs everyone out", "[ux]") {
     CHECK_FALSE(ux.isSignedIn());
 
     filesystem::remove(path);
+}
+
+TEST_CASE("current user supplemental information is saved and loaded", "[ux]") {
+    const auto directory = filesystem::temp_directory_path() / "budgetbites-ux-user-info-test";
+    filesystem::remove_all(directory);
+
+    UX ux(directory);
+    REQUIRE(ux.registerUser("Nikki", strongPassword));
+    REQUIRE(ux.signIn("Nikki", strongPassword));
+
+    Account account;
+    account.setAllergenIds({1, 6});
+    Preferences preferences;
+    REQUIRE(preferences.setBudget(45.0));
+    preferences.setDietaryTagIds({1, 4});
+    Ingredients ingredients;
+    REQUIRE(ingredients.addIngredient(22, 300.0));
+    REQUIRE(ingredients.addIngredient(153));
+    REQUIRE(ux.saveCurrentUserInfo(account, preferences, ingredients));
+
+    Account loadedAccount;
+    Preferences loadedPreferences;
+    Ingredients loadedIngredients;
+    REQUIRE(ux.loadCurrentUserInfo(loadedAccount, loadedPreferences, loadedIngredients));
+
+    CHECK(loadedAccount.getAllergenIds() == vector<int>{1, 6});
+    CHECK(loadedPreferences.getDietaryTagIds() == vector<int>{1, 4});
+    CHECK(loadedPreferences.getBudget() == 45.0);
+    REQUIRE(loadedIngredients.getPantryItems().size() == 2);
+    CHECK(loadedIngredients.getPantryItems()[0].ingredientId == 22);
+    CHECK(loadedIngredients.getPantryItems()[0].availableGrams == 300.0);
+    CHECK(loadedIngredients.getPantryItems()[1].ingredientId == 153);
+    CHECK_FALSE(loadedIngredients.getPantryItems()[1].availableGrams.has_value());
+
+    filesystem::remove_all(directory);
 }

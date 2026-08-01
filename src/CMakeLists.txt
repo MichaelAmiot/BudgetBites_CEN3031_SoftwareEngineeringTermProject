@@ -3,6 +3,7 @@ add_library(BudgetBitesLib
         CsvFile.cpp
         Grocery.cpp
         Infrastructure.cpp
+        MainHelper.cpp
         MealPlan.cpp
         RecipeDataBase.cpp
         UX.cpp
@@ -24,8 +25,6 @@ target_include_directories(BudgetBitesLib
 
 add_executable(BudgetBites
         Main.cpp
-        Preferences.cpp
-        ../include/BudgetBitesLib/Preferences.h
 )
 
 target_link_libraries(BudgetBites
