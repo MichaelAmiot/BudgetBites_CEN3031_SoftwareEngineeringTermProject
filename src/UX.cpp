@@ -118,12 +118,21 @@ bool UX::saveCurrentUserInfo(
         return false;
     }
 
-    // Replace each saved list with the current selections before writing local CSV files.
-    return userInfoRepository.updateWeeklyBudget(*currentUsername, preferences.getBudget()) &&
-           userInfoRepository.replaceDietaryTagIds(*currentUsername, preferences.getDietaryTagIds()) &&
-           userInfoRepository.replaceAllergenIds(*currentUsername, account.getAllergenIds()) &&
-           userInfoRepository.replacePantryItems(*currentUsername, ingredients.getPantryItems()) &&
-           userInfoRepository.save();
+    if (!userInfoRepository.updateWeeklyBudget(*currentUsername, preferences.getBudget())) {
+        return false;
+    }
+    if (!userInfoRepository.replaceDietaryTagIds(
+            *currentUsername,
+            preferences.getDietaryTagIds())) {
+        return false;
+    }
+    if (!userInfoRepository.replaceAllergenIds(*currentUsername, account.getAllergenIds())) {
+        return false;
+    }
+    if (!userInfoRepository.replacePantryItems(*currentUsername, ingredients.getPantryItems())) {
+        return false;
+    }
+    return userInfoRepository.save();
 }
 
 bool UX::saveToFile(const string& filePath) const {

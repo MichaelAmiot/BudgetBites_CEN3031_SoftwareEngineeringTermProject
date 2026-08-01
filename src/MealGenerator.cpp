@@ -14,10 +14,12 @@
 #include <optional>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
 
 namespace {
 
 using RecipeCandidates = std::vector<const Recipe*>;
+constexpr int kPreferredMaximumRecipeUses = 3;
 
 std::unordered_set<int> recipeIngredientIds(
     const RecipeDataBase& catalog,
@@ -35,9 +37,10 @@ struct CandidateEvaluation {
     double score;
     double totalCost;
     bool withinBudget;
+    int previousUses;
 };
 
-bool isBetterCandidate(
+bool isBetterNormalCandidate(
     const CandidateEvaluation& candidate,
     const CandidateEvaluation& currentBest
 ) {
@@ -62,6 +65,99 @@ bool isBetterCandidate(
         }
     }
     return candidate.recipe->recipeId < currentBest.recipe->recipeId;
+}
+
+bool isBetterBudgetCandidate(
+    const CandidateEvaluation& candidate,
+    const CandidateEvaluation& currentBest
+) {
+    // Grocery already includes pantry amounts, package sizes, and ingredient reuse.
+    if (candidate.totalCost != currentBest.totalCost) {
+        return candidate.totalCost < currentBest.totalCost;
+    }
+    if (candidate.previousUses != currentBest.previousUses) {
+        return candidate.previousUses < currentBest.previousUses;
+    }
+    return candidate.recipe->recipeId < currentBest.recipe->recipeId;
+}
+
+std::optional<CandidateEvaluation> chooseCandidate(
+    RecipeCandidates candidates,
+    std::size_t day,
+    MealType mealType,
+    MealGenerationMode mode,
+    std::unordered_map<int, int>& recipeUseCount,
+    const std::unordered_set<int>& pantryIngredientIds,
+    const std::unordered_set<int>& plannedIngredientIds,
+    const MealPlan& generatedPlan,
+    const RecipeDataBase& catalog,
+    const Ingredients& pantry,
+    double weeklyBudget,
+    double currentCost
+) {
+    if (mode == MealGenerationMode::Normal) {
+        RecipeCandidates candidatesBelowUseLimit;
+        for (const Recipe* candidate : candidates) {
+            if (recipeUseCount[candidate->recipeId] < kPreferredMaximumRecipeUses) {
+                candidatesBelowUseLimit.push_back(candidate);
+            }
+        }
+        if (!candidatesBelowUseLimit.empty()) {
+            candidates = std::move(candidatesBelowUseLimit);
+        }
+    }
+
+    std::optional<CandidateEvaluation> best;
+    for (const Recipe* candidate : candidates) {
+        const std::unordered_set<int> ingredientIds = recipeIngredientIds(catalog, candidate->recipeId);
+        int pantryMatches = 0;
+        int plannedReuseMatches = 0;
+        for (const int ingredientId : ingredientIds) {
+            if (pantryIngredientIds.count(ingredientId) > 0) {
+                ++pantryMatches;
+            }
+            if (plannedIngredientIds.count(ingredientId) > 0) {
+                ++plannedReuseMatches;
+            }
+        }
+
+        // Build a trial grocery list so package sizes and reused ingredients are included.
+        MealPlan trialPlan = generatedPlan;
+        trialPlan.setMeal(day, mealType, candidate->recipeId);
+        Grocery trialGrocery;
+        trialGrocery.buildFromMealPlan(trialPlan, catalog, pantry);
+        const double trialCost = trialGrocery.calculateTotal();
+        if (mode == MealGenerationMode::StrictBudget && trialCost > weeklyBudget) {
+            continue;
+        }
+
+        const double additionalCost = std::max(0.0, trialCost - currentCost);
+        const double score =
+            pantryMatches * 3.0 +
+            plannedReuseMatches * 2.0 -
+            recipeUseCount[candidate->recipeId] * 2.0 -
+            additionalCost;
+
+        const CandidateEvaluation evaluation{
+            candidate,
+            score,
+            trialCost,
+            trialCost <= weeklyBudget,
+            recipeUseCount[candidate->recipeId]
+        };
+
+        bool better = !best;
+        if (best && mode == MealGenerationMode::Normal) {
+            better = isBetterNormalCandidate(evaluation, *best);
+        } else if (best) {
+            better = isBetterBudgetCandidate(evaluation, *best);
+        }
+
+        if (better) {
+            best = evaluation;
+        }
+    }
+    return best;
 }
 
 } // namespace
@@ -152,8 +248,28 @@ bool MealGenerator::generateWeeklyMealPlan(
     const Preferences& preferences,
     const Ingredients& pantry
 ) {
-    if (!catalog.isLoaded()) {
-        return false;
+    const MealGenerationResult result = generateWeeklyMealPlan(
+        mealPlan,
+        catalog,
+        account,
+        preferences,
+        pantry,
+        MealGenerationMode::Normal
+    );
+    return result.generated && result.complete;
+}
+
+MealGenerationResult MealGenerator::generateWeeklyMealPlan(
+    MealPlan& mealPlan,
+    const RecipeDataBase& catalog,
+    const Account& account,
+    const Preferences& preferences,
+    const Ingredients& pantry,
+    MealGenerationMode mode
+) {
+    MealGenerationResult result;
+    if (!catalog.isLoaded() || preferences.getBudget() < 0.0) {
+        return result;
     }
 
     // Allergy and dietary conflicts are hard filters and never enter scoring.
@@ -177,7 +293,7 @@ bool MealGenerator::generateWeeklyMealPlan(
     }
     // Lunch and dinner cannot be filled without at least one main-meal recipe.
     if (dinnerRecipes.empty()) {
-        return false;
+        return result;
     }
 
     std::unordered_set<int> pantryIngredientIds;
@@ -191,79 +307,114 @@ bool MealGenerator::generateWeeklyMealPlan(
     double currentCost = 0.0;
     const double weeklyBudget = preferences.getBudget();
 
-    for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
-        for (const MealType mealType : {MealType::Breakfast, MealType::Lunch, MealType::Dinner}) {
-            RecipeCandidates candidates;
-            if (mealType == MealType::Breakfast) {
-                // Use every compatible breakfast once before dinner/dessert fallback.
-                for (const Recipe* recipe : breakfastRecipes) {
-                    if (recipeUseCount[recipe->recipeId] == 0) {
-                        candidates.push_back(recipe);
-                    }
-                }
-                if (candidates.empty()) {
-                    candidates.insert(candidates.end(), dinnerRecipes.begin(), dinnerRecipes.end());
-                    candidates.insert(candidates.end(), dessertRecipes.begin(), dessertRecipes.end());
-                }
-                if (candidates.empty()) {
-                    candidates = breakfastRecipes;
-                }
-            } else {
-                // The dinner catalog category represents both lunch and dinner.
-                candidates = dinnerRecipes;
+    // Normal modes fill each day in display order. Strict mode first gives every
+    // day a dinner, then adds lunches and breakfasts while money remains.
+    std::vector<std::pair<std::size_t, MealType>> mealSlots;
+    if (mode == MealGenerationMode::StrictBudget) {
+        for (const MealType mealType : {MealType::Dinner, MealType::Lunch, MealType::Breakfast}) {
+            for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
+                mealSlots.emplace_back(day, mealType);
             }
-
-            if (candidates.empty()) {
-                return false;
+        }
+    } else {
+        for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
+            for (const MealType mealType : {MealType::Breakfast, MealType::Lunch, MealType::Dinner}) {
+                mealSlots.emplace_back(day, mealType);
             }
-
-            std::optional<CandidateEvaluation> best;
-            for (const Recipe* candidate : candidates) {
-                const std::unordered_set<int> ingredientIds = recipeIngredientIds(catalog, candidate->recipeId);
-                int pantryMatches = 0;
-                int plannedReuseMatches = 0;
-                for (const int ingredientId : ingredientIds) {
-                    pantryMatches += pantryIngredientIds.count(ingredientId) ? 1 : 0;
-                    plannedReuseMatches += plannedIngredientIds.count(ingredientId) ? 1 : 0;
-                }
-
-                // Rebuild a small trial grocery list to obtain the true marginal weekly cost.
-                MealPlan trialPlan = generatedPlan;
-                trialPlan.setMeal(day, mealType, candidate->recipeId);
-                Grocery trialGrocery;
-                trialGrocery.buildFromMealPlan(trialPlan, catalog, pantry);
-                const double trialCost = trialGrocery.calculateTotal();
-                const double additionalCost = std::max(0.0, trialCost - currentCost);
-
-                // Prefer pantry ingredients and ingredient reuse, while reducing
-                // unnecessary repetition and additional grocery cost.
-                const double score =
-                    pantryMatches * 3.0 +
-                    plannedReuseMatches * 2.0 -
-                    recipeUseCount[candidate->recipeId] * 2.0 -
-                    additionalCost;
-
-                const CandidateEvaluation evaluation{
-                    candidate,
-                    score,
-                    trialCost,
-                    trialCost <= weeklyBudget
-                };
-                if (!best || isBetterCandidate(evaluation, *best)) {
-                    best = evaluation;
-                }
-            }
-
-            if (!best || !generatedPlan.setMeal(day, mealType, best->recipe->recipeId)) {
-                return false;
-            }
-            ++recipeUseCount[best->recipe->recipeId];
-            const auto selectedIngredients = recipeIngredientIds(catalog, best->recipe->recipeId);
-            plannedIngredientIds.insert(selectedIngredients.begin(), selectedIngredients.end());
-            currentCost = best->totalCost;
         }
     }
 
+    for (const auto& slot : mealSlots) {
+        const std::size_t day = slot.first;
+        const MealType mealType = slot.second;
+        RecipeCandidates candidates;
+        RecipeCandidates strictBreakfastFallback;
+
+        if (mealType == MealType::Breakfast) {
+            // Use each compatible breakfast once before the agreed dinner or
+            // dessert fallback. Strict mode may use the fallback sooner if the
+            // remaining budget cannot afford any unused breakfast.
+            for (const Recipe* recipe : breakfastRecipes) {
+                if (recipeUseCount[recipe->recipeId] == 0) {
+                    candidates.push_back(recipe);
+                }
+            }
+            if (candidates.empty()) {
+                candidates.insert(candidates.end(), dinnerRecipes.begin(), dinnerRecipes.end());
+                candidates.insert(candidates.end(), dessertRecipes.begin(), dessertRecipes.end());
+            } else if (mode == MealGenerationMode::StrictBudget) {
+                strictBreakfastFallback.insert(
+                    strictBreakfastFallback.end(),
+                    dinnerRecipes.begin(),
+                    dinnerRecipes.end()
+                );
+                strictBreakfastFallback.insert(
+                    strictBreakfastFallback.end(),
+                    dessertRecipes.begin(),
+                    dessertRecipes.end()
+                );
+            }
+            if (candidates.empty()) {
+                candidates = breakfastRecipes;
+            }
+        } else {
+            // The dinner catalog category represents both main-meal positions.
+            candidates = dinnerRecipes;
+        }
+
+        std::optional<CandidateEvaluation> best = chooseCandidate(
+            candidates,
+            day,
+            mealType,
+            mode,
+            recipeUseCount,
+            pantryIngredientIds,
+            plannedIngredientIds,
+            generatedPlan,
+            catalog,
+            pantry,
+            weeklyBudget,
+            currentCost
+        );
+        if (!best && mode == MealGenerationMode::StrictBudget && !strictBreakfastFallback.empty()) {
+            best = chooseCandidate(
+                strictBreakfastFallback,
+                day,
+                mealType,
+                mode,
+                recipeUseCount,
+                pantryIngredientIds,
+                plannedIngredientIds,
+                generatedPlan,
+                catalog,
+                pantry,
+                weeklyBudget,
+                currentCost
+            );
+        }
+        if (!best) {
+            if (mode == MealGenerationMode::StrictBudget) {
+                continue;
+            }
+            return result;
+        }
+
+        if (!generatedPlan.setMeal(day, mealType, best->recipe->recipeId)) {
+            return result;
+        }
+        ++recipeUseCount[best->recipe->recipeId];
+        const auto selectedIngredients = recipeIngredientIds(catalog, best->recipe->recipeId);
+        plannedIngredientIds.insert(selectedIngredients.begin(), selectedIngredients.end());
+        currentCost = best->totalCost;
+    }
+
     mealPlan = generatedPlan;
-    return mealPlan.isComplete();
+    Grocery finalGrocery;
+    finalGrocery.buildFromMealPlan(mealPlan, catalog, pantry);
+    result.mealsGenerated = mealPlan.countMeals();
+    result.generated = result.mealsGenerated > 0;
+    result.complete = mealPlan.isComplete();
+    result.estimatedCost = finalGrocery.calculateTotal();
+    result.withinBudget = result.estimatedCost <= weeklyBudget;
+    return result;
 }
