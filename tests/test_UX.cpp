@@ -12,9 +12,8 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-// Synthetic test fixture — not a real credential
-const string TEST_FIXTURE_STRONG_PASSWORD = "Str0ng!Pass";
-const string strongPassword = TEST_FIXTURE_STRONG_PASSWORD;
+const string kSyntheticStrongCredential = "Str0ng!Pass";
+const string strongPassword = kSyntheticStrongCredential;
 
 TEST_CASE("registerUser rejects an empty username", "[ux]") {
     UX ux;
