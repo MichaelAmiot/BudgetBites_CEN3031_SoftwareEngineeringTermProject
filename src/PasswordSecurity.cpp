@@ -37,15 +37,13 @@ namespace PasswordSecurity {
 
 
     string generateSalt() {
-        static std::random_device rd;
-        static std::mt19937_64 gen(rd());
-        static std::uniform_int_distribution<size_t> dist(0, 61);
+        static std::random_device rd;  // CSPRNG-backed (OS entropy source)
 
         string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         string salt = "";
 
         for (int i = 0; i < 8; i++) {
-            salt += chars[dist(gen)];
+            salt += chars[rd() % chars.length()];
         }
 
         return salt;
