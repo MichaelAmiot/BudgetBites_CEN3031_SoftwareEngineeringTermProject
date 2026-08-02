@@ -13,7 +13,7 @@ jobs:
             sudo apt-get install -y cmake g++ ninja-build
       - run:
           name: Configure
-          command: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+          command: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DBUILD_GUI=OFF
       - run:
           name: Build
           command: cmake --build build

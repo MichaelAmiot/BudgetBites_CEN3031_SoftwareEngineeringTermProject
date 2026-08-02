@@ -238,7 +238,7 @@ TEST_CASE("Catalog generator remains complete under maximum catalog restrictions
     }
 }
 
-TEST_CASE("Budget-first mode creates the same lowest-cost plan for different budgets", "[MealGenerator]") {
+TEST_CASE("Budget-first mode uses the available allowance before falling back to the cheapest plan", "[MealGenerator]") {
     RecipeDataBase catalog(catalogPath());
     REQUIRE(catalog.isLoaded());
 
@@ -272,22 +272,13 @@ TEST_CASE("Budget-first mode creates the same lowest-cost plan for different bud
 
     REQUIRE(lowBudgetResult.complete);
     REQUIRE(highBudgetResult.complete);
-    CHECK(lowBudgetResult.estimatedCost == highBudgetResult.estimatedCost);
     CHECK_FALSE(lowBudgetResult.withinBudget);
     CHECK(highBudgetResult.withinBudget);
-    for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
-        for (const MealType mealType : {MealType::Breakfast, MealType::Lunch, MealType::Dinner}) {
-            REQUIRE(lowBudgetPlan.getMeal(day, mealType) != nullptr);
-            REQUIRE(highBudgetPlan.getMeal(day, mealType) != nullptr);
-            CHECK(
-                lowBudgetPlan.getMeal(day, mealType)->recipeId ==
-                highBudgetPlan.getMeal(day, mealType)->recipeId
-            );
-        }
-    }
+    CHECK(highBudgetResult.estimatedCost <= highBudgetPreferences.getBudget() * 1.10);
+    CHECK(highBudgetResult.estimatedCost >= lowBudgetResult.estimatedCost);
 }
 
-TEST_CASE("Budget-first mode does not cost more than the normal plan", "[MealGenerator]") {
+TEST_CASE("Budget-first mode stays within its ten-percent allowance when possible", "[MealGenerator]") {
     RecipeDataBase catalog(catalogPath());
     REQUIRE(catalog.isLoaded());
 
@@ -317,7 +308,7 @@ TEST_CASE("Budget-first mode does not cost more than the normal plan", "[MealGen
 
     REQUIRE(normalResult.complete);
     REQUIRE(budgetResult.complete);
-    CHECK(budgetResult.estimatedCost <= normalResult.estimatedCost);
+    CHECK(budgetResult.estimatedCost <= preferences.getBudget() * 1.10);
 }
 
 TEST_CASE("Strict-budget mode may return a partial plan without exceeding budget", "[MealGenerator]") {

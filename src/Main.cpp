@@ -153,8 +153,8 @@ std::optional<MealGenerationMode> readMealGenerationMode() {
               << "1. Normal plan\n"
               << "   Generates all 21 meals with more variety. It may exceed your budget.\n"
               << "2. Budget-first plan\n"
-              << "   Generates all 21 meals at the lowest estimated cost found.\n"
-              << "   Recipes may repeat and the result may still exceed your budget.\n"
+              << "   Generates all 21 meals while prioritizing your budget.\n"
+              << "   Repeat limits are relaxed when needed, and the result may exceed your budget.\n"
               << "3. Strict-budget plan\n"
               << "   Never exceeds your budget, but may generate fewer than 21 meals.\n";
     const auto choice = readInteger("Mode: ");
