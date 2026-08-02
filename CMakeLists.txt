@@ -22,7 +22,10 @@ if (BUILD_TESTING)
     add_subdirectory(tests)
 endif ()
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
-qt_standard_project_setup()
+option(BUILD_GUI "Build the Qt GUI" ON)
 
-add_subdirectory(gui)
+if (BUILD_GUI)
+    find_package(Qt6 REQUIRED COMPONENTS Widgets)
+    qt_standard_project_setup()
+    add_subdirectory(gui)
+endif ()
