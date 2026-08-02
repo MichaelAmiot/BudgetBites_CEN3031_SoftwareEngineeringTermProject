@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AccountPage</class>
+ <widget class="QWidget" name="AccountPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>385</width>
+    <height>408</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">color: #F4F4F4;
+background: transparent;</string>
+  </property>
+  <layout class="QVBoxLayout" name="accountPageLayout">
+   <property name="spacing">
+    <number>16</number>
+   </property>
+   <property name="leftMargin">
+    <number>32</number>
+   </property>
+   <property name="topMargin">
+    <number>28</number>
+   </property>
+   <property name="rightMargin">
+    <number>32</number>
+   </property>
+   <property name="bottomMargin">
+    <number>28</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="accountTitle">
+     <property name="text">
+      <string>Account</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="accountSubtitle">
+     <property name="styleSheet">
+      <string notr="true">color: #AEB4B7;
+background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Register or sign in. Signed-in users can save their budget, dietary restrictions, allergens, and pantry.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="accountCard">
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <layout class="QVBoxLayout" name="accountCardLayout">
+      <property name="spacing">
+       <number>14</number>
+      </property>
+      <property name="leftMargin">
+       <number>28</number>
+      </property>
+      <property name="topMargin">
+       <number>24</number>
+      </property>
+      <property name="rightMargin">
+       <number>28</number>
+      </property>
+      <property name="bottomMargin">
+       <number>24</number>
+      </property>
+      <item>
+       <layout class="QFormLayout" name="accountForm">
+        <property name="rowWrapPolicy">
+         <enum>QFormLayout::RowWrapPolicy::WrapAllRows</enum>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="usernameLabel">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 12px;
+    min-height: 22px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4CAF50;
+}</string>
+          </property>
+          <property name="text">
+           <string>Username</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="usernameEdit">
+          <property name="styleSheet">
+           <string notr="true">color: #8E9498;
+font-size: 12px;
+background: transparent;</string>
+          </property>
+          <property name="placeholderText">
+           <string>Username</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="passwordLabel">
+          <property name="text">
+           <string>Enter your Password</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="passwordEdit">
+          <property name="styleSheet">
+           <string notr="true">color: #8E9498;
+font-size: 12px;
+background: transparent;</string>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::EchoMode::Password</enum>
+          </property>
+          <property name="placeholderText">
+           <string>Use 8+ characters with uppercase, lowercase, a number, and a symbol.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="accountActions">
+     <item>
+      <widget class="QPushButton" name="signInButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background-color: #5CC460;
+}
+
+QPushButton:pressed {
+    background-color: #388E3C;
+}</string>
+       </property>
+       <property name="text">
+        <string>Sign In</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="registerButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #4CAF50;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background-color: #34383A;
+}</string>
+       </property>
+       <property name="text">
+        <string>Register</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="signOutButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: transparent;
+    color: #AEB4B7;
+    border: 1px solid #454A4D;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QPushButton:hover {
+    color: white;
+    border-color: #6B7074;
+}</string>
+       </property>
+       <property name="text">
+        <string>Sign Out</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="accountStatusLabel">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    background-color: #2B2E30;
+    color: #AEB4B7;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>You are currently browsing as a guest.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="accountSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QPushButton" name="accountBackButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QPushButton:hover {
+    border-color: #4CAF50;
+}</string>
+     </property>
+     <property name="text">
+      <string>Back to Dashboard</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

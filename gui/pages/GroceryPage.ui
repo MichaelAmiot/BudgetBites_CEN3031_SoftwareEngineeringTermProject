@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GroceryPage</class>
+ <widget class="QWidget" name="GroceryPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>429</width>
+    <height>440</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame {
+    background-color: #232526;
+    border: 1px solid #34383A;
+    border-radius: 12px;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="groceryPageLayout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <property name="leftMargin">
+    <number>16</number>
+   </property>
+   <property name="topMargin">
+    <number>16</number>
+   </property>
+   <property name="rightMargin">
+    <number>16</number>
+   </property>
+   <property name="bottomMargin">
+    <number>16</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="groceryTitle">
+     <property name="styleSheet">
+      <string notr="true">color: #F4F4F4;
+background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Grocery List</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="grocerySubtitle">
+     <property name="styleSheet">
+      <string notr="true">color: #AEB4B7;
+background: transparent;
+font-size: 13px;</string>
+     </property>
+     <property name="text">
+      <string>Build a grocery list from your current meal plan and compare the estimated total with your budget.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="groceryActions">
+     <item>
+      <widget class="QPushButton" name="rebuildGroceryButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background-color: #5CC460;
+}
+
+QPushButton:pressed {
+    background-color: #388E3C;
+}</string>
+       </property>
+       <property name="text">
+        <string>Rebuild From Meal Plan</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="openMealPlanButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    border-color: #4CAF50;
+    background-color: #34383A;
+}</string>
+       </property>
+       <property name="text">
+        <string>Open Meal Plan</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="groceryActionSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="groceryTable">
+     <property name="styleSheet">
+      <string notr="true">QTableWidget {
+    background-color: #1C1E20;
+    alternate-background-color: #232526;
+    color: #F4F4F4;
+    border: none;
+    gridline-color: #34383A;
+    selection-background-color: #4CAF50;
+    selection-color: white;
+}
+
+QHeaderView::section {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: none;
+    border-right: 1px solid #3A3E40;
+    padding: 8px;
+    font-weight: 600;
+}</string>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="columnCount">
+      <number>5</number>
+     </property>
+     <column>
+      <property name="text">
+       <string>Ingredient</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Needed grams</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Purchase units</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Unit</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Estimated cost</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="grocerySummaryLabel">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    background-color: #232526;
+    color: #AEB4B7;
+    border: 1px solid #34383A;
+    border-radius: 8px;
+    padding: 10px 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>No grocery list yet. Generate a meal plan to calculate ingredients and estimated cost.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="groceryBackButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QPushButton:hover {
+    border-color: #4CAF50;
+}</string>
+     </property>
+     <property name="text">
+      <string>Back to Dashboard</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

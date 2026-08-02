@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RecipePage</class>
+ <widget class="QWidget" name="RecipePage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>632</width>
+    <height>399</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="recipeTitle">
+     <property name="styleSheet">
+      <string notr="true">color: #F4F4F4;
+background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Recipe Details</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="recipeSubtitle">
+     <property name="styleSheet">
+      <string notr="true">color: #AEB4B7;
+font-size: 13px;
+background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Search the recipe catalog and review ingredients, cooking time, equipment, and instructions.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="recipeSearchLayout">
+     <property name="spacing">
+      <number>12</number>
+     </property>
+     <item>
+      <widget class="QLineEdit" name="recipeSearchEdit">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4CAF50;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Search recipes by name</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="recipeSearchButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background-color: #5CC460;
+}
+
+QPushButton:pressed {
+    background-color: #388E3C;
+}</string>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="styleSheet">
+      <string notr="true">color: #F4F4F4;
+background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Recipe Information</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="styleSheet">
+      <string notr="true">color: #F4F4F4;
+background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Recipes </string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="recipeBodyLayout">
+     <property name="spacing">
+      <number>14</number>
+     </property>
+     <item>
+      <widget class="QListWidget" name="recipeResultsList">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QListWidget {
+    background-color: #1C1E20;
+    alternate-background-color: #232526;
+    color: #F4F4F4;
+    border: 1px solid #34383A;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+QListWidget::item {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+QListWidget::item:hover {
+    background-color: #2B2E30;
+}
+
+QListWidget::item:selected {
+    background-color: #4CAF50;
+    color: white;
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="recipeDetailsText">
+       <property name="styleSheet">
+        <string notr="true">QTextEdit {
+    background-color: #1C1E20;
+    color: #F4F4F4;
+    border: 1px solid #34383A;
+    border-radius: 10px;
+    padding: 12px;
+    selection-background-color: #4CAF50;
+}</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>Select a recipe to view ingredients, preparation details, and instructions.</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="recipeBackButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QPushButton:hover {
+    border-color: #4CAF50;
+}</string>
+     </property>
+     <property name="text">
+      <string>Back to Dashboard</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
