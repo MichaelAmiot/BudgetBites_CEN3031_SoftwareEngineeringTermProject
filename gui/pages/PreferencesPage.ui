@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>588</width>
-    <height>805</height>
+    <width>587</width>
+    <height>838</height>
    </rect>
   </property>
   <property name="styleSheet">
@@ -124,6 +124,34 @@ QDoubleSpinBox:focus {
    </item>
    <item>
     <layout class="QGridLayout" name="preferenceListsLayout">
+     <item row="1" column="1">
+      <widget class="QListWidget" name="allergenList">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>130</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QListWidget {
+    background-color: #1C1E20;
+    color: #F4F4F4;
+    border: 1px solid #34383A;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+QListWidget::item {
+    padding: 6px;
+}
+
+QListWidget::item:selected {
+    background-color: #4CAF50;
+    color: white;
+}</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="0">
       <widget class="QLabel" name="dietaryLabel">
        <property name="text">
@@ -131,66 +159,38 @@ QDoubleSpinBox:focus {
        </property>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QListWidget" name="dietaryList_4">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>130</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QListWidget {
+    background-color: #1C1E20;
+    color: #F4F4F4;
+    border: 1px solid #34383A;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+QListWidget::item {
+    padding: 6px;
+}
+
+QListWidget::item:selected {
+    background-color: #4CAF50;
+    color: white;
+}</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="1">
       <widget class="QLabel" name="allergenLabel">
        <property name="text">
         <string>Food allergens</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QListWidget" name="dietaryList">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>190</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QListWidget {
-    background-color: #1C1E20;
-    color: #F4F4F4;
-    border: 1px solid #34383A;
-    border-radius: 8px;
-    padding: 6px;
-}
-
-QListWidget::item {
-    padding: 6px;
-}
-
-QListWidget::item:selected {
-    background-color: #4CAF50;
-    color: white;
-}</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QListWidget" name="allergenList">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>190</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QListWidget {
-    background-color: #1C1E20;
-    color: #F4F4F4;
-    border: 1px solid #34383A;
-    border-radius: 8px;
-    padding: 6px;
-}
-
-QListWidget::item {
-    padding: 6px;
-}
-
-QListWidget::item:selected {
-    background-color: #4CAF50;
-    color: white;
-}</string>
        </property>
       </widget>
      </item>
@@ -208,7 +208,7 @@ QListWidget::item:selected {
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>230</height>
+       <height>220</height>
       </size>
      </property>
      <property name="styleSheet">
