@@ -198,6 +198,7 @@ MainWindow::MainWindow(QWidget* parent)
     connect(accountUi->signInButton, &QPushButton::clicked, this, &MainWindow::signIn);
     connect(accountUi->signOutButton, &QPushButton::clicked, this, &MainWindow::signOut);
     connect(passwordEdit_, &QLineEdit::returnPressed, this, &MainWindow::signIn);
+    connect(usernameEdit_, &QLineEdit::editingFinished, this, &MainWindow::checkUsernameAvailability);
 
     connect(preferencesUi->savePreferencesButton, &QPushButton::clicked, this, &MainWindow::savePreferences);
     connect(preferencesUi->reloadPreferencesButton, &QPushButton::clicked, this,
@@ -365,11 +366,31 @@ void MainWindow::updateSignedInState() {
     }
 }
 
+void MainWindow::checkUsernameAvailability() {
+    const std::string username = usernameEdit_->text().trimmed().toStdString();
+    if (username.empty()) {
+        return;
+    }
+    if (ux_.isUsernameTaken(username)) {
+        accountStatusLabel_->setText(
+            "That username is already taken. Please choose a different username.");
+    } else {
+        accountStatusLabel_->setText(
+            "Username available. Choose a password (8+ chars, upper, lower, digit, special character).");
+    }
+}
+
 void MainWindow::registerUser() {
     const std::string username = usernameEdit_->text().trimmed().toStdString();
     const std::string password = passwordEdit_->text().toStdString();
+    if (ux_.isUsernameTaken(username)) {
+        accountStatusLabel_->setText(
+            "That username is already taken. Please choose a different username.");
+        return;
+    }
     if (!ux_.registerUser(username, password)) {
-        accountStatusLabel_->setText("Registration failed. The username may exist or the password may be too weak.");
+        accountStatusLabel_->setText(
+            "Registration failed. Password must be 8+ chars with upper, lower, digit, and special character.");
         return;
     }
     ux_.saveToFile(usersFile_.string());

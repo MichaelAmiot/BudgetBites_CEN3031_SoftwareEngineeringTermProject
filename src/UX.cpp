@@ -8,6 +8,10 @@
 
 using namespace std;
 
+bool UX::isUsernameTaken(const string& username) {
+    return repository.exists(username);
+}
+
 bool UX::registerUser(const string& username, const string& password) {
     // Account records use commas and lines as delimiters, so usernames cannot contain them.
     if (username.empty() || username.find_first_of(",\r\n") != string::npos) {

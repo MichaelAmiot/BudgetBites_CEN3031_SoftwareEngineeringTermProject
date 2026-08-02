@@ -3,7 +3,6 @@ add_executable(BudgetBitesTests
         test_grocery.cpp
         test_MainHelper.cpp
         test_MealPlan.cpp
-        test_infrastructure.cpp
         test_RecipeDataBase.cpp
         test_UX.cpp
         test_PasswordSecurity.cpp

@@ -2,7 +2,6 @@ add_library(BudgetBitesLib
         Account.cpp
         CsvFile.cpp
         Grocery.cpp
-        Infrastructure.cpp
         MainHelper.cpp
         MealPlan.cpp
         RecipeDataBase.cpp

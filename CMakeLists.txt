@@ -23,9 +23,11 @@ if (BUILD_TESTING)
 endif ()
 
 option(BUILD_GUI "Build the Qt GUI" ON)
+set(CMAKE_PREFIX_PATH "C:/Qt/6.11.1/mingw_64")
 
 if (BUILD_GUI)
     find_package(Qt6 REQUIRED COMPONENTS Widgets)
     qt_standard_project_setup()
     add_subdirectory(gui)
 endif ()
+

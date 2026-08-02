@@ -209,7 +209,16 @@ bool saveUserSettings(
 }
 
 void handleRegister(UX& ux, const std::string& accountPath) {
-    const std::string username = readLine("Choose a username: ");
+    std::string username;
+    while (true) {
+        username = readLine("Choose a username: ");
+        if (ux.isUsernameTaken(username)) {
+            std::cout << "That username is already taken. Please choose another.\n";
+            continue;
+        }
+        break;
+    }
+
     const std::string password = readPassword(
         "Choose a password (8+ chars, upper, lower, digit, special character): "
     );

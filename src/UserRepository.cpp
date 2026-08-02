@@ -35,6 +35,16 @@ UserAccount* UserRepository::find(const string& username) {
     return nullptr;
 }
 
+bool UserRepository::exists(const string& username) const {
+    string target = toLower(username);
+    for (int i = 0; i < accounts.size(); i++) {
+        if (toLower(accounts[i].username) == target) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void UserRepository::add(const UserAccount& account) {
     accounts.push_back(account);
 }
