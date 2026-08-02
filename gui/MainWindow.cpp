@@ -602,9 +602,6 @@ QString MainWindow::recipeDetails(const Recipe& recipe) const {
     text += QString("Cook time: %1\n").arg(optionalNumber(recipe.cookMinutes, " minutes"));
     text += QString("Primary equipment: %1\n").arg(
         QString::fromStdString(recipe.primaryEquipment.empty() ? "Not provided" : recipe.primaryEquipment));
-    if (!recipe.selectionNotes.empty()) {
-        text += "Notes: " + QString::fromStdString(recipe.selectionNotes) + "\n";
-    }
 
     text += "\nIngredients\n";
     for (const RecipeIngredient& ingredient: catalog_.getRecipeIngredients(recipe.recipeId)) {
