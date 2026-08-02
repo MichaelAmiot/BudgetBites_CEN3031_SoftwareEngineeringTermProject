@@ -93,7 +93,8 @@ std::optional<CandidateEvaluation> chooseCandidate(
     const RecipeDataBase& catalog,
     const Ingredients& pantry,
     double weeklyBudget,
-    double currentCost
+    double currentCost,
+    int maximumRecipeUses
 ) {
     if (mode == MealGenerationMode::Normal) {
         RecipeCandidates candidatesBelowUseLimit;
@@ -105,6 +106,18 @@ std::optional<CandidateEvaluation> chooseCandidate(
         if (!candidatesBelowUseLimit.empty()) {
             candidates = std::move(candidatesBelowUseLimit);
         }
+    } else if (maximumRecipeUses > 0) {
+        // Budget modes try several plans with progressively looser repeat limits.
+        candidates.erase(
+            std::remove_if(
+                candidates.begin(),
+                candidates.end(),
+                [&](const Recipe* candidate) {
+                    return recipeUseCount[candidate->recipeId] >= maximumRecipeUses;
+                }
+            ),
+            candidates.end()
+        );
     }
 
     std::optional<CandidateEvaluation> best;
@@ -301,84 +314,83 @@ MealGenerationResult MealGenerator::generateWeeklyMealPlan(
         pantryIngredientIds.insert(item.ingredientId);
     }
 
-    MealPlan generatedPlan(mealPlan.getPlanName());
-    std::unordered_map<int, int> recipeUseCount;
-    std::unordered_set<int> plannedIngredientIds;
-    double currentCost = 0.0;
     const double weeklyBudget = preferences.getBudget();
 
-    // Normal modes fill each day in display order. Strict mode first gives every
-    // day a dinner, then adds lunches and breakfasts while money remains.
-    std::vector<std::pair<std::size_t, MealType>> mealSlots;
-    if (mode == MealGenerationMode::StrictBudget) {
-        for (const MealType mealType : {MealType::Dinner, MealType::Lunch, MealType::Breakfast}) {
-            for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
-                mealSlots.emplace_back(day, mealType);
-            }
-        }
-    } else {
-        for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
-            for (const MealType mealType : {MealType::Breakfast, MealType::Lunch, MealType::Dinner}) {
-                mealSlots.emplace_back(day, mealType);
-            }
-        }
-    }
+    struct GenerationAttempt {
+        MealPlan plan;
+        MealGenerationResult result;
+        int maximumRecipeUses;
+    };
 
-    for (const auto& slot : mealSlots) {
-        const std::size_t day = slot.first;
-        const MealType mealType = slot.second;
-        RecipeCandidates candidates;
-        RecipeCandidates strictBreakfastFallback;
+    // Reuse the existing greedy generator for each repeat limit.
+    const auto generateAttempt = [&](int maximumRecipeUses) {
+        GenerationAttempt attempt{
+            MealPlan(mealPlan.getPlanName()),
+            MealGenerationResult{},
+            maximumRecipeUses
+        };
+        MealPlan& generatedPlan = attempt.plan;
+        std::unordered_map<int, int> recipeUseCount;
+        std::unordered_set<int> plannedIngredientIds;
+        double currentCost = 0.0;
 
-        if (mealType == MealType::Breakfast) {
-            // Use each compatible breakfast once before the agreed dinner or
-            // dessert fallback. Strict mode may use the fallback sooner if the
-            // remaining budget cannot afford any unused breakfast.
-            for (const Recipe* recipe : breakfastRecipes) {
-                if (recipeUseCount[recipe->recipeId] == 0) {
-                    candidates.push_back(recipe);
+        // Normal modes fill each day in display order. Strict mode first gives every
+        // day a dinner, then adds lunches and breakfasts while money remains.
+        std::vector<std::pair<std::size_t, MealType>> mealSlots;
+        if (mode == MealGenerationMode::StrictBudget) {
+            for (const MealType mealType : {MealType::Dinner, MealType::Lunch, MealType::Breakfast}) {
+                for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
+                    mealSlots.emplace_back(day, mealType);
                 }
             }
-            if (candidates.empty()) {
-                candidates.insert(candidates.end(), dinnerRecipes.begin(), dinnerRecipes.end());
-                candidates.insert(candidates.end(), dessertRecipes.begin(), dessertRecipes.end());
-            } else if (mode == MealGenerationMode::StrictBudget) {
-                strictBreakfastFallback.insert(
-                    strictBreakfastFallback.end(),
-                    dinnerRecipes.begin(),
-                    dinnerRecipes.end()
-                );
-                strictBreakfastFallback.insert(
-                    strictBreakfastFallback.end(),
-                    dessertRecipes.begin(),
-                    dessertRecipes.end()
-                );
-            }
-            if (candidates.empty()) {
-                candidates = breakfastRecipes;
-            }
         } else {
-            // The dinner catalog category represents both main-meal positions.
-            candidates = dinnerRecipes;
+            for (std::size_t day = 0; day < MealPlan::kDaysInWeek; ++day) {
+                for (const MealType mealType : {MealType::Breakfast, MealType::Lunch, MealType::Dinner}) {
+                    mealSlots.emplace_back(day, mealType);
+                }
+            }
         }
 
-        std::optional<CandidateEvaluation> best = chooseCandidate(
-            candidates,
-            day,
-            mealType,
-            mode,
-            recipeUseCount,
-            pantryIngredientIds,
-            plannedIngredientIds,
-            generatedPlan,
-            catalog,
-            pantry,
-            weeklyBudget,
-            currentCost
-        );
-        if (!best && mode == MealGenerationMode::StrictBudget && !strictBreakfastFallback.empty()) {
-            best = chooseCandidate(
-                strictBreakfastFallback,
+        for (const auto& slot : mealSlots) {
+            const std::size_t day = slot.first;
+            const MealType mealType = slot.second;
+            RecipeCandidates candidates;
+            RecipeCandidates strictBreakfastFallback;
+
+            if (mealType == MealType::Breakfast) {
+                // Use each compatible breakfast once before the agreed dinner or
+                // dessert fallback. Strict mode may use the fallback sooner if the
+                // remaining budget cannot afford any unused breakfast.
+                for (const Recipe* recipe : breakfastRecipes) {
+                    if (recipeUseCount[recipe->recipeId] == 0) {
+                        candidates.push_back(recipe);
+                    }
+                }
+                if (candidates.empty()) {
+                    candidates.insert(candidates.end(), dinnerRecipes.begin(), dinnerRecipes.end());
+                    candidates.insert(candidates.end(), dessertRecipes.begin(), dessertRecipes.end());
+                } else if (mode == MealGenerationMode::StrictBudget) {
+                    strictBreakfastFallback.insert(
+                        strictBreakfastFallback.end(),
+                        dinnerRecipes.begin(),
+                        dinnerRecipes.end()
+                    );
+                    strictBreakfastFallback.insert(
+                        strictBreakfastFallback.end(),
+                        dessertRecipes.begin(),
+                        dessertRecipes.end()
+                    );
+                }
+                if (candidates.empty()) {
+                    candidates = breakfastRecipes;
+                }
+            } else {
+                // The dinner catalog category represents both main-meal positions.
+                candidates = dinnerRecipes;
+            }
+
+            std::optional<CandidateEvaluation> best = chooseCandidate(
+                candidates,
                 day,
                 mealType,
                 mode,
@@ -389,32 +401,115 @@ MealGenerationResult MealGenerator::generateWeeklyMealPlan(
                 catalog,
                 pantry,
                 weeklyBudget,
-                currentCost
+                currentCost,
+                maximumRecipeUses
             );
-        }
-        if (!best) {
-            if (mode == MealGenerationMode::StrictBudget) {
-                continue;
+            if (!best && mode == MealGenerationMode::StrictBudget && !strictBreakfastFallback.empty()) {
+                best = chooseCandidate(
+                    strictBreakfastFallback,
+                    day,
+                    mealType,
+                    mode,
+                    recipeUseCount,
+                    pantryIngredientIds,
+                    plannedIngredientIds,
+                    generatedPlan,
+                    catalog,
+                    pantry,
+                    weeklyBudget,
+                    currentCost,
+                    maximumRecipeUses
+                );
             }
-            return result;
+            if (!best) {
+                if (mode == MealGenerationMode::StrictBudget) {
+                    continue;
+                }
+                break;
+            }
+
+            if (!generatedPlan.setMeal(day, mealType, best->recipe->recipeId)) {
+                break;
+            }
+            ++recipeUseCount[best->recipe->recipeId];
+            const auto selectedIngredients = recipeIngredientIds(catalog, best->recipe->recipeId);
+            plannedIngredientIds.insert(selectedIngredients.begin(), selectedIngredients.end());
+            currentCost = best->totalCost;
         }
 
-        if (!generatedPlan.setMeal(day, mealType, best->recipe->recipeId)) {
-            return result;
-        }
-        ++recipeUseCount[best->recipe->recipeId];
-        const auto selectedIngredients = recipeIngredientIds(catalog, best->recipe->recipeId);
-        plannedIngredientIds.insert(selectedIngredients.begin(), selectedIngredients.end());
-        currentCost = best->totalCost;
+        Grocery finalGrocery;
+        finalGrocery.buildFromMealPlan(generatedPlan, catalog, pantry);
+        attempt.result.mealsGenerated = generatedPlan.countMeals();
+        attempt.result.generated = attempt.result.mealsGenerated > 0;
+        attempt.result.complete = generatedPlan.isComplete();
+        attempt.result.estimatedCost = finalGrocery.calculateTotal();
+        attempt.result.withinBudget = attempt.result.estimatedCost <= weeklyBudget;
+        return attempt;
+    };
+
+    if (mode == MealGenerationMode::Normal) {
+        GenerationAttempt attempt = generateAttempt(0);
+        mealPlan = attempt.plan;
+        return attempt.result;
     }
 
-    mealPlan = generatedPlan;
-    Grocery finalGrocery;
-    finalGrocery.buildFromMealPlan(mealPlan, catalog, pantry);
-    result.mealsGenerated = mealPlan.countMeals();
-    result.generated = result.mealsGenerated > 0;
-    result.complete = mealPlan.isComplete();
-    result.estimatedCost = finalGrocery.calculateTotal();
-    result.withinBudget = result.estimatedCost <= weeklyBudget;
-    return result;
+    std::vector<GenerationAttempt> attempts;
+    for (const int maximumRecipeUses : {3, 5, 0}) {
+        attempts.push_back(generateAttempt(maximumRecipeUses));
+    }
+
+    const auto hasStricterRepeatLimit = [](const GenerationAttempt& left, const GenerationAttempt& right) {
+        return left.maximumRecipeUses > 0 &&
+            (right.maximumRecipeUses == 0 || left.maximumRecipeUses < right.maximumRecipeUses);
+    };
+
+    const GenerationAttempt* selected = nullptr;
+    if (mode == MealGenerationMode::BudgetFirst) {
+        const double allowedCost = weeklyBudget * 1.10;
+        // Prefer the complete candidate that uses as much of the 110% allowance as possible.
+        for (const GenerationAttempt& attempt : attempts) {
+            if (!attempt.result.complete || attempt.result.estimatedCost > allowedCost) {
+                continue;
+            }
+            if (!selected ||
+                attempt.result.estimatedCost > selected->result.estimatedCost ||
+                (attempt.result.estimatedCost == selected->result.estimatedCost &&
+                 hasStricterRepeatLimit(attempt, *selected))) {
+                selected = &attempt;
+            }
+        }
+        // If 21 meals cannot fit in the allowance, retain the cheapest complete plan.
+        if (!selected) {
+            for (const GenerationAttempt& attempt : attempts) {
+                if (!attempt.result.complete) {
+                    continue;
+                }
+                if (!selected ||
+                    attempt.result.estimatedCost < selected->result.estimatedCost ||
+                    (attempt.result.estimatedCost == selected->result.estimatedCost &&
+                     hasStricterRepeatLimit(attempt, *selected))) {
+                    selected = &attempt;
+                }
+            }
+        }
+    } else {
+        // Strict mode first preserves meal count, then spends the available budget.
+        for (const GenerationAttempt& attempt : attempts) {
+            if (!selected ||
+                attempt.result.mealsGenerated > selected->result.mealsGenerated ||
+                (attempt.result.mealsGenerated == selected->result.mealsGenerated &&
+                 attempt.result.estimatedCost > selected->result.estimatedCost) ||
+                (attempt.result.mealsGenerated == selected->result.mealsGenerated &&
+                 attempt.result.estimatedCost == selected->result.estimatedCost &&
+                 hasStricterRepeatLimit(attempt, *selected))) {
+                selected = &attempt;
+            }
+        }
+    }
+
+    if (!selected) {
+        return result;
+    }
+    mealPlan = selected->plan;
+    return selected->result;
 }

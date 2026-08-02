@@ -39,35 +39,33 @@
 #include <unordered_map>
 
 namespace {
+    QString money(double value) {
+        return QString("$%1").arg(value, 0, 'f', 2);
+    }
 
-QString money(double value) {
-    return QString("$%1").arg(value, 0, 'f', 2);
-}
+    QLabel* makeMutedLabel(const QString& text) {
+        auto* label = new QLabel(text);
+        label->setObjectName("mutedLabel");
+        label->setWordWrap(true);
+        return label;
+    }
 
-QLabel* makeMutedLabel(const QString& text) {
-    auto* label = new QLabel(text);
-    label->setObjectName("mutedLabel");
-    label->setWordWrap(true);
-    return label;
-}
+    QTableWidgetItem* readOnlyItem(const QString& text) {
+        auto* item = new QTableWidgetItem(text);
+        item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+        return item;
+    }
 
-QTableWidgetItem* readOnlyItem(const QString& text) {
-    auto* item = new QTableWidgetItem(text);
-    item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-    return item;
-}
-
-QString optionalNumber(const std::optional<int>& value, const QString& suffix = {}) {
-    return value ? QString::number(*value) + suffix : QString("Not provided");
-}
-
+    QString optionalNumber(const std::optional<int>& value, const QString& suffix = {}) {
+        return value ? QString::number(*value) + suffix : QString("Not provided");
+    }
 } // namespace
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
       projectRoot_(BUDGETBITES_SOURCE_DIR),
-      usersFile_(projectRoot_ / "users.txt"),
+      usersFile_(projectRoot_ / UserRepository::defaultStoragePath()),
       ux_(projectRoot_ / "data" / "local"),
       catalog_(projectRoot_ / "data" / "seed") {
     ui->setupUi(this);
@@ -131,7 +129,7 @@ MainWindow::MainWindow(QWidget* parent)
         static_cast<int>(MealGenerationMode::Normal)
     );
     generationModeCombo_->addItem(
-        "Budget First — favor lower-cost meals",
+        "Budget First — complete plan with budget priority",
         static_cast<int>(MealGenerationMode::BudgetFirst)
     );
     generationModeCombo_->addItem(
@@ -171,12 +169,13 @@ MainWindow::MainWindow(QWidget* parent)
         showPage(GroceryPageIndex);
     });
 
-    for (QPushButton* button : {
+    for (QPushButton* button: {
              accountUi->accountBackButton,
              preferencesUi->preferencesBackButton,
              mealPlanUi->mealPlanBackButton,
              recipeUi->recipeBackButton,
-             groceryUi->groceryBackButton}) {
+             groceryUi->groceryBackButton
+         }) {
         connect(button, &QPushButton::clicked, this, [this] {
             showPage(DashboardPageIndex);
         });
@@ -188,7 +187,8 @@ MainWindow::MainWindow(QWidget* parent)
     connect(passwordEdit_, &QLineEdit::returnPressed, this, &MainWindow::signIn);
 
     connect(preferencesUi->savePreferencesButton, &QPushButton::clicked, this, &MainWindow::savePreferences);
-    connect(preferencesUi->reloadPreferencesButton, &QPushButton::clicked, this, &MainWindow::loadPreferenceControlsFromState);
+    connect(preferencesUi->reloadPreferencesButton, &QPushButton::clicked, this,
+            &MainWindow::loadPreferenceControlsFromState);
 
     connect(mealPlanUi->generateMealPlanButton, &QPushButton::clicked, this, &MainWindow::generateMealPlan);
     connect(mealPlanUi->openGroceryButton, &QPushButton::clicked, this, [this] {
@@ -346,7 +346,8 @@ void MainWindow::updateSignedInState() {
         signOutButton_->setEnabled(true);
     } else {
         signedInLabel_->setText("Not signed in");
-        accountStatusLabel_->setText("Not signed in. You may browse recipes, but sign in to save personalized information.");
+        accountStatusLabel_->setText(
+            "Not signed in. You may browse recipes, but sign in to save personalized information.");
         signOutButton_->setEnabled(false);
     }
 }
@@ -404,7 +405,7 @@ void MainWindow::signOut() {
 
 void MainWindow::populatePreferenceControls() {
     dietaryList_->clear();
-    for (const DietaryTag& tag : catalog_.getDietaryTags()) {
+    for (const DietaryTag& tag: catalog_.getDietaryTags()) {
         auto* item = new QListWidgetItem(QString::fromStdString(tag.displayName));
         item->setData(Qt::UserRole, tag.dietaryTagId);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
@@ -414,7 +415,7 @@ void MainWindow::populatePreferenceControls() {
     }
 
     allergenList_->clear();
-    for (const Allergen& allergen : catalog_.getAllergens()) {
+    for (const Allergen& allergen: catalog_.getAllergens()) {
         auto* item = new QListWidgetItem(QString::fromStdString(allergen.displayName));
         item->setData(Qt::UserRole, allergen.allergenId);
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
@@ -492,9 +493,9 @@ void MainWindow::generateMealPlan() {
     }
 
     const QString status = QString("Generated %1 of 21 meals. Estimated grocery total: %2. %3")
-        .arg(result.mealsGenerated)
-        .arg(money(grocery_.calculateTotal()))
-        .arg(grocery_.isWithinBudget(preferences_.getBudget()) ? "Within budget." : "Over budget.");
+            .arg(result.mealsGenerated)
+            .arg(money(grocery_.calculateTotal()))
+            .arg(grocery_.isWithinBudget(preferences_.getBudget()) ? "Within budget." : "Over budget.");
     mealPlanSummaryLabel_->setText(status);
     setGlobalStatus(status, !result.complete);
 }
@@ -521,8 +522,8 @@ void MainWindow::refreshMealPlanTable() {
     } else {
         mealPlanSummaryLabel_->setText(
             QString("%1 of 21 meal slots filled. Grocery estimate: %2.")
-                .arg(mealPlan_.countMeals())
-                .arg(money(grocery_.calculateTotal()))
+            .arg(mealPlan_.countMeals())
+            .arg(money(grocery_.calculateTotal()))
         );
     }
 }
@@ -533,10 +534,14 @@ void MainWindow::refreshGroceryTable() {
     for (int row = 0; row < static_cast<int>(items.size()); ++row) {
         const GroceryItem& item = items[static_cast<std::size_t>(row)];
         const auto ingredient = catalog_.getIngredientById(item.ingredientId);
-        groceryTable_->setItem(row, 0, readOnlyItem(ingredient ? QString::fromStdString(ingredient->name) : QString("Ingredient #%1").arg(item.ingredientId)));
-        groceryTable_->setItem(row, 1, readOnlyItem(item.requiredGrams ? QString::number(*item.requiredGrams, 'f', 1) : "Unknown"));
+        groceryTable_->setItem(row, 0, readOnlyItem(ingredient
+                                                        ? QString::fromStdString(ingredient->name)
+                                                        : QString("Ingredient #%1").arg(item.ingredientId)));
+        groceryTable_->setItem(
+            row, 1, readOnlyItem(item.requiredGrams ? QString::number(*item.requiredGrams, 'f', 1) : "Unknown"));
         groceryTable_->setItem(row, 2, readOnlyItem(QString::number(item.purchaseUnits)));
-        groceryTable_->setItem(row, 3, readOnlyItem(ingredient ? QString::fromStdString(ingredient->purchaseUnitLabel) : "unit"));
+        groceryTable_->setItem(
+            row, 3, readOnlyItem(ingredient ? QString::fromStdString(ingredient->purchaseUnitLabel) : "unit"));
         groceryTable_->setItem(row, 4, readOnlyItem(money(item.estimatedCost)));
     }
 
@@ -547,12 +552,12 @@ void MainWindow::refreshGroceryTable() {
     } else if (grocery_.isWithinBudget(budget)) {
         grocerySummaryLabel_->setText(
             QString("Estimated total: %1 | Budget: %2 | Within budget by %3")
-                .arg(money(total), money(budget), money(budget - total))
+            .arg(money(total), money(budget), money(budget - total))
         );
     } else {
         grocerySummaryLabel_->setText(
             QString("Estimated total: %1 | Budget: %2 | Over budget by %3")
-                .arg(money(total), money(budget), money(total - budget))
+            .arg(money(total), money(budget), money(total - budget))
         );
     }
 }
@@ -565,7 +570,7 @@ void MainWindow::searchRecipes() {
     }
     currentRecipeResults_ = catalog_.searchRecipes(filter);
     recipeResultsList_->clear();
-    for (const Recipe& recipe : currentRecipeResults_) {
+    for (const Recipe& recipe: currentRecipeResults_) {
         auto* item = new QListWidgetItem(QString::fromStdString(recipe.title));
         item->setData(Qt::UserRole, recipe.recipeId);
         recipeResultsList_->addItem(item);
@@ -595,23 +600,25 @@ QString MainWindow::recipeDetails(const Recipe& recipe) const {
     text += QString("Servings: %1\n").arg(optionalNumber(recipe.servings));
     text += QString("Prep time: %1\n").arg(optionalNumber(recipe.prepMinutes, " minutes"));
     text += QString("Cook time: %1\n").arg(optionalNumber(recipe.cookMinutes, " minutes"));
-    text += QString("Primary equipment: %1\n").arg(QString::fromStdString(recipe.primaryEquipment.empty() ? "Not provided" : recipe.primaryEquipment));
+    text += QString("Primary equipment: %1\n").arg(
+        QString::fromStdString(recipe.primaryEquipment.empty() ? "Not provided" : recipe.primaryEquipment));
     if (!recipe.selectionNotes.empty()) {
         text += "Notes: " + QString::fromStdString(recipe.selectionNotes) + "\n";
     }
 
     text += "\nIngredients\n";
-    for (const RecipeIngredient& ingredient : catalog_.getRecipeIngredients(recipe.recipeId)) {
+    for (const RecipeIngredient& ingredient: catalog_.getRecipeIngredients(recipe.recipeId)) {
         const std::string line = ingredient.sourceIngredientText.empty()
-            ? std::to_string(ingredient.quantity) + " " + ingredient.unit + " " + ingredient.ingredientName
-            : ingredient.sourceIngredientText;
+                                     ? std::to_string(ingredient.quantity) + " " + ingredient.unit + " " + ingredient.
+                                       ingredientName
+                                     : ingredient.sourceIngredientText;
         text += "• " + QString::fromStdString(line) + "\n";
     }
 
     const auto seasoners = catalog_.getRecipeSeasoners(recipe.recipeId);
     if (!seasoners.empty()) {
         text += "\nSeasonings\n";
-        for (const std::string& seasoner : seasoners) {
+        for (const std::string& seasoner: seasoners) {
             text += "• " + QString::fromStdString(seasoner) + "\n";
         }
     }
@@ -622,7 +629,7 @@ QString MainWindow::recipeDetails(const Recipe& recipe) const {
 
     double estimatedCost = 0.0;
     bool hasCost = false;
-    for (const RecipeCostItem& item : catalog_.getRecipeCostItems({recipe.recipeId})) {
+    for (const RecipeCostItem& item: catalog_.getRecipeCostItems({recipe.recipeId})) {
         if (item.requiredGrams) {
             estimatedCost += (*item.requiredGrams / 100.0) * item.pricePer100Grams;
             hasCost = true;
@@ -662,29 +669,29 @@ void MainWindow::setCheckedIds(QListWidget* list, const std::vector<int>& ids) {
 std::vector<PantryItem> MainWindow::pantryItemsFromTable() const {
     std::vector<PantryItem> items;
     for (int row = 0; row < pantryTable_->rowCount(); ++row) {
-        const auto* check = qobject_cast<QCheckBox*>(pantryTable_->cellWidget(row, 0));
-        const auto* grams = qobject_cast<QDoubleSpinBox*>(pantryTable_->cellWidget(row, 2));
+        const auto* check = qobject_cast<QCheckBox *>(pantryTable_->cellWidget(row, 0));
+        const auto* grams = qobject_cast<QDoubleSpinBox *>(pantryTable_->cellWidget(row, 2));
         if (!check || !check->isChecked()) {
             continue;
         }
         const int ingredientId = check->property("ingredientId").toInt();
         const std::optional<double> availableGrams = grams && grams->value() > 0.0
-            ? std::optional<double>(grams->value())
-            : std::nullopt;
+                                                         ? std::optional<double>(grams->value())
+                                                         : std::nullopt;
         items.push_back({ingredientId, availableGrams});
     }
     return items;
 }
 
 void MainWindow::setPantryTableItems(const std::vector<PantryItem>& items) {
-    std::unordered_map<int, std::optional<double>> byId;
-    for (const PantryItem& item : items) {
+    std::unordered_map<int, std::optional<double> > byId;
+    for (const PantryItem& item: items) {
         byId[item.ingredientId] = item.availableGrams;
     }
 
     for (int row = 0; row < pantryTable_->rowCount(); ++row) {
-        auto* check = qobject_cast<QCheckBox*>(pantryTable_->cellWidget(row, 0));
-        auto* grams = qobject_cast<QDoubleSpinBox*>(pantryTable_->cellWidget(row, 2));
+        auto* check = qobject_cast<QCheckBox *>(pantryTable_->cellWidget(row, 0));
+        auto* grams = qobject_cast<QDoubleSpinBox *>(pantryTable_->cellWidget(row, 2));
         if (!check || !grams) {
             continue;
         }
