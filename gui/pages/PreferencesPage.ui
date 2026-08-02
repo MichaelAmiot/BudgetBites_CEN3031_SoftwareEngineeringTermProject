@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PreferencesPage</class>
+ <widget class="QWidget" name="PreferencesPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>588</width>
+    <height>805</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">color: #F4F4F4;
+background: transparent;</string>
+  </property>
+  <layout class="QVBoxLayout" name="preferencesPageLayout">
+   <property name="spacing">
+    <number>14</number>
+   </property>
+   <property name="leftMargin">
+    <number>32</number>
+   </property>
+   <property name="topMargin">
+    <number>28</number>
+   </property>
+   <property name="rightMargin">
+    <number>32</number>
+   </property>
+   <property name="bottomMargin">
+    <number>28</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="preferencesTitle">
+     <property name="text">
+      <string>Preferences &amp; Budget</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="preferencesSubtitle">
+     <property name="styleSheet">
+      <string notr="true">color: #AEB4B7;
+font-size: 13px;
+background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Set your weekly budget, dietary preferences, allergens, and pantry items.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="budgetCard">
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+    background:#232526;
+    border:1px solid #34383A;
+    border-radius:12px;
+}</string>
+     </property>
+     <layout class="QFormLayout" name="budgetLayout">
+      <property name="leftMargin">
+       <number>22</number>
+      </property>
+      <property name="topMargin">
+       <number>18</number>
+      </property>
+      <property name="rightMargin">
+       <number>22</number>
+      </property>
+      <property name="bottomMargin">
+       <number>18</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="budgetLabel">
+        <property name="styleSheet">
+         <string notr="true">QDoubleSpinBox {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 8px 10px;
+}
+
+QDoubleSpinBox:focus {
+    border: 1px solid #4CAF50;
+}</string>
+        </property>
+        <property name="text">
+         <string>Weekly grocery budget</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDoubleSpinBox" name="budgetSpin">
+        <property name="styleSheet">
+         <string notr="true">QDoubleSpinBox {
+    background:#2B2E30;
+    border:1px solid #3A3E40;
+    border-radius:8px;
+    padding:8px;
+    color:white;
+}</string>
+        </property>
+        <property name="prefix">
+         <string>$</string>
+        </property>
+        <property name="decimals">
+         <number>2</number>
+        </property>
+        <property name="maximum">
+         <double>10000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>5.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="preferenceListsLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="dietaryLabel">
+       <property name="text">
+        <string>Dietary preferences</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="allergenLabel">
+       <property name="text">
+        <string>Food allergens</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QListWidget" name="dietaryList">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>190</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QListWidget {
+    background-color: #1C1E20;
+    color: #F4F4F4;
+    border: 1px solid #34383A;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+QListWidget::item {
+    padding: 6px;
+}
+
+QListWidget::item:selected {
+    background-color: #4CAF50;
+    color: white;
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QListWidget" name="allergenList">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>190</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QListWidget {
+    background-color: #1C1E20;
+    color: #F4F4F4;
+    border: 1px solid #34383A;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+QListWidget::item {
+    padding: 6px;
+}
+
+QListWidget::item:selected {
+    background-color: #4CAF50;
+    color: white;
+}</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="pantryLabel">
+     <property name="text">
+      <string>Pantry Inventory</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="pantryTable">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>230</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTableWidget {
+    background-color: #1C1E20;
+    alternate-background-color: #232526;
+    color: #F4F4F4;
+    border: 1px solid #34383A;
+    border-radius: 8px;
+    gridline-color: #34383A;
+    selection-background-color: #4CAF50;
+}
+
+QHeaderView::section {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: none;
+    border-right: 1px solid #3A3E40;
+    padding: 8px;
+    font-weight: 600;
+}</string>
+     </property>
+     <property name="columnCount">
+      <number>3</number>
+     </property>
+     <column>
+      <property name="text">
+       <string>Have</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ingredient</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Available grams (optional)</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="preferencesActions">
+     <item>
+      <widget class="QPushButton" name="savePreferencesButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background-color: #5CC460;
+}
+
+QPushButton:pressed {
+    background-color: #388E3C;
+}</string>
+       </property>
+       <property name="text">
+        <string>Save Preferences</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="reloadPreferencesButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background-color: #34383A;
+    border-color: #4CAF50;
+}</string>
+       </property>
+       <property name="text">
+        <string>Reload Saved Values</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="preferencesActionSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="preferencesStatusLabel">
+     <property name="styleSheet">
+      <string notr="true">background:#232526;
+border:1px solid #34383A;
+border-radius:8px;
+padding:10px;
+color:#BFC5C9;</string>
+     </property>
+     <property name="text">
+      <string> Changes remain local until you click Save Preferences.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="preferencesBackButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QPushButton:hover {
+    border-color: #4CAF50;
+}</string>
+     </property>
+     <property name="text">
+      <string>Back to Dashboard</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

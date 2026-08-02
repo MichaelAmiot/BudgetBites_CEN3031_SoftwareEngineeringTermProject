@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MealPlanPage</class>
+ <widget class="QWidget" name="MealPlanPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>602</width>
+    <height>430</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="mealPlanPageLayout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <property name="leftMargin">
+    <number>32</number>
+   </property>
+   <property name="topMargin">
+    <number>28</number>
+   </property>
+   <property name="rightMargin">
+    <number>32</number>
+   </property>
+   <property name="bottomMargin">
+    <number>28</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="mealPlanTitle">
+     <property name="styleSheet">
+      <string notr="true">color: #F4F4F4;
+background: transparent;</string>
+     </property>
+     <property name="text">
+      <string>Weekly Meal Plan</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="mealPlanSubtitle">
+     <property name="styleSheet">
+      <string notr="true">color: #AEB4B7;
+background: transparent;
+font-size: 13px;</string>
+     </property>
+     <property name="text">
+      <string>Generate a seven-day meal plan using your saved budget, dietary preferences, allergens, and pantry.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="">
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+    background-color: #232526;
+    border: 1px solid #34383A;
+    border-radius: 12px;
+}</string>
+     </property>
+     <layout class="QHBoxLayout" name="mealPlanToolbar">
+      <property name="leftMargin">
+       <number>18</number>
+      </property>
+      <property name="topMargin">
+       <number>14</number>
+      </property>
+      <property name="rightMargin">
+       <number>18</number>
+      </property>
+      <property name="bottomMargin">
+       <number>14</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="generationModeLabel">
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+QComboBox:focus {
+    border: 1px solid #4CAF50;
+}</string>
+        </property>
+        <property name="text">
+         <string>Generation mode</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="generationModeCombo">
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+QComboBox:focus {
+    border: 1px solid #4CAF50;
+}</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="generateMealPlanButton">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background-color: #5CC460;
+}
+
+QPushButton:pressed {
+    background-color: #388E3C;
+}</string>
+        </property>
+        <property name="text">
+         <string>Generate Weekly Plan</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="openGroceryButton">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background-color: #34383A;
+    border-color: #4CAF50;
+}</string>
+        </property>
+        <property name="text">
+         <string>Open Grocery List</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="mealPlanTable">
+     <property name="styleSheet">
+      <string notr="true">QTableWidget {
+    background-color: #1C1E20;
+    alternate-background-color: #232526;
+    color: #F4F4F4;
+    border: 1px solid #34383A;
+    border-radius: 10px;
+    gridline-color: #34383A;
+    selection-background-color: #4CAF50;
+    selection-color: white;
+}
+
+QHeaderView::section {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: none;
+    border-right: 1px solid #3A3E40;
+    padding: 9px;
+    font-weight: 600;
+}</string>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="rowCount">
+      <number>7</number>
+     </property>
+     <property name="columnCount">
+      <number>4</number>
+     </property>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <column>
+      <property name="text">
+       <string>Day</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Breakfast</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Lunch</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Dinner</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="mealPlanSummaryLabel">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    background-color: #232526;
+    color: #AEB4B7;
+    border: 1px solid #34383A;
+    border-radius: 8px;
+    padding: 10px 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>No meal plan yet. Choose a generation mode and create your weekly plan.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="mealPlanBackButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QPushButton:hover {
+    border-color: #4CAF50;
+}</string>
+     </property>
+     <property name="text">
+      <string>Back to Dashboard</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
