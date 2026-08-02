@@ -1,7 +1,15 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>DashboardPage</class>
  <widget class="QWidget" name="DashboardPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>444</width>
+    <height>570</height>
+   </rect>
+  </property>
   <layout class="QVBoxLayout" name="dashboardPageLayout">
    <property name="spacing">
     <number>16</number>
@@ -217,7 +225,7 @@ QPushButton:pressed {
 }</string>
        </property>
        <property name="text">
-        <string>Account</string>
+        <string>Login/Register</string>
        </property>
       </widget>
      </item>
@@ -291,6 +299,6 @@ QPushButton:pressed {
    </item>
   </layout>
  </widget>
- <resources />
- <connections />
+ <resources/>
+ <connections/>
 </ui>
