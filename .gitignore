@@ -72,3 +72,7 @@ Testing/
 
 # Per-user CSV data created by the application.
 data/local/
+
+.DS_Store
+.qtcreator/
+**/.qtcreator/

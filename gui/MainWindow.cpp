@@ -39,35 +39,35 @@
 #include <unordered_map>
 
 namespace {
-    QString money(double value) {
-        return QString("$%1").arg(value, 0, 'f', 2);
-    }
+QString money(double value) {
+    return QString("$%1").arg(value, 0, 'f', 2);
+}
 
-    QLabel* makeMutedLabel(const QString& text) {
-        auto* label = new QLabel(text);
-        label->setObjectName("mutedLabel");
-        label->setWordWrap(true);
-        return label;
-    }
+QLabel* makeMutedLabel(const QString& text) {
+    auto* label = new QLabel(text);
+    label->setObjectName("mutedLabel");
+    label->setWordWrap(true);
+    return label;
+}
 
-    QTableWidgetItem* readOnlyItem(const QString& text) {
-        auto* item = new QTableWidgetItem(text);
-        item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-        return item;
-    }
+QTableWidgetItem* readOnlyItem(const QString& text) {
+    auto* item = new QTableWidgetItem(text);
+    item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+    return item;
+}
 
-    QString optionalNumber(const std::optional<int>& value, const QString& suffix = {}) {
-        return value ? QString::number(*value) + suffix : QString("Not provided");
-    }
+QString optionalNumber(const std::optional<int>& value, const QString& suffix = {}) {
+    return value ? QString::number(*value) + suffix : QString("Not provided");
+}
 } // namespace
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
-      ui(new Ui::MainWindow),
-      projectRoot_(BUDGETBITES_SOURCE_DIR),
-      usersFile_(projectRoot_ / UserRepository::defaultStoragePath()),
-      ux_(projectRoot_ / "data" / "local"),
-      catalog_(projectRoot_ / "data" / "seed") {
+    ui(new Ui::MainWindow),
+    projectRoot_(BUDGETBITES_SOURCE_DIR),
+    usersFile_(projectRoot_ / UserRepository::defaultStoragePath()),
+    ux_(projectRoot_ / "data" / "local"),
+    catalog_(projectRoot_ / "data" / "seed") {
     ui->setupUi(this);
 
     // Each screen is its own Qt Designer form. MainWindow only hosts and
@@ -81,7 +81,20 @@ MainWindow::MainWindow(QWidget* parent)
 
     ui->pages->addWidget(dashboardPageWidget_);
     ui->pages->addWidget(accountPageWidget_);
-    ui->pages->addWidget(preferencesPageWidget_);
+
+    // The Preferences page contains more vertical content than the other pages.
+    // Wrap it in a scroll area so Qt does not compress or overlap its widgets.
+    auto* preferencesScrollArea = new QScrollArea(this);
+    preferencesScrollArea->setObjectName("preferencesScrollArea");
+    preferencesScrollArea->setWidgetResizable(true);
+    preferencesScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    preferencesScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    preferencesScrollArea->setFrameShape(QFrame::NoFrame);
+
+    preferencesPageWidget_->setMinimumHeight(820);
+    preferencesScrollArea->setWidget(preferencesPageWidget_);
+
+    ui->pages->addWidget(preferencesScrollArea);
     ui->pages->addWidget(mealPlanPageWidget_);
     ui->pages->addWidget(recipePageWidget_);
     ui->pages->addWidget(groceryPageWidget_);
@@ -103,7 +116,7 @@ MainWindow::MainWindow(QWidget* parent)
     signOutButton_ = accountUi->signOutButton;
 
     budgetSpin_ = preferencesUi->budgetSpin;
-    dietaryList_ = preferencesUi->dietaryList;
+    dietaryList_ = preferencesUi->dietaryList_4;
     allergenList_ = preferencesUi->allergenList;
     pantryTable_ = preferencesUi->pantryTable;
     preferencesStatusLabel_ = preferencesUi->preferencesStatusLabel;
@@ -127,15 +140,15 @@ MainWindow::MainWindow(QWidget* parent)
     generationModeCombo_->addItem(
         "Normal — balance variety, reuse, and cost",
         static_cast<int>(MealGenerationMode::Normal)
-    );
+        );
     generationModeCombo_->addItem(
         "Budget First — complete plan with budget priority",
         static_cast<int>(MealGenerationMode::BudgetFirst)
-    );
+        );
     generationModeCombo_->addItem(
         "Strict Budget — stop rather than exceed budget",
         static_cast<int>(MealGenerationMode::StrictBudget)
-    );
+        );
 
     mealPlanTable_->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     mealPlanTable_->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
@@ -221,7 +234,7 @@ MainWindow::MainWindow(QWidget* parent)
         setGlobalStatus(
             "Recipe database could not be loaded: " + QString::fromStdString(catalog_.lastError()),
             true
-        );
+            );
     } else {
         setGlobalStatus("Ready. Sign in to save preferences and generate a personalized plan.");
     }
@@ -480,7 +493,7 @@ void MainWindow::generateMealPlan() {
     const auto mode = static_cast<MealGenerationMode>(generationModeCombo_->currentData().toInt());
     const MealGenerationResult result = mealGenerator_.generateWeeklyMealPlan(
         mealPlan_, catalog_, account_, preferences_, pantry_, mode
-    );
+        );
 
     grocery_.buildFromMealPlan(mealPlan_, catalog_, pantry_);
     refreshMealPlanTable();
@@ -493,9 +506,9 @@ void MainWindow::generateMealPlan() {
     }
 
     const QString status = QString("Generated %1 of 21 meals. Estimated grocery total: %2. %3")
-            .arg(result.mealsGenerated)
-            .arg(money(grocery_.calculateTotal()))
-            .arg(grocery_.isWithinBudget(preferences_.getBudget()) ? "Within budget." : "Over budget.");
+                               .arg(result.mealsGenerated)
+                               .arg(money(grocery_.calculateTotal()))
+                               .arg(grocery_.isWithinBudget(preferences_.getBudget()) ? "Within budget." : "Over budget.");
     mealPlanSummaryLabel_->setText(status);
     setGlobalStatus(status, !result.complete);
 }
@@ -522,9 +535,9 @@ void MainWindow::refreshMealPlanTable() {
     } else {
         mealPlanSummaryLabel_->setText(
             QString("%1 of 21 meal slots filled. Grocery estimate: %2.")
-            .arg(mealPlan_.countMeals())
-            .arg(money(grocery_.calculateTotal()))
-        );
+                .arg(mealPlan_.countMeals())
+                .arg(money(grocery_.calculateTotal()))
+            );
     }
 }
 
@@ -552,13 +565,13 @@ void MainWindow::refreshGroceryTable() {
     } else if (grocery_.isWithinBudget(budget)) {
         grocerySummaryLabel_->setText(
             QString("Estimated total: %1 | Budget: %2 | Within budget by %3")
-            .arg(money(total), money(budget), money(budget - total))
-        );
+                .arg(money(total), money(budget), money(budget - total))
+            );
     } else {
         grocerySummaryLabel_->setText(
             QString("Estimated total: %1 | Budget: %2 | Over budget by %3")
-            .arg(money(total), money(budget), money(total - budget))
-        );
+                .arg(money(total), money(budget), money(total - budget))
+            );
     }
 }
 
@@ -602,13 +615,16 @@ QString MainWindow::recipeDetails(const Recipe& recipe) const {
     text += QString("Cook time: %1\n").arg(optionalNumber(recipe.cookMinutes, " minutes"));
     text += QString("Primary equipment: %1\n").arg(
         QString::fromStdString(recipe.primaryEquipment.empty() ? "Not provided" : recipe.primaryEquipment));
+    if (!recipe.selectionNotes.empty()) {
+        text += "Notes: " + QString::fromStdString(recipe.selectionNotes) + "\n";
+    }
 
     text += "\nIngredients\n";
     for (const RecipeIngredient& ingredient: catalog_.getRecipeIngredients(recipe.recipeId)) {
         const std::string line = ingredient.sourceIngredientText.empty()
-                                     ? std::to_string(ingredient.quantity) + " " + ingredient.unit + " " + ingredient.
-                                       ingredientName
-                                     : ingredient.sourceIngredientText;
+        ? std::to_string(ingredient.quantity) + " " + ingredient.unit + " " + ingredient.
+                                                                              ingredientName
+        : ingredient.sourceIngredientText;
         text += "• " + QString::fromStdString(line) + "\n";
     }
 
