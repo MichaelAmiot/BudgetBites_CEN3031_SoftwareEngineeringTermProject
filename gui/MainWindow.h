@@ -119,6 +119,7 @@ private:
     void updateSignedInState();
 
     void registerUser();
+    void checkUsernameAvailability();
     void signIn();
     void signOut();
 

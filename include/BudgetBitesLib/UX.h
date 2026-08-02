@@ -24,6 +24,11 @@ public:
     // fails if username is empty, already taken, or password isn't strong enough
     bool registerUser(const std::string& username, const std::string& password);
 
+    // returns true if the username is already registered (case insensitive).
+    // Meant to be checked right after the user types a username, before they
+    // even choose a password, so they get an immediate "already taken" warning.
+    bool isUsernameTaken(const std::string& username);
+
     // returns true and starts a session if username/password match
     bool signIn(const std::string& username, const std::string& password);
 

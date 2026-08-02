@@ -22,6 +22,10 @@ public:
     // if there isn't one. Not case sensitive.
     UserAccount* find(const std::string& username);
 
+    // returns true if an account with this username already exists.
+    // Not case sensitive. Safe to call before a password has even been chosen.
+    bool exists(const std::string& username) const;
+
     void add(const UserAccount& account);
 
     int size() const;
