@@ -46,129 +46,129 @@
 #include <unordered_map>
 
 namespace {
-// Formats a plain number as a dollar amount, always with two decimal places.
-QString money(double value) {
-    return QString("$%1").arg(value, 0, 'f', 2);
-}
-
-// Some Qt styles/platforms won't render a custom QSS arrow image on a spin box's
-//  up/down buttons, even though the buttons themselves stay fully clickable. This
-//  overlays plain text labels (rendered the normal Qt way, no image loading involved)
-//  on top of the button area so the direction is always visibly clear, and keeps
-//  them positioned correctly whenever the spin box is resized.
-class SpinBoxArrowOverlay : public QObject {
-public:
-    SpinBoxArrowOverlay(QDoubleSpinBox* spinBox, QLabel* upLabel, QLabel* downLabel)
-        : QObject(spinBox), spinBox_(spinBox), upLabel_(upLabel), downLabel_(downLabel) {
-        reposition();
+    // Formats a plain number as a dollar amount, always with two decimal places.
+    QString money(double value) {
+        return QString("$%1").arg(value, 0, 'f', 2);
     }
 
-protected:
-    bool eventFilter(QObject* watched, QEvent* event) override {
-        if (watched == spinBox_ && (event->type() == QEvent::Resize || event->type() == QEvent::Show)) {
+    // Some Qt styles/platforms won't render a custom QSS arrow image on a spin box's
+    //  up/down buttons, even though the buttons themselves stay fully clickable. This
+    //  overlays plain text labels (rendered the normal Qt way, no image loading involved)
+    //  on top of the button area so the direction is always visibly clear, and keeps
+    //  them positioned correctly whenever the spin box is resized.
+    class SpinBoxArrowOverlay : public QObject {
+    public:
+        SpinBoxArrowOverlay(QDoubleSpinBox* spinBox, QLabel* upLabel, QLabel* downLabel)
+            : QObject(spinBox), spinBox_(spinBox), upLabel_(upLabel), downLabel_(downLabel) {
             reposition();
         }
-        return QObject::eventFilter(watched, event);
+
+    protected:
+        bool eventFilter(QObject* watched, QEvent* event) override {
+            if (watched == spinBox_ && (event->type() == QEvent::Resize || event->type() == QEvent::Show)) {
+                reposition();
+            }
+            return QObject::eventFilter(watched, event);
+        }
+
+    private:
+        void reposition() const {
+            constexpr int buttonWidth = 24;
+            const int height = spinBox_->height();
+            const int halfHeight = height / 2;
+            const int x = spinBox_->width() - buttonWidth;
+            upLabel_->setGeometry(x, 0, buttonWidth, halfHeight);
+            downLabel_->setGeometry(x, halfHeight, buttonWidth, height - halfHeight);
+        }
+
+        QDoubleSpinBox* spinBox_;
+        QLabel* upLabel_;
+        QLabel* downLabel_;
+    };
+
+    // Attaches visible ▲/▼ indicator labels on top of a spin box's native up/down
+    //  buttons. The labels are click-through, so the spin box's own buttons keep
+    //  handling the actual increment/decrement.
+    void addSpinBoxArrowIndicators(QDoubleSpinBox* spinBox) {
+        auto* upLabel = new QLabel(QString::fromUtf8("\xE2\x96\xB2"), spinBox);
+        auto* downLabel = new QLabel(QString::fromUtf8("\xE2\x96\xBC"), spinBox);
+        for (QLabel* label: {upLabel, downLabel}) {
+            label->setAlignment(Qt::AlignCenter);
+            label->setAttribute(Qt::WA_TransparentForMouseEvents);
+            label->setStyleSheet("color: #f5f7fa; background: transparent; font-size: 8px;");
+            label->show();
+        }
+        spinBox->installEventFilter(new SpinBoxArrowOverlay(spinBox, upLabel, downLabel));
     }
 
-private:
-    void reposition() const {
-        constexpr int buttonWidth = 24;
-        const int height = spinBox_->height();
-        const int halfHeight = height / 2;
-        const int x = spinBox_->width() - buttonWidth;
-        upLabel_->setGeometry(x, 0, buttonWidth, halfHeight);
-        downLabel_->setGeometry(x, halfHeight, buttonWidth, height - halfHeight);
+    // Draws a small eye icon for the password show/hide toggle. Drawn by hand
+    //  with QPainter instead of loading an image file, since that has proven far
+    //  more reliable than image resources anywhere else in this project.
+    //  visible = true draws an open eye with a pupil (password is currently shown)
+    //  visible = false draws the same eye with a line through it (password is currently hidden).
+    QIcon makePasswordEyeIcon(bool visible) {
+        constexpr int size = 20;
+        QPixmap pixmap(size, size);
+        pixmap.fill(Qt::transparent);
+
+        QPainter painter(&pixmap);
+        painter.setRenderHint(QPainter::Antialiasing);
+
+        const QColor color(174, 180, 183); // matches the app's muted text color
+        QPen outlinePen(color);
+        outlinePen.setWidthF(1.6);
+        painter.setPen(outlinePen);
+        painter.setBrush(Qt::NoBrush);
+
+        QPainterPath eyePath;
+        eyePath.moveTo(2, 10);
+        eyePath.cubicTo(6, 3, 14, 3, 18, 10);
+        eyePath.cubicTo(14, 17, 6, 17, 2, 10);
+        painter.drawPath(eyePath);
+
+        if (visible) {
+            painter.setBrush(color);
+            painter.drawEllipse(QPointF(10, 10), 3.2, 3.2);
+        } else {
+            painter.drawLine(QPointF(3, 17), QPointF(17, 3));
+        }
+
+        painter.end();
+        return QIcon(pixmap);
     }
 
-    QDoubleSpinBox* spinBox_;
-    QLabel* upLabel_;
-    QLabel* downLabel_;
-};
-
-// Attaches visible ▲/▼ indicator labels on top of a spin box's native up/down
-//  buttons. The labels are click-through, so the spin box's own buttons keep
-//  handling the actual increment/decrement.
-void addSpinBoxArrowIndicators(QDoubleSpinBox* spinBox) {
-    auto* upLabel = new QLabel(QString::fromUtf8("\xE2\x96\xB2"), spinBox);
-    auto* downLabel = new QLabel(QString::fromUtf8("\xE2\x96\xBC"), spinBox);
-    for (QLabel* label : {upLabel, downLabel}) {
-        label->setAlignment(Qt::AlignCenter);
-        label->setAttribute(Qt::WA_TransparentForMouseEvents);
-        label->setStyleSheet("color: #f5f7fa; background: transparent; font-size: 8px;");
-        label->show();
-    }
-    spinBox->installEventFilter(new SpinBoxArrowOverlay(spinBox, upLabel, downLabel));
-}
-
-// Draws a small eye icon for the password show/hide toggle. Drawn by hand
-//  with QPainter instead of loading an image file, since that has proven far
-//  more reliable than image resources anywhere else in this project.
-//  visible = true draws an open eye with a pupil (password is currently shown)
-//  visible = false draws the same eye with a line through it (password is currently hidden).
-QIcon makePasswordEyeIcon(bool visible) {
-    constexpr int size = 20;
-    QPixmap pixmap(size, size);
-    pixmap.fill(Qt::transparent);
-
-    QPainter painter(&pixmap);
-    painter.setRenderHint(QPainter::Antialiasing);
-
-    const QColor color(174, 180, 183); // matches the app's muted text color
-    QPen outlinePen(color);
-    outlinePen.setWidthF(1.6);
-    painter.setPen(outlinePen);
-    painter.setBrush(Qt::NoBrush);
-
-    QPainterPath eyePath;
-    eyePath.moveTo(2, 10);
-    eyePath.cubicTo(6, 3, 14, 3, 18, 10);
-    eyePath.cubicTo(14, 17, 6, 17, 2, 10);
-    painter.drawPath(eyePath);
-
-    if (visible) {
-        painter.setBrush(color);
-        painter.drawEllipse(QPointF(10, 10), 3.2, 3.2);
-    } else {
-        painter.drawLine(QPointF(3, 17), QPointF(17, 3));
+    // A small gray label used for subtitles and helper text under a page title.
+    QLabel* makeMutedLabel(const QString& text) {
+        auto* label = new QLabel(text);
+        label->setObjectName("mutedLabel");
+        label->setWordWrap(true);
+        return label;
     }
 
-    painter.end();
-    return QIcon(pixmap);
-}
+    // Wraps plain text in a table item that the user cannot type into. Used for
+    //  every table cell that just displays information instead of collecting it.
+    QTableWidgetItem* readOnlyItem(const QString& text) {
+        auto* item = new QTableWidgetItem(text);
+        item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+        return item;
+    }
 
-// A small gray label used for subtitles and helper text under a page title.
-QLabel* makeMutedLabel(const QString& text) {
-    auto* label = new QLabel(text);
-    label->setObjectName("mutedLabel");
-    label->setWordWrap(true);
-    return label;
-}
-
-// Wraps plain text in a table item that the user cannot type into. Used for
-//  every table cell that just displays information instead of collecting it.
-QTableWidgetItem* readOnlyItem(const QString& text) {
-    auto* item = new QTableWidgetItem(text);
-    item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-    return item;
-}
-
-// Turns an optional catalog id into text for display, with a fallback
-//  message when nothing was set.
-QString optionalNumber(const std::optional<int>& value, const QString& suffix = {}) {
-    return value ? QString::number(*value) + suffix : QString("Not provided");
-}
+    // Turns an optional catalog id into text for display, with a fallback
+    //  message when nothing was set.
+    QString optionalNumber(const std::optional<int>& value, const QString& suffix = {}) {
+        return value ? QString::number(*value) + suffix : QString("Not provided");
+    }
 } // namespace
 
 // Sets up every page, connects every button, and loads the saved account
 //  list from disk so people can sign back in without registering again.
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    projectRoot_(BUDGETBITES_SOURCE_DIR),
-    usersFile_(projectRoot_ / UserRepository::defaultStoragePath()),
-    ux_(projectRoot_ / "data" / "local"),
-    catalog_(projectRoot_ / "data" / "seed") {
+      ui(new Ui::MainWindow),
+      projectRoot_(BUDGETBITES_SOURCE_DIR),
+      usersFile_(projectRoot_ / UserRepository::defaultStoragePath()),
+      ux_(projectRoot_ / "data" / "local"),
+      catalog_(projectRoot_ / "data" / "seed") {
     ui->setupUi(this);
 
     // Each screen is its own Qt Designer form. MainWindow only hosts and
@@ -269,15 +269,15 @@ MainWindow::MainWindow(QWidget* parent)
     generationModeCombo_->addItem(
         "Normal — balance variety, reuse, and cost",
         static_cast<int>(MealGenerationMode::Normal)
-        );
+    );
     generationModeCombo_->addItem(
         "Budget First — complete plan with budget priority",
         static_cast<int>(MealGenerationMode::BudgetFirst)
-        );
+    );
     generationModeCombo_->addItem(
         "Strict Budget — stop rather than exceed budget",
         static_cast<int>(MealGenerationMode::StrictBudget)
-        );
+    );
 
     mealPlanTable_->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     mealPlanTable_->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
@@ -376,7 +376,7 @@ MainWindow::MainWindow(QWidget* parent)
         setGlobalStatus(
             "Recipe database could not be loaded: " + QString::fromStdString(catalog_.lastError()),
             true
-            );
+        );
     } else {
         setGlobalStatus("Ready. Sign in to save preferences and generate a personalized plan.");
     }
@@ -797,7 +797,7 @@ void MainWindow::generateMealPlan() {
     const auto mode = static_cast<MealGenerationMode>(generationModeCombo_->currentData().toInt());
     const MealGenerationResult result = mealGenerator_.generateWeeklyMealPlan(
         mealPlan_, catalog_, account_, preferences_, pantry_, mode
-        );
+    );
 
     grocery_.buildFromMealPlan(mealPlan_, catalog_, pantry_);
     refreshMealPlanTable();
@@ -811,9 +811,9 @@ void MainWindow::generateMealPlan() {
 
     const bool withinBudget = grocery_.isWithinBudget(preferences_.getBudget());
     const QString status = QString("Generated %1 of 21 meals. Estimated grocery total: %2. %3")
-                               .arg(result.mealsGenerated)
-                               .arg(money(grocery_.calculateTotal()))
-                               .arg(withinBudget ? "Within budget." : "Over budget.");
+            .arg(result.mealsGenerated)
+            .arg(money(grocery_.calculateTotal()))
+            .arg(withinBudget ? "Within budget." : "Over budget.");
     mealPlanSummaryLabel_->setText(status);
     mealPlanSummaryLabel_->setStyleSheet(withinBudget ? "" : "color: #ff8f8f;");
     setGlobalStatus(status, !result.complete);
@@ -843,9 +843,9 @@ void MainWindow::refreshMealPlanTable() {
     } else {
         mealPlanSummaryLabel_->setText(
             QString("%1 of 21 meal slots filled. Grocery estimate: %2.")
-                .arg(mealPlan_.countMeals())
-                .arg(money(grocery_.calculateTotal()))
-            );
+            .arg(mealPlan_.countMeals())
+            .arg(money(grocery_.calculateTotal()))
+        );
     }
 }
 
@@ -876,14 +876,14 @@ void MainWindow::refreshGroceryTable() {
     } else if (grocery_.isWithinBudget(budget)) {
         grocerySummaryLabel_->setText(
             QString("Estimated total: %1 | Budget: %2 | Within budget by %3")
-                .arg(money(total), money(budget), money(budget - total))
-            );
+            .arg(money(total), money(budget), money(budget - total))
+        );
         grocerySummaryLabel_->setStyleSheet("");
     } else {
         grocerySummaryLabel_->setText(
             QString("Estimated total: %1 | Budget: %2 | Over budget by %3")
-                .arg(money(total), money(budget), money(total - budget))
-            );
+            .arg(money(total), money(budget), money(total - budget))
+        );
         grocerySummaryLabel_->setStyleSheet("color: #ff8f8f;");
     }
 }
@@ -935,16 +935,13 @@ QString MainWindow::recipeDetails(const Recipe& recipe) const {
     text += QString("Cook time: %1\n").arg(optionalNumber(recipe.cookMinutes, " minutes"));
     text += QString("Primary equipment: %1\n").arg(
         QString::fromStdString(recipe.primaryEquipment.empty() ? "Not provided" : recipe.primaryEquipment));
-    if (!recipe.selectionNotes.empty()) {
-        text += "Notes: " + QString::fromStdString(recipe.selectionNotes) + "\n";
-    }
 
     text += "\nIngredients\n";
     for (const RecipeIngredient& ingredient: catalog_.getRecipeIngredients(recipe.recipeId)) {
         const std::string line = ingredient.sourceIngredientText.empty()
-        ? std::to_string(ingredient.quantity) + " " + ingredient.unit + " " + ingredient.
-                                                                              ingredientName
-        : ingredient.sourceIngredientText;
+                                     ? std::to_string(ingredient.quantity) + " " + ingredient.unit + " " + ingredient.
+                                       ingredientName
+                                     : ingredient.sourceIngredientText;
         text += "• " + QString::fromStdString(line) + "\n";
     }
 
