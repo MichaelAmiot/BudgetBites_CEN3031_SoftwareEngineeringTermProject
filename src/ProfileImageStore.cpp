@@ -3,12 +3,18 @@
 #include <cctype>
 #include <filesystem>
 #include <fstream>
+#include <system_error>
 #include <vector>
 
 using namespace std;
 namespace fs = std::filesystem;
 
 namespace ProfileImageStore {
+    // Copies a profile picture into local storage so BudgetBites has its own
+    //  copy tied to that username, instead of relying on the original file
+    //  staying in place. Only a handful of common image extensions are
+    //  allowed, and the function returns an empty result if the source file
+    //  is missing, has the wrong extension, or cannot be copied for any reason.
     optional<string> store(const string& username, const string& sourceImagePath) {
         fs::path source(sourceImagePath);
 
@@ -51,5 +57,18 @@ namespace ProfileImageStore {
         out << in.rdbuf();
 
         return destPath.string();
+    }
+
+    bool remove(const string& imagePath) {
+        if (imagePath.empty()) {
+            return true;
+        }
+
+        std::error_code errorCode;
+        fs::remove(fs::path(imagePath), errorCode);
+
+        // fs::remove sets errorCode when something goes wrong, but a missing
+        //  file is not treated as an error here since the goal (no file at that path) is already true.
+        return !errorCode || !fs::exists(imagePath);
     }
 }
