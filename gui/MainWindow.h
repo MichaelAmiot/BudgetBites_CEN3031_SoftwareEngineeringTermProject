@@ -29,7 +29,6 @@ class QPushButton;
 class QStackedWidget;
 class QTableWidget;
 class QTextEdit;
-class QTimer;
 class QWidget;
 class QCloseEvent;
 
@@ -41,9 +40,9 @@ class RecipePage;
 class GroceryPage;
 
 // The one and only window for the desktop app. Holds every page (dashboard,
-// account, preferences, meal plan, recipes, grocery) in a QStackedWidget and
-// switches between them, and owns the actual business objects (UX, Account,
-// Preferences, and so on) that the console app also uses under the hood.
+//  account, preferences, meal plan, recipes, grocery) in a QStackedWidget and
+//  switches between them, and owns the actual business objects (UX, Account,
+//  Preferences, and so on) that the console app also uses under the hood.
 class MainWindow final : public QMainWindow {
     Q_OBJECT
 
@@ -60,7 +59,7 @@ private:
     Ui::MainWindow* ui = nullptr;
 
     // Each of these is one screen of the app. They live inside the pages_
-    // stacked widget below and only one is visible at a time.
+    //  stacked widget below and only one is visible at a time.
     DashboardPage* dashboardPageWidget_ = nullptr;
     AccountPage* accountPageWidget_ = nullptr;
     PreferencesPage* preferencesPageWidget_ = nullptr;
@@ -69,7 +68,7 @@ private:
     GroceryPage* groceryPageWidget_ = nullptr;
 
     // Matches the order the pages were added to pages_, so showPage can
-    // just flip to the right index instead of comparing widget pointers.
+    //  just flip to the right index instead of comparing widget pointers.
     enum PageIndex {
         DashboardPageIndex = 0,
         AccountPageIndex,
@@ -125,9 +124,6 @@ private:
     QLineEdit* recipeSearchEdit_ = nullptr;
     QListWidget* recipeResultsList_ = nullptr;
     QTextEdit* recipeDetailsText_ = nullptr;
-    // Waits a short moment after the last keystroke before actually
-    // searching, so the list is not rebuilt on every single character.
-    QTimer* recipeSearchDebounce_ = nullptr;
     std::vector<Recipe> currentRecipeResults_;
 
     // Grocery page
@@ -142,7 +138,7 @@ private:
     // Updates the small status line at the bottom of the window.
     void setGlobalStatus(const QString& message, bool error = false);
     // Refreshes everything that depends on whether someone is signed in:
-    // the header text, the avatar photo, and which account buttons are enabled.
+    //  the header text, the avatar photo, and which account buttons are enabled.
     void updateSignedInState();
 
     // Account page actions
@@ -158,6 +154,10 @@ private:
     void populatePreferenceControls();
     void loadPreferenceControlsFromState();
     void savePreferences();
+    // Unchecks every row in the pantry table and clears its gram amounts.
+    // Does not touch the budget, dietary, or allergen controls, and does
+    //  not save to disk until Save Preferences is clicked afterward.
+    void clearPantryTable();
 
     // Meal plan page actions
     void generateMealPlan();
