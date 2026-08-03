@@ -945,6 +945,7 @@ QString MainWindow::recipeDetails(const Recipe& recipe) const {
         text += "• " + QString::fromStdString(line) + "\n";
     }
 
+
     const auto seasoners = catalog_.getRecipeSeasoners(recipe.recipeId);
     if (!seasoners.empty()) {
         text += "\nSeasonings\n";
