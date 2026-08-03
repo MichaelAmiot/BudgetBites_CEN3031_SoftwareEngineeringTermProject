@@ -8,10 +8,18 @@
 
 using namespace std;
 
+// Lets the caller check if a username is free before the person even
+// picks a password, so we can warn them right away instead of waiting
+// until the whole registration form is filled out.
 bool UX::isUsernameTaken(const string& username) {
     return repository.exists(username);
 }
 
+// Creates a brand new account if the username and password both pass
+// our rules. Fails if the username is empty, contains characters our
+// CSV storage cannot handle, is already taken, or if the password is
+// not strong enough. On success the password is salted and hashed
+// before it ever gets stored.
 bool UX::registerUser(const string& username, const string& password) {
     // Account records use commas and lines as delimiters, so usernames cannot contain them.
     if (username.empty() || username.find_first_of(",\r\n") != string::npos) {
@@ -33,6 +41,9 @@ bool UX::registerUser(const string& username, const string& password) {
     return true;
 }
 
+// Checks the username and password against what is stored and, if they
+//  match, remembers that this user is now signed in for the rest of the
+//  session.
 bool UX::signIn(const string& username, const string& password) {
     UserAccount* account = repository.find(username);
     if (account == nullptr) {
@@ -47,18 +58,24 @@ bool UX::signIn(const string& username, const string& password) {
     return true;
 }
 
+// Clears whoever is currently signed in.
 void UX::signOut() {
     currentUsername.reset();
 }
 
+// True if somebody is currently signed in.
 bool UX::isSignedIn() const {
     return currentUsername.has_value();
 }
 
+// Gives back the signed in username, or nothing if no one is signed in.
 optional<string> UX::currentUser() const {
     return currentUsername;
 }
 
+// Saves a profile picture for the given user, but only goes through if
+//  that user is the one currently signed in and actually has an account.
+// The real copying and file checks happen over in ProfileImageStore.
 bool UX::uploadProfileImage(const string& username, const string& sourceImagePath) {
     // only let someone upload a picture for their own account
     if (!currentUsername.has_value() || currentUsername != username) {
@@ -79,6 +96,30 @@ bool UX::uploadProfileImage(const string& username, const string& sourceImagePat
     return true;
 }
 
+bool UX::removeProfileImage(const string& username) {
+    // only let someone remove the picture on their own account
+    if (!currentUsername.has_value() || currentUsername != username) {
+        return false;
+    }
+
+    UserAccount* account = repository.find(username);
+    if (account == nullptr) {
+        return false;
+    }
+
+    if (account->profileImagePath.empty()) {
+        return true; // nothing to remove, already in the state we want
+    }
+
+    if (!ProfileImageStore::remove(account->profileImagePath)) {
+        return false;
+    }
+
+    account->profileImagePath.clear();
+    return true;
+}
+
+// Looks up where a user's profile picture is saved, if they have one.
 optional<string> UX::getProfileImagePath(const string& username) {
     UserAccount* account = repository.find(username);
     if (account == nullptr || account->profileImagePath.empty()) {
@@ -87,10 +128,16 @@ optional<string> UX::getProfileImagePath(const string& username) {
     return account->profileImagePath;
 }
 
+// Small wrapper so other parts of the app can check password strength
+//  without needing to know PasswordSecurity exists.
 bool UX::isPasswordStrong(const string& password) {
     return PasswordSecurity::isStrong(password);
 }
 
+// Pulls the signed in user's saved budget, dietary tags, allergens, and
+//  pantry items out of storage and fills them into the objects the rest
+//  of the app works with. Fails if nobody is signed in or if their saved
+//  data cannot be found.
 bool UX::loadCurrentUserInfo(
     Account& account,
     Preferences& preferences,
@@ -113,6 +160,9 @@ bool UX::loadCurrentUserInfo(
     return true;
 }
 
+// Takes whatever the signed in user has set for their budget, dietary
+//  tags, allergens, and pantry items, and writes all of it back out to
+//  storage. Stops and returns false as soon as any one of those saves fails.
 bool UX::saveCurrentUserInfo(
     const Account& account,
     const Preferences& preferences,
@@ -139,10 +189,13 @@ bool UX::saveCurrentUserInfo(
     return userInfoRepository.save();
 }
 
+// Saves the account list (usernames, password hashes, and so on) to a file.
 bool UX::saveToFile(const string& filePath) const {
     return repository.saveToFile(filePath);
 }
 
+// Loads the account list back in from a file. Signs everyone out first,
+// since whatever session was active no longer matches whatever gets loaded.
 bool UX::loadFromFile(const string& filePath) {
     currentUsername.reset();
     return repository.loadFromFile(filePath);

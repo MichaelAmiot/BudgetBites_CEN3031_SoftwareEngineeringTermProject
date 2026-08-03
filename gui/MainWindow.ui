@@ -1,4 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
+<!-- The main window. Everything the user sees sits inside one vertical
+     layout: a header bar on top, the stacked pages in the middle, and a
+     thin status line at the bottom. -->
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
@@ -37,6 +40,9 @@
      <number>0</number>
     </property>
     <item>
+     <!-- Top header bar: app name on the left, a spacer to push everything
+          else to the right, then the small photo, then the signed in
+          status pill. -->
      <layout class="QHBoxLayout" name="headerLayout">
       <property name="leftMargin">
        <number>28</number>
@@ -80,6 +86,40 @@
        </spacer>
       </item>
       <item>
+       <!-- Small round preview of the signed in user's profile photo.
+            Filled in and swapped for the placeholder by
+            refreshProfileImagePreview in MainWindow.cpp. -->
+       <widget class="QLabel" name="headerAvatarLabel">
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    background-color: #2B2E30;
+    border: 1px solid #3A3E40;
+    border-radius: 16px;
+}</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <!-- Text pill that reads "Not signed in" or "Signed in as ...".
+            Updated by updateSignedInState in MainWindow.cpp. -->
        <widget class="QLabel" name="signedInLabel">
         <property name="styleSheet">
          <string notr="true">QLabel {
@@ -98,6 +138,9 @@
      </layout>
     </item>
     <item>
+     <!-- Holds every page (dashboard, account, preferences, and so on).
+          MainWindow.cpp adds each page widget to this in its constructor
+          and flips currentIndex to switch screens. -->
      <widget class="QStackedWidget" name="pages">
       <property name="styleSheet">
        <string notr="true">QFrame {
@@ -112,6 +155,8 @@
      </widget>
     </item>
     <item>
+     <!-- Thin status line along the bottom of the window. Set by
+          setGlobalStatus in MainWindow.cpp, and turns red for errors. -->
      <widget class="QLabel" name="globalStatusLabel">
       <property name="text">
        <string />

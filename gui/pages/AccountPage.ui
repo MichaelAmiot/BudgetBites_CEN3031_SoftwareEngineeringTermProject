@@ -134,6 +134,85 @@ background: transparent;</string>
         </item>
        </layout>
       </item>
+      <item>
+       <layout class="QHBoxLayout" name="profileImageRow">
+        <item>
+         <widget class="QLabel" name="profileImagePreview">
+          <property name="minimumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+    background-color: #2B2E30;
+    color: #8E9498;
+    border: 1px solid #3A3E40;
+    border-radius: 32px;
+    font-size: 10px;
+}</string>
+          </property>
+          <property name="text">
+           <string>No Photo</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="uploadPhotoButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #2B2E30;
+    color: #F4F4F4;
+    border: 1px solid #3A3E40;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QPushButton:hover {
+    border-color: #4CAF50;
+}</string>
+          </property>
+          <property name="text">
+           <string>Upload Profile Photo</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="removePhotoButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: transparent;
+    color: #AEB4B7;
+    border: 1px solid #454A4D;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QPushButton:hover {
+    color: white;
+    border-color: #E57373;
+}</string>
+          </property>
+          <property name="text">
+           <string>Remove Photo</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
      </layout>
     </widget>
    </item>

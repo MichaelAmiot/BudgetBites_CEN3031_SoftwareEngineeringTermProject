@@ -41,6 +41,11 @@ public:
     // only works if username is the person currently signed in
     bool uploadProfileImage(const std::string& username, const std::string& sourceImagePath);
 
+    // deletes the current profile picture for a user, if they have one.
+    // Same rule as uploading: only works if username is the person
+    // currently signed in.
+    bool removeProfileImage(const std::string& username);
+
     std::optional<std::string> getProfileImagePath(const std::string& username);
 
     static bool isPasswordStrong(const std::string& password);
