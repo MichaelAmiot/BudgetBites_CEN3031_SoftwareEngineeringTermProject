@@ -343,6 +343,7 @@ MainWindow::MainWindow(QWidget* parent)
 
     // Meal plan page.
     connect(mealPlanUi->generateMealPlanButton, &QPushButton::clicked, this, &MainWindow::generateMealPlan);
+    connect(mealPlanUi->clearMealPlanButton, &QPushButton::clicked, this, &MainWindow::clearMealPlan);
     connect(mealPlanUi->openGroceryButton, &QPushButton::clicked, this, [this] {
         refreshGroceryTable();
         showPage(GroceryPageIndex);
@@ -764,7 +765,7 @@ void MainWindow::loadPreferenceControlsFromState() {
 
 // Unchecks every row in the pantry table and clears its gram amount back
 //  to disabled/zero. Leaves the budget, dietary, and allergen controls
-//  untouched. Nothing is written to disk here the person still has to
+//  untouched. Nothing is written to disk here — the person still has to
 //  click Save Preferences to make the clear stick, and Reload Saved
 //  Values will bring back whatever pantry state was last saved if they
 //  change their mind first.
@@ -844,6 +845,33 @@ void MainWindow::generateMealPlan() {
     mealPlanSummaryLabel_->setText(status);
     mealPlanSummaryLabel_->setStyleSheet(withinBudget ? "" : "color: #ff8f8f;");
     setGlobalStatus(status, !result.complete);
+}
+
+// Clears the generated weekly meal plan and its grocery list back to
+//  empty. Preferences (budget, dietary tags, allergens, pantry) are left
+//  untouched, so pressing Generate Weekly Plan again immediately after
+//  still uses the same restrictions, just with a fresh, empty starting
+//  point instead of building on top of the previous plan.
+void MainWindow::clearMealPlan() {
+    if (const auto choice = QMessageBox::question(
+            this,
+            "Clear Meal Plan",
+            "This clears your current weekly meal plan and grocery list. Continue?",
+            QMessageBox::Yes | QMessageBox::Cancel,
+            QMessageBox::Cancel
+            );
+        choice != QMessageBox::Yes) {
+        return;
+    }
+
+    mealPlan_ = MealPlan{};
+    grocery_ = Grocery{};
+    refreshMealPlanTable();
+    refreshGroceryTable();
+
+    mealPlanSummaryLabel_->setText("No meal plan yet. Choose a generation mode and create your weekly plan.");
+    mealPlanSummaryLabel_->setStyleSheet("");
+    setGlobalStatus("Meal plan cleared.");
 }
 
 // Rebuilds the seven day meal plan table from whatever is currently stored
