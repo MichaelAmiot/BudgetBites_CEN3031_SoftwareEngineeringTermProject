@@ -26,8 +26,13 @@ constexpr int kPreferredMaximumRecipeUses = 3;
 //  entropy source (not time-of-day or a fixed seed) so back-to-back plans
 //  in the same run, and plans across different runs, don't repeat the
 //  same "random" order.
-std::mt19937& sharedRandomEngine() {
-    static thread_local std::mt19937 engine(std::random_device{}());
+// NOSONAR-justification: this PRNG only selects which recipe fills a meal
+//  slot. It never generates anything security-sensitive (tokens, passwords,
+//  session IDs, salts), so a predictable/non-cryptographic generator is
+//  intentional and safe here. See PasswordSecurity.cpp for the engine used
+//  for actual security-sensitive randomness in this project.
+std::mt19937& sharedRandomEngine() { // NOSONAR
+    static thread_local std::mt19937 engine(std::random_device{}()); // NOSONAR
     return engine;
 }
 
@@ -194,7 +199,11 @@ std::optional<CandidateEvaluation> chooseCandidate(
     const ComparatorFn isBetter = (mode == MealGenerationMode::Normal)
         ? static_cast<ComparatorFn>(isBetterNormalCandidate)
         : static_cast<ComparatorFn>(isBetterBudgetCandidate);
-    std::sort(evaluations.begin(), evaluations.end(), isBetter);
+    // NOSONAR-justification: SonarCloud suggests std::ranges::sort, which
+    //  needs C++20. This project targets C++17 (see CMAKE_CXX_STANDARD in
+    //  CMakeLists.txt), so the classic iterator-pair std::sort is the
+    //  correct, compilable form here.
+    std::sort(evaluations.begin(), evaluations.end(), isBetter); // NOSONAR
 
     // Pick randomly among the best few options instead of always the single
     //  best, but only in Normal mode. Every candidate here already passed the
