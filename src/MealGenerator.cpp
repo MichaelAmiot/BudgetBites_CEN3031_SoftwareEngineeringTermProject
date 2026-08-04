@@ -12,6 +12,7 @@
 
 #include <algorithm>
 #include <optional>
+#include <random>
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
@@ -20,6 +21,15 @@ namespace {
 
 using RecipeCandidates = std::vector<const Recipe*>;
 constexpr int kPreferredMaximumRecipeUses = 3;
+
+// One shared random engine for the generator. Seeded once from a real
+//  entropy source (not time-of-day or a fixed seed) so back-to-back plans
+//  in the same run, and plans across different runs, don't repeat the
+//  same "random" order.
+std::mt19937& sharedRandomEngine() {
+    static thread_local std::mt19937 engine(std::random_device{}());
+    return engine;
+}
 
 std::unordered_set<int> recipeIngredientIds(
     const RecipeDataBase& catalog,
@@ -120,7 +130,7 @@ std::optional<CandidateEvaluation> chooseCandidate(
         );
     }
 
-    std::optional<CandidateEvaluation> best;
+    std::vector<CandidateEvaluation> evaluations;
     for (const Recipe* candidate : candidates) {
         const std::unordered_set<int> ingredientIds = recipeIngredientIds(catalog, candidate->recipeId);
         int pantryMatches = 0;
@@ -151,26 +161,43 @@ std::optional<CandidateEvaluation> chooseCandidate(
             recipeUseCount[candidate->recipeId] * 2.0 -
             additionalCost;
 
-        const CandidateEvaluation evaluation{
+        evaluations.push_back(CandidateEvaluation{
             candidate,
             score,
             trialCost,
             trialCost <= weeklyBudget,
             recipeUseCount[candidate->recipeId]
-        };
-
-        bool better = !best;
-        if (best && mode == MealGenerationMode::Normal) {
-            better = isBetterNormalCandidate(evaluation, *best);
-        } else if (best) {
-            better = isBetterBudgetCandidate(evaluation, *best);
-        }
-
-        if (better) {
-            best = evaluation;
-        }
+        });
     }
-    return best;
+
+    if (evaluations.empty()) {
+        return std::nullopt;
+    }
+
+    using ComparatorFn = bool (*)(const CandidateEvaluation&, const CandidateEvaluation&);
+    const ComparatorFn isBetter = (mode == MealGenerationMode::Normal)
+        ? static_cast<ComparatorFn>(isBetterNormalCandidate)
+        : static_cast<ComparatorFn>(isBetterBudgetCandidate);
+    std::sort(evaluations.begin(), evaluations.end(), isBetter);
+
+    // Pick randomly among the best few options instead of always the single
+    //  best, but only in Normal mode. Every candidate here already passed the
+    //  allergy/dietary hard filter upstream (see findCompatibleRecipes above),
+    //  so this only adds variety among choices that are already safe and
+    //  close to optimal, it never picks something worse than "one of the
+    //  best few" for this slot. This is why pressing Generate Weekly Plan
+    //  again in Normal mode produces a different plan instead of the exact
+    //  same one every time.
+    //  Budget-First and Strict-Budget stay fully deterministic (always the
+    //  single cheapest/best-scoring option) because their whole purpose is
+    //  squeezing cost as tightly as possible; picking a runner-up there
+    //  could push the plan over budget for no reason.
+    constexpr std::size_t kVarietyPoolSize = 3;
+    const std::size_t poolSize = (mode == MealGenerationMode::Normal)
+        ? std::min(kVarietyPoolSize, evaluations.size())
+        : std::size_t{1};
+    std::uniform_int_distribution<std::size_t> pick(0, poolSize - 1);
+    return evaluations[pick(sharedRandomEngine())];
 }
 
 } // namespace

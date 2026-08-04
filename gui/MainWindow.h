@@ -161,6 +161,10 @@ private:
 
     // Meal plan page actions
     void generateMealPlan();
+    // Clears the currently generated weekly meal plan and grocery list back
+    //  to empty, without touching saved budget/dietary/allergen/pantry
+    //  preferences.
+    void clearMealPlan();
     void refreshMealPlanTable();
     void refreshGroceryTable();
 
