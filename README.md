@@ -1,6 +1,62 @@
-# BudgetBites_CEN3031_SoftwareEngineeringTermProject
-BudgetBites — Affordable Meal Planning for College Students in Need
+# BudgetBites
 
-BudgetBites helps college students with limited food budgets plan simple, affordable, and realistic meals for the week. Many students struggle with food insecurity, high living costs, limited cooking experience, and busy schedules. This app supports them by turning a small weekly grocery budget into a practical meal plan and shopping list.
-Users can enter their weekly food budget, dietary preferences, allergies, available cooking equipment, and ingredients they already have at home. Based on this information, BudgetBites recommends low-cost recipes, builds a weekly meal plan, estimates the total grocery cost, and generates a combined shopping list. The system can also prioritize meals that reuse the same ingredients to reduce food waste and save money.
-The social impact of this project is helping students eat more regularly and affordably without requiring advanced cooking skills or expensive ingredients. It can especially support low-income students, first-year students, international students, and students living off campus.
+BudgetBites is a desktop meal-planning application for college students. It creates weekly meal plans and grocery lists
+based on a user's budget, dietary preferences, allergens, and available pantry ingredients.
+
+## Features
+
+- Account registration and login
+- Dietary, allergen, budget, and pantry settings
+- Recipe search and filtering
+- Seven-day meal-plan generation
+- Automatic grocery-list and cost estimation
+
+## Requirements
+
+- CMake 3.20 or later
+- A C++17-compatible compiler
+- Qt 6 Widgets
+- Git
+
+## Build
+
+Clone the repository and enter the project directory:
+
+```bash
+git clone https://github.com/MichaelAmiot/BudgetBites_CEN3031_SoftwareEngineeringTermProject.git
+cd BudgetBites_CEN3031_SoftwareEngineeringTermProject
+```
+
+Configure and build the project:
+
+```bash
+cmake -S . -B build
+cmake --build build
+```
+
+If CMake cannot find Qt, provide the location of the Qt 6 CMake package:
+
+```bash
+cmake -S . -B build -DQt6_DIR="/path/to/Qt/lib/cmake/Qt6"
+```
+
+## Run
+
+Run the application from the project directory.
+
+### Graphical application
+
+- Windows: `build\gui\BudgetBitesGUI.exe`
+- macOS: `open build/gui/BudgetBitesGUI.app`
+- Linux: `./build/gui/BudgetBitesGUI`
+
+Create a new account from the Register page after the application starts.
+
+### Command-line application
+
+- Windows: `build\src\BudgetBites.exe`
+- macOS/Linux: `./build/src/BudgetBites`
+
+## Data
+
+The recipe catalog is included in `data/seed`. User accounts and settings are stored locally in `data/local`.
