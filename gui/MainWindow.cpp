@@ -853,14 +853,14 @@ void MainWindow::generateMealPlan() {
 //  still uses the same restrictions, just with a fresh, empty starting
 //  point instead of building on top of the previous plan.
 void MainWindow::clearMealPlan() {
-    const auto choice = QMessageBox::question(
-        this,
-        "Clear Meal Plan",
-        "This clears your current weekly meal plan and grocery list. Continue?",
-        QMessageBox::Yes | QMessageBox::Cancel,
-        QMessageBox::Cancel
-        );
-    if (choice != QMessageBox::Yes) {
+    if (const auto choice = QMessageBox::question(
+            this,
+            "Clear Meal Plan",
+            "This clears your current weekly meal plan and grocery list. Continue?",
+            QMessageBox::Yes | QMessageBox::Cancel,
+            QMessageBox::Cancel
+            );
+        choice != QMessageBox::Yes) {
         return;
     }
 
@@ -990,6 +990,7 @@ QString MainWindow::recipeDetails(const Recipe& recipe) const {
     text += QString("Cook time: %1\n").arg(optionalNumber(recipe.cookMinutes, " minutes"));
     text += QString("Primary equipment: %1\n").arg(
         QString::fromStdString(recipe.primaryEquipment.empty() ? "Not provided" : recipe.primaryEquipment));
+    
 
     text += "\nIngredients\n";
     for (const RecipeIngredient& ingredient: catalog_.getRecipeIngredients(recipe.recipeId)) {

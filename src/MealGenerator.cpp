@@ -161,7 +161,7 @@ std::optional<CandidateEvaluation> chooseCandidate(
             recipeUseCount[candidate->recipeId] * 2.0 -
             additionalCost;
 
-        evaluations.push_back(CandidateEvaluation{
+        evaluations.emplace_back(CandidateEvaluation{
             candidate,
             score,
             trialCost,
