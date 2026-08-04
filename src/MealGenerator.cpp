@@ -48,6 +48,22 @@ struct CandidateEvaluation {
     double totalCost;
     bool withinBudget;
     int previousUses;
+
+    // Explicit constructor so emplace_back can build this in place directly
+    //  from its arguments under C++17. Without this, CandidateEvaluation is
+    //  a plain aggregate, and emplace_back(args...) on an aggregate needs
+    //  C++20's parenthesized aggregate initialization to compile.
+    CandidateEvaluation(
+        const Recipe* recipe_,
+        double score_,
+        double totalCost_,
+        bool withinBudget_,
+        int previousUses_
+    ) : recipe(recipe_),
+        score(score_),
+        totalCost(totalCost_),
+        withinBudget(withinBudget_),
+        previousUses(previousUses_) {}
 };
 
 bool isBetterNormalCandidate(
@@ -161,13 +177,13 @@ std::optional<CandidateEvaluation> chooseCandidate(
             recipeUseCount[candidate->recipeId] * 2.0 -
             additionalCost;
 
-        evaluations.emplace_back(CandidateEvaluation{
+        evaluations.emplace_back(
             candidate,
             score,
             trialCost,
             trialCost <= weeklyBudget,
             recipeUseCount[candidate->recipeId]
-        });
+        );
     }
 
     if (evaluations.empty()) {
