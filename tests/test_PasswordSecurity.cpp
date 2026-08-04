@@ -30,7 +30,8 @@ TEST_CASE("generateSalt gives different results each time", "[PasswordSecurity]"
 
 TEST_CASE("hashPassword gives same result for same password and salt", "[PasswordSecurity]") {
     string salt = generateSalt();
-    REQUIRE(hashPassword("cash-dog-girl-car", salt) == hashPassword("cash-dog-girl-car", salt));
+    const string kSyntheticTestCredential = "cash-dog-girl-car"; // synthetic test data, not a real password
+    REQUIRE(hashPassword(kSyntheticTestCredential, salt) == hashPassword(kSyntheticTestCredential, salt));
 }
 
 TEST_CASE("hashPassword changes when salt changes", "[PasswordSecurity]") {
